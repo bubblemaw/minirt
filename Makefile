@@ -6,13 +6,16 @@
 #    By: masase <masase@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/06 12:39:32 by masase            #+#    #+#              #
-#    Updated: 2025/06/06 15:07:39 by masase           ###   ########.fr        #
+#    Updated: 2025/06/06 16:01:19 by masase           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = minirt
+NAME = miniRT
 
-SRCS = srcs/main.c
+SRCS = 	srcs/main.c \
+		srcs/parsing.c \
+		gnl/get_next_line.c \
+		gnl/get_next_line_utils.c \
 
 OBJS = $(SRCS:%.c=%.o)
 
@@ -51,6 +54,6 @@ clean:
 fclean: clean
 		$(RM) $(NAME)
 		make -C $(LIBFT_PATH) fclean
-		make -C $(MLX_PATH) fclean
+		make -C $(MLX_PATH) clean
 
 re: fclean all
