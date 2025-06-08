@@ -6,13 +6,13 @@
 /*   By: hoannguy <hoannguy@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/07 21:17:12 by hoannguy          #+#    #+#             */
-/*   Updated: 2025/06/08 18:47:39 by hoannguy         ###   ########.fr       */
+/*   Updated: 2025/06/08 11:52:25 by hoannguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minirt.h"
 
-void	my_mlx_pixel_put(t_params *params, int x, int y, t_color color)
+void	my_mlx_pixel_put(t_params *params, int x, int y, int color[])
 {
 	char	*dest;
 
@@ -20,15 +20,8 @@ void	my_mlx_pixel_put(t_params *params, int x, int y, t_color color)
 	{
 		dest = params->data.addr + (x * params->data.line_length + y
 				* (params->data.bits_per_pixel / 8));
-		*(unsigned int *)dest = (color.r << 16 | color.g << 8 | color.b);
+		*(unsigned int *)dest = (color[0] << 16 | color[1] << 8 | color[2]);
 	}
-}
-
-void	image_create(t_params *params)
-{
-	render_object(params);
-	// render_light(params);
-	// render_shadow(params);
 }
 
 void	image_display(t_params *params)
@@ -37,7 +30,6 @@ void	image_display(t_params *params)
 	params->data.addr = mlx_get_data_addr(params->data.img,
 			&params->data.bits_per_pixel, &params->data.line_length,
 			&params->data.endian);
-	image_create(params);
 	mlx_put_image_to_window(params->mlx,
 		params->window, params->data.img, 0, 0);
 }
@@ -48,6 +40,7 @@ int	render(t_params *params)
 	params->window = mlx_new_window(params->mlx, WIDTH, HEIGHT,
 			"I don't like math");
 	hook(params);
+	image_create(params);
 	image_display(params);
 	mlx_loop(params->mlx);
 	return (0);

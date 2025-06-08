@@ -6,14 +6,14 @@
 #    By: hoannguy <hoannguy@student.42lausanne.c    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/06 12:39:32 by masase            #+#    #+#              #
-#    Updated: 2025/06/08 15:45:33 by hoannguy         ###   ########.fr        #
+#    Updated: 2025/06/08 11:49:12 by hoannguy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minirt
 
 SRCS = 	srcs/main.c\
-		srcs/free_all.c srcs/hook.c srcs/vector.c srcs/vector2.c\
+		srcs/free_all.c srcs/hook.c\
 		srcs/image_start.c srcs/image_create.c\
 
 OBJS = $(SRCS:%.c=%.o)
@@ -33,7 +33,7 @@ MLX_LIB = $(MLX_PATH)libmlx_Linux.a
 MLX_FLAGS = -Lminilibx-linux -L/usr/lib/X11 -lXext -lX11
 
 $(NAME): subsystems $(OBJS)
-		@gcc $(FLAGS) $(OBJS) $(MLX_LIB) $(LIBFT_LIB) $(MLX_FLAGS) -lm -o $(NAME)
+		@gcc $(FLAGS) $(OBJS) $(MLX_LIB) $(LIBFT_LIB) $(MLX_FLAGS) -o $(NAME)
 		@echo "made $(NAME)"
 
 %.o: %.c 
