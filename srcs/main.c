@@ -29,12 +29,12 @@ void	TEMP_simulation(t_params *params)
 	params->sphere[1] = NULL;
 
 	params->camera.vector.a = 0;
-	params->camera.vector.b = -0.2;
+	params->camera.vector.b = 0;
 	params->camera.vector.c = 1;
 	params->camera.pos.x = 0;
 	params->camera.pos.y = 0;
 	params->camera.pos.z = -10;
-	params->camera.fov = 90;
+	params->camera.fov = 60;
 
 	params->light = NULL;
 	params->plane = NULL;
@@ -47,12 +47,12 @@ int	main(int ac, char **av)
 	(void)av;
 	t_params	params;
 
-	TEMP_simulation(&params);
-	if (!render(&params))
-	{
-		mlx_destroy_image(params.mlx, params.data.img);
-		mlx_destroy_window(params.mlx, params.window);
-		return (free_all(&params), 1);
-	}
+	TEMP_simulation(&params); // replace with parser
+	if (initialise_map(&params) == NULL)
+		return (1);
+	params.mlx = mlx_init();
+	params.window = mlx_new_window(params.mlx, WIDTH, HEIGHT,
+			"Made by math haters");
+	render(&params);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: hoannguy <hoannguy@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 10:21:26 by hoannguy          #+#    #+#             */
-/*   Updated: 2025/06/08 10:26:20 by hoannguy         ###   ########.fr       */
+/*   Updated: 2025/06/09 00:03:39 by hoannguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,4 +66,5 @@ void	free_all(t_params *params)
 	free_plane(params);
 	free_cylinder(params);
 	free_sphere(params);
+	free_map(params);
 }

@@ -6,7 +6,7 @@
 /*   By: hoannguy <hoannguy@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 13:05:52 by masase            #+#    #+#             */
-/*   Updated: 2025/06/08 17:09:49 by hoannguy         ###   ########.fr       */
+/*   Updated: 2025/06/09 00:09:27 by hoannguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,23 @@
 # include <stdio.h>
 # include <unistd.h>
 # include <math.h>
+# include <float.h>
 # include <stdbool.h>
 # include "../libft/libft.h" 
 # include "../minilibx-linux/mlx.h"
 
 # define ESC_KEY 65307
+# define W 119
+# define S 115
+# define A 97
+# define D 100
+# define Q 113
+# define E 101
+# define T 116
+# define G 103
+# define F 102
+# define H 104
+# define R 114
 
 # define HEIGHT 720
 # define WIDTH 1080
@@ -101,6 +113,41 @@ typedef struct	s_sphere
 }	t_sphere;
 
 // MAIN STRUCT -----------------------------
+
+typedef struct s_hit_point {
+	bool		hit;
+	t_vector	hit_point;
+	t_vector	normal;
+	t_color		color;
+	float		distance;
+}	t_hit_point;
+
+// typedef struct	s_inter
+// {
+
+// }	t_inter;
+
+typedef struct	s_pixel
+{
+	int			i;
+	int			j;
+	t_vector	horiz;
+	t_vector	vert;
+	t_vector	direction;
+	t_color		color;
+}	t_pixel;
+
+typedef	struct	s_world
+{
+	float		aspect_ratio;
+	float		fov_rad;
+	t_vector	right;
+	t_vector	up;
+	t_vector	forward;
+	t_vector	world_up;
+	t_vector	origin;
+}	t_world;
+
 typedef struct	s_params
 {
 	t_camera	camera;
@@ -112,13 +159,15 @@ typedef struct	s_params
 	void		*mlx;
 	void		*window;
 	t_data		data;
+	t_hit_point	**map;
 }	t_params;
 
 // PARSING ---------------------------------
 
 
 // IMAGE -----------------------------------
-int			render(t_params *params);
+t_hit_point	**initialise_map(t_params *params);
+void		render(t_params *params);
 void		render_object(t_params *params);
 void		my_mlx_pixel_put(t_params *params, int x, int y, t_color color);
 
@@ -133,10 +182,12 @@ void		my_mlx_pixel_put(t_params *params, int x, int y, t_color color);
 
 // UTIL ------------------------------------
 void		free_all(t_params *params);
+void		free_map(t_params *params);
 t_vector	vector_add(t_vector v1, t_vector v2);
 t_vector	vector_sub(t_vector v1, t_vector v2);
 t_vector	vector_multi(float x, t_vector v1);
 t_vector	vector_divi(t_vector v1, float x);
+t_vector	vector_cross(t_vector v1, t_vector v2);
 float		vector_dot(t_vector v1, t_vector v2);
 float		vector_norm2(t_vector v1);
 void		vector_normalize(t_vector *v1);
@@ -145,5 +196,15 @@ t_vector	pos_to_vector(t_pos pos);
 // HOOk ------------------------------------
 void		hook(t_params *params);
 int			x_close_window(t_params *params);
+void		camera_pos_forward(t_params *params);
+void		camera_pos_backward(t_params *params);
+void		camera_pos_left(t_params *params);
+void		camera_pos_right(t_params *params);
+void		camera_pos_up(t_params *params);
+void		camera_pos_down(t_params *params);
+void		camera_look_up(t_params *params);
+void		camera_look_down(t_params *params);
+void		camera_look_left(t_params *params);
+void		camera_look_right(t_params *params);
 
 #endif 

@@ -6,11 +6,40 @@
 /*   By: hoannguy <hoannguy@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/07 21:17:12 by hoannguy          #+#    #+#             */
-/*   Updated: 2025/06/08 18:47:39 by hoannguy         ###   ########.fr       */
+/*   Updated: 2025/06/09 00:27:16 by hoannguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minirt.h"
+
+t_hit_point	**initialise_map(t_params *params)
+{
+	int	i;
+	int	j;
+
+	params->map = malloc(sizeof(t_hit_point *) * (HEIGHT + 1));
+	if (params->map == NULL)
+		return (perror("Error"), NULL);
+	i = 0;
+	while (i < HEIGHT)
+	{
+		params->map[i] = malloc(sizeof(t_hit_point) * WIDTH);
+		if (params->map[i] == NULL)
+			return (perror("Error"), free_map(params), NULL);
+		j = 0;
+		while (j < WIDTH)
+		{
+			params->map[i][j].hit = false;
+			params->map[i][j].color.r = 0;
+			params->map[i][j].color.g = 0;
+			params->map[i][j].color.b = 0;
+			j++;
+		}
+		i++;
+	}
+	params->map[i] = NULL;
+	return (params->map);
+}
 
 void	my_mlx_pixel_put(t_params *params, int x, int y, t_color color)
 {
@@ -42,13 +71,9 @@ void	image_display(t_params *params)
 		params->window, params->data.img, 0, 0);
 }
 
-int	render(t_params *params)
+void	render(t_params *params)
 {
-	params->mlx = mlx_init();
-	params->window = mlx_new_window(params->mlx, WIDTH, HEIGHT,
-			"I don't like math");
 	hook(params);
 	image_display(params);
 	mlx_loop(params->mlx);
-	return (0);
 }
