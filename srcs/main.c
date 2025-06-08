@@ -17,23 +17,23 @@ void	TEMP_simulation(t_params *params)
 	t_sphere	*sphere1;
 
 	sphere1 = malloc(sizeof(t_sphere));
-	sphere1->pos[0] = 0;
-	sphere1->pos[1] = 1;
-	sphere1->pos[2] = 5;
-	sphere1->d = 1;
-	sphere1->color[0] = 255;
-	sphere1->color[1] = 255;
-	sphere1->color[2] = 255;
+	sphere1->pos.x = 0;
+	sphere1->pos.y = 0;
+	sphere1->pos.z = 0;
+	sphere1->d = 5;
+	sphere1->color.r = 255;
+	sphere1->color.g = 0;
+	sphere1->color.b = 0;
 	params->sphere = malloc(sizeof(t_sphere *) * 2);
 	params->sphere[0] = sphere1;
 	params->sphere[1] = NULL;
 
-	params->camera.vector[0] = 0;
-	params->camera.vector[1] = -0.2;
-	params->camera.vector[2] = 1;
-	params->camera.pos[0] = 0;
-	params->camera.pos[1] = 4;
-	params->camera.pos[2] = 0;
+	params->camera.vector.a = 0;
+	params->camera.vector.b = -0.2;
+	params->camera.vector.c = 1;
+	params->camera.pos.x = 0;
+	params->camera.pos.y = 0;
+	params->camera.pos.z = -10;
 	params->camera.fov = 90;
 
 	params->light = NULL;
@@ -41,7 +41,7 @@ void	TEMP_simulation(t_params *params)
 	params->cylinder = NULL;
 }
 
-int main(int ac,  char **av)
+int	main(int ac, char **av)
 {
 	(void)ac;
 	(void)av;
@@ -54,5 +54,5 @@ int main(int ac,  char **av)
 		mlx_destroy_window(params.mlx, params.window);
 		return (free_all(&params), 1);
 	}
-	return(0);
+	return (0);
 }
