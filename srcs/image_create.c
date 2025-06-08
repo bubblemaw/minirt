@@ -1,19 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rayon_start.c                                      :+:      :+:    :+:   */
+/*   image_create.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hoannguy <hoannguy@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/07 21:17:12 by hoannguy          #+#    #+#             */
-/*   Updated: 2025/06/07 21:44:49 by hoannguy         ###   ########.fr       */
+/*   Created: 2025/06/08 11:48:26 by hoannguy          #+#    #+#             */
+/*   Updated: 2025/06/08 11:53:04 by hoannguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minirt.h"
 
-int	run(t_params *params)
+void	image_create(t_params *params)
 {
 	(void)params;
-	return (0);
 }
