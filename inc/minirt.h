@@ -6,7 +6,7 @@
 /*   By: hoannguy <hoannguy@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 13:05:52 by masase            #+#    #+#             */
-/*   Updated: 2025/06/09 10:55:15 by hoannguy         ###   ########.fr       */
+/*   Updated: 2025/06/09 14:45:02 by hoannguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,9 +121,9 @@ typedef struct	s_ray
 	float		t;
 	t_vector	hit_point;
 	t_vector	normal;
-	t_plane		*plane;
-	t_cylinder	*cylinder;
-	t_sphere	*sphere;
+	t_plane		*hit_plane;
+	t_cylinder	*hit_cylinder;
+	t_sphere	*hit_sphere;
 }	t_ray;
 
 typedef struct	s_params
@@ -167,7 +167,7 @@ void		render_object(t_params *params);
 void		my_mlx_pixel_put(t_params *params, int x, int y, t_color color);
 
 // RAYON -----------------------------------
-
+void	intersection_sphere(t_params *params, t_ray *ray);
 
 // LIGHT -----------------------------------
 

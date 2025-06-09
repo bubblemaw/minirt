@@ -15,18 +15,41 @@
 void	TEMP_simulation(t_params *params)
 {
 	t_sphere	*sphere1;
+	t_sphere	*sphere2;
+	t_sphere	*sphere3;
 
 	sphere1 = malloc(sizeof(t_sphere));
 	sphere1->pos.x = 0;
 	sphere1->pos.y = 0;
-	sphere1->pos.z = 0;
-	sphere1->d = 5;
+	sphere1->pos.z = 15;
+	sphere1->d = 3;
 	sphere1->color.r = 255;
 	sphere1->color.g = 0;
 	sphere1->color.b = 0;
-	params->sphere = malloc(sizeof(t_sphere *) * 2);
+
+	sphere2 = malloc(sizeof(t_sphere));
+	sphere2->pos.x = 3;
+	sphere2->pos.y = 1;
+	sphere2->pos.z = 15;
+	sphere2->d = 5;
+	sphere2->color.r = 0;
+	sphere2->color.g = 255;
+	sphere2->color.b = 0;
+
+	sphere3 = malloc(sizeof(t_sphere));
+	sphere3->pos.x = -5;
+	sphere3->pos.y = -4;
+	sphere3->pos.z = 20;
+	sphere3->d = 7;
+	sphere3->color.r = 0;
+	sphere3->color.g = 0;
+	sphere3->color.b = 255;
+
+	params->sphere = malloc(sizeof(t_sphere *) * 4);
 	params->sphere[0] = sphere1;
-	params->sphere[1] = NULL;
+	params->sphere[1] = sphere2;
+	params->sphere[2] = sphere3;
+	params->sphere[3] = NULL;
 
 	params->camera.vector.a = 0;
 	params->camera.vector.b = 0;

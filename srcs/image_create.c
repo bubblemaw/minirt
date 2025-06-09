@@ -6,53 +6,22 @@
 /*   By: hoannguy <hoannguy@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 11:48:26 by hoannguy          #+#    #+#             */
-/*   Updated: 2025/06/09 10:56:46 by hoannguy         ###   ########.fr       */
+/*   Updated: 2025/06/09 14:47:50 by hoannguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minirt.h"
 
-void	set_default_color(t_ray *ray)
-{
-	ray->color.r = 0;
-	ray->color.g = 0;
-	ray->color.b = 0;
-}
-
-void	intersection_sphere(t_params *params, t_ray *ray)
-{
-	float		a;
-	float		b;
-	float		c;
-	float		delta;
-	float		t1_curr;
-	float		t2_curr;
-	t_vector	oc;
-	t_vector	v_sphere;
-
-	if (!params->sphere)
-		return ;
-	a = 1;
-	// t1_prev = FLT_MAX;
-	// t2_prev = FLT_MAX;
-	// i = -1;
-	// while (params->sphere[++i])
-	v_sphere = pos_to_vector(params->sphere[0]->pos);
-	oc = vector_sub(ray->origin, v_sphere);
-	b = 2 * vector_dot(ray->direction, oc);
-	c = vector_dot(oc, oc) - pow((params->sphere[0]->d / 2), 2);
-	delta = b * b - 4 * c * a;
-	if (delta < 0)
-		return (set_default_color(ray));
-	t1_curr = (-b - sqrtf(delta)) / 2;
-	t2_curr = (-b + sqrtf(delta)) / 2;
-	if (t1_curr > 0 || t2_curr > 0)
-		ray->color = params->sphere[0]->color;
-}
-
 void	intersection(t_params *params, t_ray *ray)
 {
 	ray->origin = pos_to_vector(params->camera.pos);
+	ray->color.r = 0;
+	ray->color.g = 0;
+	ray->color.b = 0;
+	ray->t = FLT_MAX;
+	ray->hit_plane = NULL;
+	ray->hit_cylinder = NULL;
+	ray->hit_sphere = NULL;
 	intersection_sphere(params, ray);
 }
 

@@ -6,7 +6,7 @@
 #    By: hoannguy <hoannguy@student.42lausanne.c    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/06 12:39:32 by masase            #+#    #+#              #
-#    Updated: 2025/06/09 00:04:20 by hoannguy         ###   ########.fr        #
+#    Updated: 2025/06/09 14:46:44 by hoannguy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,6 +16,7 @@ SRCS = 	srcs/main.c\
 		srcs/free_all.c srcs/free_all2.c srcs/hook.c srcs/hook2.c srcs/hook3.c srcs/hook4.c\
 		srcs/vector.c srcs/vector2.c\
 		srcs/image_start.c srcs/image_create.c\
+		srcs/image_inter_sphere.c\
 
 OBJS = $(SRCS:%.c=%.o)
 
