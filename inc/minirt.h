@@ -6,7 +6,7 @@
 /*   By: hoannguy <hoannguy@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 13:05:52 by masase            #+#    #+#             */
-/*   Updated: 2025/06/09 00:09:27 by hoannguy         ###   ########.fr       */
+/*   Updated: 2025/06/09 10:55:15 by hoannguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,40 +113,18 @@ typedef struct	s_sphere
 }	t_sphere;
 
 // MAIN STRUCT -----------------------------
-
-typedef struct s_hit_point {
-	bool		hit;
-	t_vector	hit_point;
-	t_vector	normal;
-	t_color		color;
-	float		distance;
-}	t_hit_point;
-
-// typedef struct	s_inter
-// {
-
-// }	t_inter;
-
-typedef struct	s_pixel
+typedef struct	s_ray
 {
-	int			i;
-	int			j;
-	t_vector	horiz;
-	t_vector	vert;
+	t_vector	origin;
 	t_vector	direction;
 	t_color		color;
-}	t_pixel;
-
-typedef	struct	s_world
-{
-	float		aspect_ratio;
-	float		fov_rad;
-	t_vector	right;
-	t_vector	up;
-	t_vector	forward;
-	t_vector	world_up;
-	t_vector	origin;
-}	t_world;
+	float		t;
+	t_vector	hit_point;
+	t_vector	normal;
+	t_plane		*plane;
+	t_cylinder	*cylinder;
+	t_sphere	*sphere;
+}	t_ray;
 
 typedef struct	s_params
 {
@@ -159,14 +137,31 @@ typedef struct	s_params
 	void		*mlx;
 	void		*window;
 	t_data		data;
-	t_hit_point	**map;
 }	t_params;
+
+// SAVE LINE -------------------------------
+typedef struct	s_pixel
+{
+	int			i;
+	int			j;
+	t_vector	horiz;
+	t_vector	vert;
+}	t_pixel;
+
+typedef	struct	s_world
+{
+	float		aspect_ratio;
+	float		fov_rad;
+	t_vector	right;
+	t_vector	up;
+	t_vector	forward;
+	t_vector	world_up;
+}	t_world;
 
 // PARSING ---------------------------------
 
 
 // IMAGE -----------------------------------
-t_hit_point	**initialise_map(t_params *params);
 void		render(t_params *params);
 void		render_object(t_params *params);
 void		my_mlx_pixel_put(t_params *params, int x, int y, t_color color);
@@ -182,7 +177,6 @@ void		my_mlx_pixel_put(t_params *params, int x, int y, t_color color);
 
 // UTIL ------------------------------------
 void		free_all(t_params *params);
-void		free_map(t_params *params);
 t_vector	vector_add(t_vector v1, t_vector v2);
 t_vector	vector_sub(t_vector v1, t_vector v2);
 t_vector	vector_multi(float x, t_vector v1);

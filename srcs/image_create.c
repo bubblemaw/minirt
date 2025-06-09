@@ -6,29 +6,25 @@
 /*   By: hoannguy <hoannguy@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 11:48:26 by hoannguy          #+#    #+#             */
-/*   Updated: 2025/06/08 23:54:03 by hoannguy         ###   ########.fr       */
+/*   Updated: 2025/06/09 10:56:46 by hoannguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minirt.h"
 
-void	set_default_color(t_color *color)
+void	set_default_color(t_ray *ray)
 {
-	color->r = 0;
-	color->g = 0;
-	color->b = 0;
+	ray->color.r = 0;
+	ray->color.g = 0;
+	ray->color.b = 0;
 }
 
-void	intersection_sphere(t_params *params, t_vector origin,
-		t_vector direction, t_color *color)
+void	intersection_sphere(t_params *params, t_ray *ray)
 {
-	// int			i;
 	float		a;
 	float		b;
 	float		c;
 	float		delta;
-	// float		t1_prev;
-	// float		t2_prev;
 	float		t1_curr;
 	float		t2_curr;
 	t_vector	oc;
@@ -42,27 +38,26 @@ void	intersection_sphere(t_params *params, t_vector origin,
 	// i = -1;
 	// while (params->sphere[++i])
 	v_sphere = pos_to_vector(params->sphere[0]->pos);
-	oc = vector_sub(origin, v_sphere);
-	b = 2 * vector_dot(direction, oc);
+	oc = vector_sub(ray->origin, v_sphere);
+	b = 2 * vector_dot(ray->direction, oc);
 	c = vector_dot(oc, oc) - pow((params->sphere[0]->d / 2), 2);
 	delta = b * b - 4 * c * a;
 	if (delta < 0)
-		return (set_default_color(color));
+		return (set_default_color(ray));
 	t1_curr = (-b - sqrtf(delta)) / 2;
 	t2_curr = (-b + sqrtf(delta)) / 2;
 	if (t1_curr > 0 || t2_curr > 0)
-		*color = params->sphere[0]->color;
+		ray->color = params->sphere[0]->color;
 }
 
-void	intersection(t_params *params, t_vector origin,
-		t_vector direction, t_color *color)
+void	intersection(t_params *params, t_ray *ray)
 {
-	intersection_sphere(params, origin, direction, color);
+	ray->origin = pos_to_vector(params->camera.pos);
+	intersection_sphere(params, ray);
 }
 
 void	initialise_values(t_params *params, t_world *world)
 {
-	world->origin = pos_to_vector(params->camera.pos);
 	world->world_up.a = 0;
 	world->world_up.b = 1;
 	world->world_up.c = 0;
@@ -79,6 +74,7 @@ void	render_object(t_params *params)
 {
 	t_pixel	pixel;
 	t_world	world;
+	t_ray	ray;
 
 	initialise_values(params, &world);
 	pixel.i = -1;
@@ -91,10 +87,10 @@ void	render_object(t_params *params)
 					* world.aspect_ratio * world.fov_rad, world.right);
 			pixel.vert = vector_multi((1 - 2 * ((pixel.i + 0.5f) / HEIGHT))
 					* world.fov_rad, world.up);
-			pixel.direction = vector_add(world.forward, vector_add(pixel.horiz, pixel.vert));
-			vector_normalize(&pixel.direction);
-			intersection(params, world.origin, pixel.direction, &pixel.color);
-			my_mlx_pixel_put(params, pixel.i, pixel.j, pixel.color);
+			ray.direction = vector_add(world.forward, vector_add(pixel.horiz, pixel.vert));
+			vector_normalize(&ray.direction);
+			intersection(params, &ray);
+			my_mlx_pixel_put(params, pixel.i, pixel.j, ray.color);
 		}
 	}
 }

@@ -48,8 +48,6 @@ int	main(int ac, char **av)
 	t_params	params;
 
 	TEMP_simulation(&params); // replace with parser
-	if (initialise_map(&params) == NULL)
-		return (1);
 	params.mlx = mlx_init();
 	params.window = mlx_new_window(params.mlx, WIDTH, HEIGHT,
 			"Made by math haters");
