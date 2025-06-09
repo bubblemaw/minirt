@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: maw <maw@student.42.fr>                    +#+  +:+       +#+         #
+#    By: masase <masase@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/06 12:39:32 by masase            #+#    #+#              #
-#    Updated: 2025/06/08 20:54:48 by maw              ###   ########.fr        #
+#    Updated: 2025/06/09 19:35:18 by masase           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,6 +16,7 @@ SRCS = 	srcs/main.c \
 		srcs/parsing.c \
 		srcs/utils.c \
 		srcs/error_message.c \
+		srcs/print_struct.c \
 		gnl/get_next_line.c \
 		gnl/get_next_line_utils.c \
 

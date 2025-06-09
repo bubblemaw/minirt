@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maw <maw@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: masase <masase@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 13:05:52 by masase            #+#    #+#             */
-/*   Updated: 2025/06/08 21:05:10 by maw              ###   ########.fr       */
+/*   Updated: 2025/06/09 19:34:00 by masase           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ typedef struct s_sphere
     int R;
     int G;
     int B;
-}t_spehre;
+}t_sphere;
 
 typedef struct s_cylinder
 {
@@ -115,7 +115,7 @@ typedef struct s_scene
 {
     t_camera camera;
     t_plane plane;
-    t_spehre sphere;
+    t_sphere sphere;
     t_cylinder cy;
     t_ambiance amb;
     t_point point;
@@ -123,12 +123,22 @@ typedef struct s_scene
 }t_scene;
 
 int error(char *str);
-int	ft_isspace(int c);
-int	ft_atof(const char *str);
+
+
 int	check_arg(char *str);
 int save_ambiant(char *line, t_scene *scene);
 int fill_struct(char *line, t_scene *scene);
 int read_scene(char *file, t_scene *scene);
 int parsing(char *file, t_scene *scene);
+int amb_rgb(char *line, int *i, t_ambiance *ambiance);
+int put_rgb(int *i, int *value, char *line);
+int	ft_isdigit_point(int c);
+int save_camera(char *line, t_scene *scene);
 
-#endif 
+
+//utils
+int	ft_isspace(int c);
+float	ft_atof(const char *str);
+void decimal_atof(int i, const char *str, float *resultat);
+
+#endif

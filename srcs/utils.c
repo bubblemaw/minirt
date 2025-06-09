@@ -3,14 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maw <maw@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: masase <masase@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 16:11:43 by maw               #+#    #+#             */
-/*   Updated: 2025/06/08 21:51:46 by maw              ###   ########.fr       */
+/*   Updated: 2025/06/09 18:42:31 by masase           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minirt.h"
+
+int	ft_isdigit_point(int c)
+{
+	if ((c >= '0' && c <= '9') || c == '.')
+		return (1);
+	return (0);
+}
 
 int	ft_isspace(int c)
 {
@@ -19,15 +26,13 @@ int	ft_isspace(int c)
 	return (0);
 }
 
-int	ft_atof(const char *str)
+float	ft_atof(const char *str)
 {
 	int	i;
 	int	signe;
 	float	resultat;
-	int point_flag;
 
-	point_flag = 0;
-	resultat = 0;
+	resultat = 0.0f;
 	signe = 1;
 	i = 0;
 	while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
@@ -39,22 +44,28 @@ int	ft_atof(const char *str)
 		signe *= -1;
 		i++;
 	}
-	while (((str[i] >= '0' && str[i] <= '9') || str[i] == '.'))
+	while (str[i] >= '0' && str[i] <= '9')
 	{
-		if (point_flag == 1)
-			signe *= 10;
-		if (str[i] == '.')
+		resultat = resultat *10 + (str[i] - '0');
+		i++;
+	}
+	decimal_atof(i, str, &resultat);
+	return (resultat * signe);
+}
+
+void decimal_atof(int i, const char *str, float *resultat)
+{
+	float fraction;
+
+	fraction = 0.1;
+	if (str[i] == '.')
+	{
+		i++;
+		while (str[i] >= '0' && str[i] <= '9')
 		{
-			point_flag = 1;
-			i++;
-		}
-		else
-		{
-			resultat *= 10;
-			resultat = (str[i] - '0') + resultat;
+			*resultat += (str[i] - '0') * fraction;
+			fraction *= 0.1;
 			i++;
 		}
 	}
-	resultat /= signe;
-	return (resultat);
 }
