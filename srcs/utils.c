@@ -1,23 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maw <maw@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/15 16:21:37 by maw               #+#    #+#             */
-/*   Updated: 2025/06/08 20:15:26 by maw              ###   ########.fr       */
+/*   Created: 2025/06/08 16:11:43 by maw               #+#    #+#             */
+/*   Updated: 2025/06/08 21:51:46 by maw              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../inc/minirt.h"
 
-int	ft_atoi(const char *str)
+int	ft_isspace(int c)
+{
+	if ((c >= 9 && c <= 13) || (c == 32))
+		return (1);
+	return (0);
+}
+
+int	ft_atof(const char *str)
 {
 	int	i;
 	int	signe;
-	int	resultat;
+	float	resultat;
+	int point_flag;
 
+	point_flag = 0;
 	resultat = 0;
 	signe = 1;
 	i = 0;
@@ -30,24 +39,22 @@ int	ft_atoi(const char *str)
 		signe *= -1;
 		i++;
 	}
-	while ((str[i] >= '0' && str[i] <= '9'))
+	while (((str[i] >= '0' && str[i] <= '9') || str[i] == '.'))
 	{
-		resultat *= 10;
-		resultat = (str[i] - '0') + resultat;
-		i++;
+		if (point_flag == 1)
+			signe *= 10;
+		if (str[i] == '.')
+		{
+			point_flag = 1;
+			i++;
+		}
+		else
+		{
+			resultat *= 10;
+			resultat = (str[i] - '0') + resultat;
+			i++;
+		}
 	}
-	resultat *= signe;
+	resultat /= signe;
 	return (resultat);
 }
-
-// #include <stdlib.h>
-// #include <stdio.h>
-// int main()
-// {
-// const char nombre[] = "  ++46";
-
-// printf("%d\n", ft_atoi(nombre));
-// printf("%d\n", atoi(nombre));
-
-// return (0);
-// }
