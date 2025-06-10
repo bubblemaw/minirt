@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hook.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hoannguy <hoannguy@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: masase <masase@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 10:41:26 by hoannguy          #+#    #+#             */
-/*   Updated: 2025/06/09 14:17:50 by hoannguy         ###   ########.fr       */
+/*   Updated: 2025/06/10 13:40:48 by masase           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@ int	x_close_window(t_params *params)
 	free_all(params);
 	mlx_destroy_image(params->mlx, params->data.img);
 	mlx_destroy_window(params->mlx, params->window);
+	mlx_destroy_display(params->mlx);
+	free(params->mlx);
 	printf("Program terminated\n");
 	exit(0);
 }
