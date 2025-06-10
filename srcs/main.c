@@ -6,7 +6,7 @@
 /*   By: masase <masase@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 12:39:14 by masase            #+#    #+#             */
-/*   Updated: 2025/06/09 15:44:36 by masase           ###   ########.fr       */
+/*   Updated: 2025/06/10 11:38:19 by masase           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ int main(int ac,  char **av)
     // printf("%f\n", ft_atof(av[1]));
     // printf("atof: %f\n", atof(av[1]));
     parsing(av[1], &scene);
-    printf("%f  ,%d-%d-%d\n", scene.amb.ratio, scene.amb.R,scene.amb.G,scene.amb.B);  
+    print_ambiance_as_array(&scene.amb);
+    print_camera_as_array(&scene.camera);
     return(0);
 }

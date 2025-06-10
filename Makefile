@@ -6,7 +6,7 @@
 #    By: masase <masase@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/06 12:39:32 by masase            #+#    #+#              #
-#    Updated: 2025/06/09 19:35:18 by masase           ###   ########.fr        #
+#    Updated: 2025/06/10 12:12:13 by masase           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,6 +14,8 @@ NAME = miniRT
 
 SRCS = 	srcs/main.c \
 		srcs/parsing.c \
+		srcs/save_ambiance.c \
+		srcs/save_camera.c \
 		srcs/utils.c \
 		srcs/error_message.c \
 		srcs/print_struct.c \

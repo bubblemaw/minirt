@@ -6,7 +6,7 @@
 /*   By: masase <masase@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 15:15:47 by masase            #+#    #+#             */
-/*   Updated: 2025/06/09 19:26:10 by masase           ###   ########.fr       */
+/*   Updated: 2025/06/10 12:08:33 by masase           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ int parsing(char *file, t_scene *scene)
 	if (read_scene(file, scene) == FALSE)
 		return (FALSE);
 	return (TRUE);
-
 }
 
 int read_scene(char *file, t_scene *scene)
@@ -69,91 +68,6 @@ int fill_struct(char *line, t_scene *scene)
 	return(FALSE);
 }
 
-int save_camera(char *line, t_scene *scene)
-{
-	int i;
-
-	i = 0;
-	printf("save ambiant\n");
-	printf("line: %s\n", line);
-	while (ft_isalpha(line[i]) && line[i])
-		i++;
-	while (ft_isspace(line[i]) && line[i])
-		i++;
-	if ((line[i] && isdigit(line[i])) || line[i] == '.')
-		scene->amb.ratio = ft_atof(line + i);
-	while (ft_isdigit_point(line[i]) && line[i])
-		i++;
-	while (ft_isspace(line[i]) && line[i])
-		i++;
-	if (amb_rgb(line, &i, &scene->amb) == FALSE)
-		return (FALSE);
-	return (TRUE);
-}
-
-int save_ambiant(char *line, t_scene *scene)
-{
-	int i;
-
-	i = 0;
-	printf("save ambiant\n");
-	printf("line: %s\n", line);
-	while (ft_isalpha(line[i]) && line[i])
-		i++;
-	while (ft_isspace(line[i]) && line[i])
-		i++;
-	if ((line[i] && isdigit(line[i])) || line[i] == '.')
-		scene->amb.ratio = ft_atof(line + i);
-	while (ft_isdigit_point(line[i]) && line[i])
-		i++;
-	while (ft_isspace(line[i]) && line[i])
-		i++;
-	if (amb_rgb(line, &i, &scene->amb) == FALSE)
-		return (FALSE);
-	return (TRUE);
-}
-
-int amb_rgb(char *line, int *i, t_ambiance *ambiance)
-{
-	printf("enter rgb\n");
-	if (put_rgb(i, &ambiance->R, line) == FALSE)
-		return (FALSE);
-	if (put_rgb(i, &ambiance->G, line) == FALSE)
-		return (FALSE);
-	if (put_rgb(i, &ambiance->B, line) == FALSE)
-		return (FALSE);
-	return (TRUE);
-}
-
-int amb_rgb(char *line, int *i, t_camera *camera)
-{
-	printf("enter rgb\n");
-	if (put_rgb(i, &camera->x, line) == FALSE)
-		return (FALSE);
-	if (put_rgb(i, &camera->y, line) == FALSE)
-		return (FALSE);
-	if (put_rgb(i, &camera->z, line) == FALSE)
-		return (FALSE);
-	return (TRUE);
-}
-
-int put_rgb(int *i, int *value, char *line)
-{
-	if (line[*i] && ft_isdigit(line[*i]))
-	{
-		*value = ft_atoi(line + (*i));
-		printf("value: %d\n", *value);
-	}
-	if (*value < 0 || *value > 255)
-		return (FALSE);
-	while(ft_isdigit_point(line[*i]) && line[*i])
-		(*i)++;
-	if (line[*i] == ',')
-		(*i)++;
-	else
-		return(FALSE);
-	return (TRUE);
-}
 
 int	check_arg(char *str)
 {

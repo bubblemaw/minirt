@@ -6,7 +6,7 @@
 /*   By: masase <masase@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 13:05:52 by masase            #+#    #+#             */
-/*   Updated: 2025/06/09 19:34:00 by masase           ###   ########.fr       */
+/*   Updated: 2025/06/10 12:54:15 by masase           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,14 +131,27 @@ int fill_struct(char *line, t_scene *scene);
 int read_scene(char *file, t_scene *scene);
 int parsing(char *file, t_scene *scene);
 int amb_rgb(char *line, int *i, t_ambiance *ambiance);
+int cam_view_point(char *line, int *i, t_camera *camera);
 int put_rgb(int *i, int *value, char *line);
+int put_view_point(int *i, float *value, char *line);
 int	ft_isdigit_point(int c);
 int save_camera(char *line, t_scene *scene);
+int cam_vector(char *line, int *i, t_camera *camera);
+int save_fov(char *line, int *i, t_camera *camera);
 
 
 //utils
 int	ft_isspace(int c);
 float	ft_atof(const char *str);
 void decimal_atof(int i, const char *str, float *resultat);
+
+//printf
+void print_camera_as_array(t_camera *cam);
+void print_plane_as_array(t_plane *pl);
+void print_sphere_as_array(t_sphere *sp);
+void print_cylinder_as_array(t_cylinder *cyl);
+void print_ambiance_as_array(t_ambiance *amb);
+void print_point_as_array(t_point *pt);
+
 
 #endif
