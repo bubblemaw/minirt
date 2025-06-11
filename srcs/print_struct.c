@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_struct.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: masase <masase@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maw <maw@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 19:29:38 by masase            #+#    #+#             */
-/*   Updated: 2025/06/10 11:15:42 by masase           ###   ########.fr       */
+/*   Updated: 2025/06/11 19:33:00 by maw              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,47 +14,42 @@
 
 void print_camera_as_array(t_camera *cam)
 {
-    printf("Camera %d:\n", cam->number);
-    printf("Position: [%.2f, %.2f, %.2f]\n", cam->x, cam->y, cam->z);
-    printf("Orientation: [%.2f, %.2f, %.2f]\n", cam->v_x, cam->v_y, cam->v_z);
-    printf("Field of View: %d\n", cam->FOV);
+    printf("Position: [%.2f, %.2f, %.2f]\n", cam->pos.x, cam->pos.y, cam->pos.z);
+    printf("Orientation: [%.2f, %.2f, %.2f]\n", cam->vector.a, cam->vector.b, cam->vector.c);
+    printf("Field of View: %d\n", cam->fov);
 }
 
-void print_plane_as_array(t_plane *pl)
+void print_plane_as_array(t_plane *plane)
 {
-    printf("Plane %d:\n", pl->number);
-    printf("Position: [%.2f, %.2f, %.2f]\n", pl->x, pl->y, pl->z);
-    printf("Orientation: [%.2f, %.2f, %.2f]\n", pl->v_x, pl->v_y, pl->v_z);
-    printf("Color: [%d, %d, %d]\n", pl->R, pl->G, pl->B);
+    printf("Position: [%.2f, %.2f, %.2f]\n", plane->pos.x, plane->pos.y, plane->pos.z);
+    printf("Orientation: [%.2f, %.2f, %.2f]\n", plane->vector.a, plane->vector.b, plane->vector.c);
+    printf("Color: [%d, %d, %d]\n", plane->color.r, plane->color.r, plane->color.r);
 }
 
-void print_sphere_as_array(t_sphere *sp)
+void print_sphere_as_array(t_sphere *sphere)
 {
-    printf("Sphere %d:\n", sp->number);
-    printf("Position: [%.2f, %.2f, %.2f]\n", sp->x, sp->y, sp->z);
-    printf("Diameter: %.2f\n", sp->diameter);
-    printf("Color: [%d, %d, %d]\n", sp->R, sp->G, sp->B);
+    printf("Position: [%.2f, %.2f, %.2f]\n", sphere->pos.x, sphere->pos.y, sphere->pos.z);
+    printf("Diameter: %.2f\n", sphere->d);
+    printf("Color: [%d, %d, %d]\n", sphere->color.r, sphere->color.g, sphere->color.b);
 }
 
 void print_cylinder_as_array(t_cylinder *cyl)
 {
-    printf("Cylinder %d:\n", cyl->number);
-    printf("Position: [%.2f, %.2f, %.2f]\n", cyl->x, cyl->y, cyl->z);
-    printf("Orientation: [%.2f, %.2f, %.2f]\n", cyl->v_x, cyl->v_y, cyl->v_z);
-    printf("Color: [%d, %d, %d]\n", cyl->R, cyl->G, cyl->B);
-    printf("Dimensions: [Diameter: %.2f, Height: %.2f]\n", cyl->diameter, cyl->height);
+    printf("Position: [%.2f, %.2f, %.2f]\n", cyl->pos.x, cyl->pos.y, cyl->pos.z);
+    printf("Orientation: [%.2f, %.2f, %.2f]\n", cyl->vector.a, cyl->vector.b, cyl->vector.c);
+    printf("Color: [%d, %d, %d]\n", cyl->color.r, cyl->color.g, cyl->color.b);
+    printf("Dimensions: [Diameter: %.2f, Height: %.2f]\n", cyl->d, cyl->h);
 }
 
-void print_ambiance_as_array(t_ambiance *amb)
+void print_ambiance_as_array(t_ambient *amb)
 {
-    printf("Ambient Light %d:\n", amb->number);
-    printf("Color: [%d, %d, %d]\n", amb->R, amb->G, amb->B);
+    printf("Color: [%d, %d, %d]\n", amb->color.r, amb->color.g, amb->color.b);
     printf("Ratio: %.2f\n", amb->ratio);
 }
 
-void print_point_as_array(t_point *pt)
+void print_point_as_array(t_light *light)
 {
-    printf("Point Light %d:\n", pt->number);
-    printf("Position: [%.2f, %.2f, %.2f]\n", pt->x, pt->y, pt->z);
-    printf("Brightness Ratio: %.2f\n", pt->bright_ratio);
+    printf("Position: [%.2f, %.2f, %.2f]\n", light->pos.x, light->pos.y, light->pos.z);
+    printf("Brightness Ratio: %.2f\n", light->ratio);
+    printf("Color: [%d, %d, %d]\n", light->color.r, light->color.g, light->color.b);
 }

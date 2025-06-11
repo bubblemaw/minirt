@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: masase <masase@student.42.fr>              +#+  +:+       +#+         #
+#    By: maw <maw@student.42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/06 12:39:32 by masase            #+#    #+#              #
-#    Updated: 2025/06/10 12:12:13 by masase           ###   ########.fr        #
+#    Updated: 2025/06/11 17:20:28 by maw              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,6 +16,10 @@ SRCS = 	srcs/main.c \
 		srcs/parsing.c \
 		srcs/save_ambiance.c \
 		srcs/save_camera.c \
+		srcs/save_light.c \
+		srcs/save_plane.c \
+		srcs/save_sphere.c \
+		srcs/save_cylinder.c \
 		srcs/utils.c \
 		srcs/error_message.c \
 		srcs/print_struct.c \

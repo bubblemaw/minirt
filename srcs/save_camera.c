@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   save_camera.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: masase <masase@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maw <maw@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 12:06:25 by masase            #+#    #+#             */
-/*   Updated: 2025/06/10 12:56:17 by masase           ###   ########.fr       */
+/*   Updated: 2025/06/11 15:17:42 by maw              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minirt.h"
 
-int save_camera(char *line, t_scene *scene)
+int save_camera(char *line, t_params *params)
 {
 	int i;
 
@@ -22,15 +22,15 @@ int save_camera(char *line, t_scene *scene)
 		i++;
 	while (ft_isspace(line[i]) && line[i])
 		i++;
-	if (cam_view_point(line, &i, &scene->camera) == FALSE)
+	if (cam_view_point(line, &i, &params->camera) == FALSE)
 		return (FALSE);
     while (ft_isspace(line[i]) && line[i])
 		i++;
-	if (cam_vector(line, &i, &scene->camera) == FALSE)
+	if (cam_vector(line, &i, &params->camera) == FALSE)
 		return (FALSE);
     while (ft_isspace(line[i]) && line[i])
 		i++;
-    if (save_fov(line, &i, &scene->camera) == FALSE)
+    if (save_fov(line, &i, &params->camera) == FALSE)
     {
         return (FALSE);
     }
@@ -39,8 +39,8 @@ int save_camera(char *line, t_scene *scene)
 
 int save_fov(char *line, int *i, t_camera *camera)
 {
-    camera->FOV = atoi(line + (*i));
-    if (camera->FOV < 0 || camera->FOV > 180)
+    camera->fov = atoi(line + (*i));
+    if (camera->fov < 0 || camera->fov > 180)
     {
         return (FALSE);
     }
@@ -50,11 +50,11 @@ int save_fov(char *line, int *i, t_camera *camera)
 int cam_view_point(char *line, int *i, t_camera *camera)
 {
 	printf("cam view point\n");
-	if (put_view_point(i, &camera->x, line) == FALSE)
+	if (put_view_point(i, &camera->pos.x, line) == FALSE)
 		return (FALSE);
-	if (put_view_point(i, &camera->y, line) == FALSE)
+	if (put_view_point(i, &camera->pos.y, line) == FALSE)
 		return (FALSE);
-	if (put_view_point(i, &camera->z, line) == FALSE)
+	if (put_view_point(i, &camera->pos.z, line) == FALSE)
 		return (FALSE);
 	return (TRUE);
 }
@@ -76,13 +76,11 @@ int put_view_point(int *i, float *value, char *line)
 int cam_vector(char *line, int *i, t_camera *camera)
 {
 	printf("enter rgb\n");
-	if (put_view_point(i, &camera->v_x, line) == FALSE)
+	if (put_view_point(i, &camera->vector.a, line) == FALSE)
 		return (FALSE);
-	if (put_view_point(i, &camera->v_y, line) == FALSE)
+	if (put_view_point(i, &camera->vector.b, line) == FALSE)
 		return (FALSE);
-	if (put_view_point(i, &camera->v_z, line) == FALSE)
+	if (put_view_point(i, &camera->vector.c, line) == FALSE)
 		return (FALSE);
 	return (TRUE);
 }
-
-

@@ -3,25 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: masase <masase@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maw <maw@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 15:15:47 by masase            #+#    #+#             */
-/*   Updated: 2025/06/10 12:08:33 by masase           ###   ########.fr       */
+/*   Updated: 2025/06/11 17:36:18 by maw              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minirt.h"
 
-int parsing(char *file, t_scene *scene)
+int parsing(char *file, t_params *params)
 {
 	if (check_arg(file) == FALSE)
 		return (error("file must finish by .rt"));
-	if (read_scene(file, scene) == FALSE)
+	if (read_scene(file, params) == FALSE)
 		return (FALSE);
 	return (TRUE);
 }
 
-int read_scene(char *file, t_scene *scene)
+int read_scene(char *file, t_params *params)
 {
 	int fd;
 	char *line;
@@ -34,7 +34,7 @@ int read_scene(char *file, t_scene *scene)
 		line = get_next_line(fd);
 		if (line)
 		{
-			fill_struct(line, scene);
+			fill_struct(line, params);
 			free(line);
 		}
 	}
@@ -42,7 +42,7 @@ int read_scene(char *file, t_scene *scene)
 
 }
 
-int fill_struct(char *line, t_scene *scene)
+int fill_struct(char *line, t_params *params)
 {
 	int i;
 
@@ -52,9 +52,9 @@ int fill_struct(char *line, t_scene *scene)
 		while(isspace(line[i]))
 			i++;
 		if(line[i] == 'A' && ft_isspace(line[i + 1]))
-			return(save_ambiant(line, scene));
+			return(save_ambiant(line, params));
 		else if(line[i] == 'C' && ft_isspace(line[i + 1]))
-			return(save_camera(line, scene));		
+			return(save_camera(line, params));		
 		// else if(line[i] == 'L' && ft_isspace(line[i + 1]))
 		// 	return(save_light(line));
 		// else if(line[i] == 's' && line[i + 1] == 'p' && ft_isspace(line[i + 2]))
