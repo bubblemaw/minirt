@@ -6,7 +6,7 @@
 /*   By: masase <masase@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 11:50:48 by masase            #+#    #+#             */
-/*   Updated: 2025/06/12 14:54:42 by masase           ###   ########.fr       */
+/*   Updated: 2025/06/12 18:32:07 by masase           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void *alloc_tab(t_params *params, e_tab_type type)
 		current_size = &params->quantity.sphere;
 		element_size = sizeof(t_sphere *); 
 	}
-	*tab = ft_realloc (params->light,
+	*tab = ft_realloc (*tab,
 	element_size * (*current_size),
 	element_size * ((*current_size) + 2));
 	if (*tab == NULL)

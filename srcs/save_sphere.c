@@ -6,7 +6,7 @@
 /*   By: masase <masase@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 15:22:36 by maw               #+#    #+#             */
-/*   Updated: 2025/06/12 16:40:19 by masase           ###   ########.fr       */
+/*   Updated: 2025/06/12 17:53:24 by masase           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int save_sphere(char *line, t_params *params)
 	int i;
 	int j;
 
+	printf("line: %s\n", line);
 	j = params->quantity.sphere;
 	params->sphere = alloc_tab(params, SPHERE);
 	params->sphere[j] = malloc (sizeof(t_sphere));

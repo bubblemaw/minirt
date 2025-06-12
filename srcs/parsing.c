@@ -6,7 +6,7 @@
 /*   By: masase <masase@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 15:15:47 by masase            #+#    #+#             */
-/*   Updated: 2025/06/12 16:40:18 by masase           ###   ########.fr       */
+/*   Updated: 2025/06/12 18:32:14 by masase           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,18 +29,23 @@ int read_scene(char *file, t_params *params)
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
 		return (error("cant' open the file"));
-	while (line != NULL)
+	while (1)
 	{
 		line = get_next_line(fd);
+		if (line == NULL)
+			break ;
 		if (line)
 		{
 			printf("read line: %s\n", line);
 			if (fill_struct(line, params) == TRUE)
+			{
 				free(line);
+				line = NULL;
+			}
 		}
 	}
+	close(fd);
 	return (TRUE);
-
 }
 
 int fill_struct(char *line, t_params *params)
@@ -48,6 +53,7 @@ int fill_struct(char *line, t_params *params)
 	int i;
 
 	i = 0;
+	printf("fill struct line: %s\n", line);
 	if (line[i])
 	{
 		while(isspace(line[i]))
