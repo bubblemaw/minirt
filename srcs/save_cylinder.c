@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   save_cylinder.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maw <maw@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: masase <masase@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 16:40:50 by maw               #+#    #+#             */
-/*   Updated: 2025/06/11 19:40:42 by maw              ###   ########.fr       */
+/*   Updated: 2025/06/12 16:35:20 by masase           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,10 @@ int save_cylinder(char *line, t_params *params)
 	int j;
 
 	i = 0;
-	j = 0;
+	j = params->quantity.cylinder;
+	params->cylinder = alloc_tab(params, CYLINDER);
+	params->cylinder[j] = malloc (sizeof(t_cylinder));
+	params->cylinder[j + 1] = NULL;
 	printf("line: %s\n", line);
 	while (ft_isalpha(line[i]) && line[i])
 		i++;
@@ -36,7 +39,7 @@ int save_cylinder(char *line, t_params *params)
 		return (FALSE);
 	while (ft_isspace(line[i]) && line[i])
 		i++;
-	if (cylinder_diameter(line, &i, params->cylinder[j]) == FALSE)
+	if (cylinder_height(line, &i, params->cylinder[j]) == FALSE)
 		return (FALSE);
 	while (ft_isspace(line[i]) && line[i])
 		i++;	

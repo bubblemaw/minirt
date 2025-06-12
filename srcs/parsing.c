@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maw <maw@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: masase <masase@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 15:15:47 by masase            #+#    #+#             */
-/*   Updated: 2025/06/11 17:36:18 by maw              ###   ########.fr       */
+/*   Updated: 2025/06/12 16:40:18 by masase           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,9 @@ int read_scene(char *file, t_params *params)
 		line = get_next_line(fd);
 		if (line)
 		{
-			fill_struct(line, params);
-			free(line);
+			printf("read line: %s\n", line);
+			if (fill_struct(line, params) == TRUE)
+				free(line);
 		}
 	}
 	return (TRUE);
@@ -47,7 +48,7 @@ int fill_struct(char *line, t_params *params)
 	int i;
 
 	i = 0;
-	while (line[i])
+	if (line[i])
 	{
 		while(isspace(line[i]))
 			i++;
@@ -55,15 +56,14 @@ int fill_struct(char *line, t_params *params)
 			return(save_ambiant(line, params));
 		else if(line[i] == 'C' && ft_isspace(line[i + 1]))
 			return(save_camera(line, params));		
-		// else if(line[i] == 'L' && ft_isspace(line[i + 1]))
-		// 	return(save_light(line));
-		// else if(line[i] == 's' && line[i + 1] == 'p' && ft_isspace(line[i + 2]))
-		// 	return(save_sphere(line));
-		// else if(line[i] == 'p' && line[i + 1] == 'l' && ft_isspace(line[i + 2]))
-		// 	return(save_palne(line));
-		// else if(line[i] == 'c' && line[i + 1] == 'y' && ft_isspace(line[i + 2]))
-		// 	return(save_cylinder(line));
-		i++;
+		else if(line[i] == 'L' && ft_isspace(line[i + 1]))
+			return(save_light(line, params));
+		else if(line[i] == 's' && line[i + 1] == 'p' && ft_isspace(line[i + 2]))
+			return(save_sphere(line, params));
+		else if(line[i] == 'p' && line[i + 1] == 'l' && ft_isspace(line[i + 2]))
+			return(save_plane(line, params));
+		else if(line[i] == 'c' && line[i + 1] == 'y' && ft_isspace(line[i + 2]))
+			return(save_cylinder(line, params));
 	}
 	return(FALSE);
 }

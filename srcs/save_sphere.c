@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   save_sphere.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maw <maw@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: masase <masase@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 15:22:36 by maw               #+#    #+#             */
-/*   Updated: 2025/06/11 19:40:14 by maw              ###   ########.fr       */
+/*   Updated: 2025/06/12 16:40:19 by masase           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,11 @@ int save_sphere(char *line, t_params *params)
 	int i;
 	int j;
 
+	j = params->quantity.sphere;
+	params->sphere = alloc_tab(params, SPHERE);
+	params->sphere[j] = malloc (sizeof(t_sphere));
+	params->sphere[j + 1] = NULL;
 	i = 0;
-	j = 0;
 	printf("line: %s\n", line);
 	while (ft_isalpha(line[i]) && line[i])
 		i++;
@@ -28,7 +31,8 @@ int save_sphere(char *line, t_params *params)
 		return (FALSE);
     while (ft_isspace(line[i]) && line[i])
 		i++;
-	params->sphere[j]->d = atof(line + i);
+	if (sphere_diameter(line, &i, params->sphere[j]) == FALSE)
+		return (FALSE);
     while (ft_isspace(line[i]) && line[i])
 		i++;
 	if (sphere_rgb(line, &i, params->sphere[j]) == FALSE)
@@ -36,9 +40,16 @@ int save_sphere(char *line, t_params *params)
 	return (TRUE);
 }
 
+int sphere_diameter(char *line, int *i, t_sphere *sphere)
+{
+	sphere->d = atof(line + (*i));
+	while (ft_isdigit_point(line[*i]))
+		(*i)++;
+    return (TRUE);
+}
+
 int sphere_view_point(char *line, int *i, t_sphere *sphere)
 {
-	printf("cam view point\n");
 	if (put_view_point(i, &sphere->pos.x, line) == FALSE)
 		return (FALSE);
 	if (put_view_point(i, &sphere->pos.y, line) == FALSE)
@@ -50,7 +61,6 @@ int sphere_view_point(char *line, int *i, t_sphere *sphere)
 
 int sphere_rgb(char *line, int *i, t_sphere *sphere)
 {
-	printf("enter rgb\n");
 	if (put_rgb(i, &sphere->color.r, line) == FALSE)
 		return (FALSE);
 	if (put_rgb(i, &sphere->color.g, line) == FALSE)

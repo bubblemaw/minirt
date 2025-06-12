@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maw <maw@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: masase <masase@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 13:05:52 by masase            #+#    #+#             */
-/*   Updated: 2025/06/11 19:37:35 by maw              ###   ########.fr       */
+/*   Updated: 2025/06/12 16:34:18 by masase           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,14 @@ enum
     FALSE,
     TRUE,
 };
+
+typedef enum
+{
+    LIGHT,
+    PLANE,
+	CYLINDER,
+	SPHERE,
+}	e_tab_type;
 
 typedef struct	s_data
 {
@@ -113,6 +121,14 @@ typedef struct	s_ray
 	t_sphere	*hit_sphere;
 }	t_ray;
 
+typedef struct s_quantity
+{
+	int	light;
+	int plane;
+	int	cylinder;
+	int	sphere;
+}	t_quantity;
+
 typedef struct	s_params
 {
 	t_camera	camera;
@@ -121,6 +137,7 @@ typedef struct	s_params
 	t_plane		**plane;
 	t_cylinder	**cylinder;
 	t_sphere	**sphere;
+	t_quantity	quantity;
 	void		*mlx;
 	void		*window;
 	t_data		data;
@@ -147,27 +164,31 @@ int read_scene(char *file, t_params *params);
 int parsing(char *file, t_params *params);
 int	ft_isdigit_point(int c);
 
+//save utils
+int put_rgb(int *i, int *value, char *line);
+int put_view_point(int *i, float *value, char *line);
+
 //save camera
 int save_camera(char *line, t_params *params);
 int save_fov(char *line, int *i, t_camera *camera);
 int cam_view_point(char *line, int *i, t_camera *camera);
-int put_view_point(int *i, float *value, char *line);
 int cam_vector(char *line, int *i, t_camera *camera);
 
 // save ambient
 int save_ambiant(char *line, t_params *params);
 int amb_rgb(char *line, int *i, t_ambient *ambiance);
-int put_rgb(int *i, int *value, char *line);
 
 // save light
 int save_light(char *line, t_params *params);
 int light_view_point(char *line, int *i, t_light *light);
 int light_rgb(char *line, int *i, t_light *light);
+int light_ratio(char *line, int *i, t_light *light);
 
 // save sphere
 int save_sphere(char *line, t_params *params);
 int sphere_view_point(char *line, int *i, t_sphere *sphere);
 int sphere_rgb(char *line, int *i, t_sphere *sphere);
+int sphere_diameter(char *line, int *i, t_sphere *sphere);
 
 // save plane
 int save_plane(char *line, t_params *params);
@@ -183,106 +204,21 @@ int cylinder_view_point(char *line, int *i, t_cylinder *cylinder);
 int cylinder_vector(char *line, int *i, t_cylinder *cylinder);
 int cylinder_rgb(char *line, int *i, t_cylinder *cylinder);
 
-
-
-
 //utils
 int	ft_isspace(int c);
 float	ft_atof(const char *str);
 void decimal_atof(int i, const char *str, float *resultat);
 
+//utils 2
+void	*ft_realloc(void *ptr, size_t old_size, size_t new_size);
+void	*alloc_tab(t_params *params, e_tab_type type);
+
 //printf
 void print_camera_as_array(t_camera *cam);
-void print_plane_as_array(t_plane *pl);
+void print_plane_as_array(t_plane *plane);
 void print_sphere_as_array(t_sphere *sp);
 void print_cylinder_as_array(t_cylinder *cyl);
 void print_ambiance_as_array(t_ambient *amb);
-void print_point_as_array(t_light *pt);
-
-// typedef struct s_camera
-// {
-//     int number;
-//     float x;
-//     float y;
-//     float z;
-//     float v_x;
-//     float v_y;
-//     float v_z;
-//     int FOV;
-// }t_camera;
-
-// typedef struct s_plane
-// {
-//     int number;
-//     float x;
-//     float y;
-//     float z;
-//     float v_x;
-//     float v_y;
-//     float v_z;
-//     int R;
-//     int G;
-//     int B;
-// }t_plane;
-
-// typedef struct s_sphere
-// {
-//     int number;
-//     float x;
-//     float y;
-//     float z;
-//     float diameter;
-//     int R;
-//     int G;
-//     int B;
-// }t_sphere;
-
-// typedef struct s_cylinder
-// {
-//     int number;
-//     float x;
-//     float y;
-//     float z;
-//     float v_x;
-//     float v_y;
-//     float v_z;
-//     int R;
-//     int G;
-//     int B;
-//     float diameter;
-//     float height;
-
-// }t_cylinder;
-
-// typedef struct s_light
-// {
-
-// }t_light;
-
-// typedef struct s_ambiance
-// {
-//     int number;
-//     int R;
-//     int G;
-//     int B;
-//     float ratio;
-// }t_ambiance;
-
-// typedef struct s_point
-// {
-//     int number;
-//     float x;
-//     float y;
-//     float z;
-//     float bright_ratio;
-
-// }t_point;
-
-// typedef struct s_object
-// {
-//     t_plane;
-//     t_sphere;
-//     t_cylinder;
-// }t_object;
+void print_point_as_array(t_light *light);
 
 #endif

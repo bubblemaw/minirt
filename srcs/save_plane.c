@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   save_plane.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maw <maw@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: masase <masase@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 15:46:44 by maw               #+#    #+#             */
-/*   Updated: 2025/06/11 19:39:55 by maw              ###   ########.fr       */
+/*   Updated: 2025/06/12 15:59:29 by masase           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,11 @@ int save_plane(char *line, t_params *params)
 	int i;
 	int j;
 
+	j = params->quantity.plane;
+	params->plane = alloc_tab(params, PLANE);
+	params->plane[j] = malloc (sizeof(t_plane));
+	params->plane[j + 1] = NULL;
 	i = 0;
-	j = 0;
 	printf("line: %s\n", line);
 	while (ft_isalpha(line[i]) && line[i])
 		i++;
@@ -39,7 +42,6 @@ int save_plane(char *line, t_params *params)
 
 int plane_view_point(char *line, int *i, t_plane *plane)
 {
-	printf("cam view point\n");
 	if (put_view_point(i, &plane->pos.x, line) == FALSE)
 		return (FALSE);
 	if (put_view_point(i, &plane->pos.y, line) == FALSE)
@@ -51,7 +53,6 @@ int plane_view_point(char *line, int *i, t_plane *plane)
 
 int plane_vector(char *line, int *i, t_plane *plane)
 {
-	printf("cam view point\n");
 	if (put_view_point(i, &plane->vector.a, line) == FALSE)
 		return (FALSE);
 	if (put_view_point(i, &plane->vector.b, line) == FALSE)

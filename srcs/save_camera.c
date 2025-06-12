@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   save_camera.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maw <maw@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: masase <masase@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 12:06:25 by masase            #+#    #+#             */
-/*   Updated: 2025/06/11 15:17:42 by maw              ###   ########.fr       */
+/*   Updated: 2025/06/12 15:59:11 by masase           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,20 +56,6 @@ int cam_view_point(char *line, int *i, t_camera *camera)
 		return (FALSE);
 	if (put_view_point(i, &camera->pos.z, line) == FALSE)
 		return (FALSE);
-	return (TRUE);
-}
-
-int put_view_point(int *i, float *value, char *line)
-{
-	if (line[*i] && ft_isdigit_point(line[*i]))
-	{
-		*value = ft_atof(line + (*i));
-		printf("value: %f\n", *value);
-	}
-	while(ft_isdigit_point(line[*i]) && line[*i])
-		(*i)++;
-	if (line[*i] == ',')
-		(*i)++;
 	return (TRUE);
 }
 
