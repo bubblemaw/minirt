@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   save_camera.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: masase <masase@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maw <maw@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 12:06:25 by masase            #+#    #+#             */
-/*   Updated: 2025/06/12 15:59:11 by masase           ###   ########.fr       */
+/*   Updated: 2025/06/13 16:42:16 by maw              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int save_fov(char *line, int *i, t_camera *camera)
     camera->fov = atoi(line + (*i));
     if (camera->fov < 0 || camera->fov > 180)
     {
-        return (FALSE);
+        return (ft_error("FOV can be set from 0 to 180"));
     }
     return (TRUE);
 }

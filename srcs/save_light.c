@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   save_light.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: masase <masase@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maw <maw@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 12:47:20 by maw               #+#    #+#             */
-/*   Updated: 2025/06/12 16:36:46 by masase           ###   ########.fr       */
+/*   Updated: 2025/06/13 16:40:35 by maw              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int light_ratio(char *line, int *i, t_light *light)
 	light->ratio = atof(line + (*i));
     if (light->ratio < 0 || light->ratio > 1)
     {
-        return (FALSE);
+        return (ft_error("Light ratio can be set from 0.0 to 1.0"));
     }
 	while (ft_isdigit_point(line[*i]))
 		(*i)++;

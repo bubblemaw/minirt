@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   save_ambiance.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: masase <masase@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maw <maw@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 12:06:32 by masase            #+#    #+#             */
-/*   Updated: 2025/06/12 15:56:50 by masase           ###   ########.fr       */
+/*   Updated: 2025/06/13 16:34:05 by maw              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,23 @@ int save_ambiant(char *line, t_params *params)
 		i++;
 	while (ft_isspace(line[i]) && line[i])
 		i++;
-	if ((line[i] && isdigit(line[i])) || line[i] == '.')
-		params->ambient.ratio = ft_atof(line + i);
+
+
 	while (ft_isdigit_point(line[i]) && line[i])
 		i++;
 	while (ft_isspace(line[i]) && line[i])
 		i++;
 	if (amb_rgb(line, &i, &params->ambient) == FALSE)
 		return (FALSE);
+	return (TRUE);
+}
+
+int amb_ratio(char *line, int *i, t_ambient *ambient)
+{
+	if ((line[*i] && ft_isdigit(line[*i])) || line[*i] == '.')
+		ambient->ratio = ft_atof(line + (*i));
+	if (ambient->ratio < 0 || ambient->ratio > 1)
+		return (ft_error("Ambient ratio can be set from 0.0 to 1.0"));
 	return (TRUE);
 }
 

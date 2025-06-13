@@ -6,13 +6,13 @@
 /*   By: maw <maw@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/07 23:02:43 by maw               #+#    #+#             */
-/*   Updated: 2025/06/08 20:39:40 by maw              ###   ########.fr       */
+/*   Updated: 2025/06/13 16:20:40 by maw              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minirt.h"
 
-int error(char *str)
+int ft_error(char *str)
 {
 	printf("Error\n");
 	printf("%s\n", str);

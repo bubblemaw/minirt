@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: masase <masase@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maw <maw@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 12:39:14 by masase            #+#    #+#             */
-/*   Updated: 2025/06/12 14:59:01 by masase           ###   ########.fr       */
+/*   Updated: 2025/06/13 16:16:52 by maw              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ int main(int ac,  char **av)
     print_cylinder_as_array(params.cylinder[0]);
     print_plane_as_array(params.plane[0]);
     print_point_as_array(params.light[0]);
+    print_point_as_array(params.light[1]);
     print_sphere_as_array(params.sphere[0]);
     return(0);
 }

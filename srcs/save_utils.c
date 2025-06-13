@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   save_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: masase <masase@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maw <maw@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 15:54:55 by masase            #+#    #+#             */
-/*   Updated: 2025/06/12 16:03:21 by masase           ###   ########.fr       */
+/*   Updated: 2025/06/13 16:47:45 by maw              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int put_rgb(int *i, int *value, char *line)
 		printf("value: %d\n", *value);
 	}
 	if (*value < 0 || *value > 255)
-		return (FALSE);
+		return (ft_error("RGB can set be set from 0 to 255"));
 	while(ft_isdigit_point(line[*i]) && line[*i])
 		(*i)++;
 	if (line[*i] == ',')
@@ -37,6 +37,8 @@ int put_view_point(int *i, float *value, char *line)
 		*value = ft_atof(line + (*i));
 		printf("value: %f\n", *value);
 	}
+	if (*value < -1 || value > 1)
+		return (ft_error("Vector can be set from -1 to 1"));
 	while(ft_isdigit_point(line[*i]) && line[*i])
 		(*i)++;
 	if (line[*i] == ',')

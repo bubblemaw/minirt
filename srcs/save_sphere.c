@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   save_sphere.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: masase <masase@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maw <maw@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 15:22:36 by maw               #+#    #+#             */
-/*   Updated: 2025/06/12 17:53:24 by masase           ###   ########.fr       */
+/*   Updated: 2025/06/13 18:06:08 by maw              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ int save_sphere(char *line, t_params *params)
 int sphere_diameter(char *line, int *i, t_sphere *sphere)
 {
 	sphere->d = atof(line + (*i));
+	if (sphere->d <= 0)
+		return(ft_error("Sphere diameter have to be bigger than 0"));
 	while (ft_isdigit_point(line[*i]))
 		(*i)++;
     return (TRUE);
