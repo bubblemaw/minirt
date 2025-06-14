@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   save_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maw <maw@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: masase <masase@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 15:54:55 by masase            #+#    #+#             */
-/*   Updated: 2025/06/13 16:47:45 by maw              ###   ########.fr       */
+/*   Updated: 2025/06/14 14:52:24 by masase           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,15 +30,29 @@ int put_rgb(int *i, int *value, char *line)
 	return (TRUE);
 }
 
-int put_view_point(int *i, float *value, char *line)
+int put_vector(int *i, float *value, char *line)
 {
 	if (line[*i] && ft_isdigit_point(line[*i]))
 	{
 		*value = ft_atof(line + (*i));
 		printf("value: %f\n", *value);
 	}
-	if (*value < -1 || value > 1)
+	if (*value < -1 || *value > 1)
 		return (ft_error("Vector can be set from -1 to 1"));
+	while(ft_isdigit_point(line[*i]) && line[*i])
+		(*i)++;
+	if (line[*i] == ',')
+		(*i)++;
+	return (TRUE);
+}
+
+int put_position(int *i, float *value, char *line)
+{
+	if (line[*i] && ft_isdigit_point(line[*i]))
+	{
+		*value = ft_atof(line + (*i));
+		printf("value: %f\n", *value);
+	}
 	while(ft_isdigit_point(line[*i]) && line[*i])
 		(*i)++;
 	if (line[*i] == ',')

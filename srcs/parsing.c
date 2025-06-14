@@ -6,7 +6,7 @@
 /*   By: masase <masase@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 15:15:47 by masase            #+#    #+#             */
-/*   Updated: 2025/06/12 18:32:14 by masase           ###   ########.fr       */
+/*   Updated: 2025/06/14 14:49:58 by masase           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int parsing(char *file, t_params *params)
 {
 	if (check_arg(file) == FALSE)
-		return (error("file must finish by .rt"));
+		return (ft_error("file must finish by .rt"));
 	if (read_scene(file, params) == FALSE)
 		return (FALSE);
 	return (TRUE);
@@ -28,7 +28,7 @@ int read_scene(char *file, t_params *params)
 
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
-		return (error("cant' open the file"));
+		return (ft_error("cant' open the file"));
 	while (1)
 	{
 		line = get_next_line(fd);

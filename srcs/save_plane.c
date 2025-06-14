@@ -6,7 +6,7 @@
 /*   By: masase <masase@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 15:46:44 by maw               #+#    #+#             */
-/*   Updated: 2025/06/12 15:59:29 by masase           ###   ########.fr       */
+/*   Updated: 2025/06/14 14:36:16 by masase           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,22 +42,22 @@ int save_plane(char *line, t_params *params)
 
 int plane_view_point(char *line, int *i, t_plane *plane)
 {
-	if (put_view_point(i, &plane->pos.x, line) == FALSE)
+	if (put_position(i, &plane->pos.x, line) == FALSE)
 		return (FALSE);
-	if (put_view_point(i, &plane->pos.y, line) == FALSE)
+	if (put_position(i, &plane->pos.y, line) == FALSE)
 		return (FALSE);
-	if (put_view_point(i, &plane->pos.z, line) == FALSE)
+	if (put_position(i, &plane->pos.z, line) == FALSE)
 		return (FALSE);
 	return (TRUE);
 }
 
 int plane_vector(char *line, int *i, t_plane *plane)
 {
-	if (put_view_point(i, &plane->vector.a, line) == FALSE)
+	if (put_vector(i, &plane->vector.a, line) == FALSE)
 		return (FALSE);
-	if (put_view_point(i, &plane->vector.b, line) == FALSE)
+	if (put_vector(i, &plane->vector.b, line) == FALSE)
 		return (FALSE);
-	if (put_view_point(i, &plane->vector.c, line) == FALSE)
+	if (put_vector(i, &plane->vector.c, line) == FALSE)
 		return (FALSE);
 	return (TRUE);
 }

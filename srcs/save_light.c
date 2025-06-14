@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   save_light.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maw <maw@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: masase <masase@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 12:47:20 by maw               #+#    #+#             */
-/*   Updated: 2025/06/13 16:40:35 by maw              ###   ########.fr       */
+/*   Updated: 2025/06/14 14:37:53 by masase           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,11 +54,11 @@ int light_ratio(char *line, int *i, t_light *light)
 
 int light_view_point(char *line, int *i, t_light *light)
 {
-	if (put_view_point(i, &light->pos.x, line) == FALSE)
+	if (put_position(i, &light->pos.x, line) == FALSE)
 		return (FALSE);
-	if (put_view_point(i, &light->pos.y, line) == FALSE)
+	if (put_position(i, &light->pos.y, line) == FALSE)
 		return (FALSE);
-	if (put_view_point(i, &light->pos.z, line) == FALSE)
+	if (put_position(i, &light->pos.z, line) == FALSE)
 		return (FALSE);
 	return (TRUE);
 }

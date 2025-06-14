@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maw <maw@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: masase <masase@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 13:05:52 by masase            #+#    #+#             */
-/*   Updated: 2025/06/13 16:20:54 by maw              ###   ########.fr       */
+/*   Updated: 2025/06/14 14:37:51 by masase           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,7 +166,8 @@ int	ft_isdigit_point(int c);
 
 //save utils
 int put_rgb(int *i, int *value, char *line);
-int put_view_point(int *i, float *value, char *line);
+int put_vector(int *i, float *value, char *line);
+int put_position(int *i, float *value, char *line);
 
 //save camera
 int save_camera(char *line, t_params *params);

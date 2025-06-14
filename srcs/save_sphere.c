@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   save_sphere.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maw <maw@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: masase <masase@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 15:22:36 by maw               #+#    #+#             */
-/*   Updated: 2025/06/13 18:06:08 by maw              ###   ########.fr       */
+/*   Updated: 2025/06/14 14:36:54 by masase           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,11 +53,11 @@ int sphere_diameter(char *line, int *i, t_sphere *sphere)
 
 int sphere_view_point(char *line, int *i, t_sphere *sphere)
 {
-	if (put_view_point(i, &sphere->pos.x, line) == FALSE)
+	if (put_position(i, &sphere->pos.x, line) == FALSE)
 		return (FALSE);
-	if (put_view_point(i, &sphere->pos.y, line) == FALSE)
+	if (put_position(i, &sphere->pos.y, line) == FALSE)
 		return (FALSE);
-	if (put_view_point(i, &sphere->pos.z, line) == FALSE)
+	if (put_position(i, &sphere->pos.z, line) == FALSE)
 		return (FALSE);
 	return (TRUE);
 }

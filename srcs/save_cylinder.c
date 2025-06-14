@@ -6,7 +6,7 @@
 /*   By: masase <masase@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 16:40:50 by maw               #+#    #+#             */
-/*   Updated: 2025/06/12 16:35:20 by masase           ###   ########.fr       */
+/*   Updated: 2025/06/14 14:36:04 by masase           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,8 @@ int save_cylinder(char *line, t_params *params)
 int cylinder_diameter(char *line, int *i, t_cylinder *cylinder)
 {
     cylinder->d = ft_atof(line + (*i));
-    if (cylinder->d < 0)
-    {
-        return (FALSE);
-    }
+    if (cylinder->d <= 0)
+		return(ft_error("Cylinder diameter have to be bigger than 0"));
 	while (ft_isdigit_point(line[*i]))
 		(*i)++;
     return (TRUE);
@@ -63,10 +61,8 @@ int cylinder_diameter(char *line, int *i, t_cylinder *cylinder)
 int cylinder_height(char *line, int *i, t_cylinder *cylinder)
 {
     cylinder->h = ft_atof(line + (*i));
-    if (cylinder->h < 0)
-    {
-        return (FALSE);
-    }
+    if (cylinder->h <= 0)
+		return(ft_error("Cylinder height have to be bigger than 0"));
 	while (ft_isdigit_point(line[*i]))
 		(*i)++;
     return (TRUE);
@@ -75,11 +71,11 @@ int cylinder_height(char *line, int *i, t_cylinder *cylinder)
 int cylinder_view_point(char *line, int *i, t_cylinder *cylinder)
 {
 	printf("cam view point\n");
-	if (put_view_point(i, &cylinder->pos.x, line) == FALSE)
+	if (put_position(i, &cylinder->pos.x, line) == FALSE)
 		return (FALSE);
-	if (put_view_point(i, &cylinder->pos.y, line) == FALSE)
+	if (put_position(i, &cylinder->pos.y, line) == FALSE)
 		return (FALSE);
-	if (put_view_point(i, &cylinder->pos.z, line) == FALSE)
+	if (put_position(i, &cylinder->pos.z, line) == FALSE)
 		return (FALSE);
 	return (TRUE);
 }
@@ -87,11 +83,11 @@ int cylinder_view_point(char *line, int *i, t_cylinder *cylinder)
 int cylinder_vector(char *line, int *i, t_cylinder *cylinder)
 {
 	printf("cam view point\n");
-	if (put_view_point(i, &cylinder->vector.a, line) == FALSE)
+	if (put_vector(i, &cylinder->vector.a, line) == FALSE)
 		return (FALSE);
-	if (put_view_point(i, &cylinder->vector.b, line) == FALSE)
+	if (put_vector(i, &cylinder->vector.b, line) == FALSE)
 		return (FALSE);
-	if (put_view_point(i, &cylinder->vector.c, line) == FALSE)
+	if (put_vector(i, &cylinder->vector.c, line) == FALSE)
 		return (FALSE);
 	return (TRUE);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   save_camera.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maw <maw@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: masase <masase@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 12:06:25 by masase            #+#    #+#             */
-/*   Updated: 2025/06/13 16:42:16 by maw              ###   ########.fr       */
+/*   Updated: 2025/06/14 14:50:11 by masase           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,11 @@ int save_fov(char *line, int *i, t_camera *camera)
 int cam_view_point(char *line, int *i, t_camera *camera)
 {
 	printf("cam view point\n");
-	if (put_view_point(i, &camera->pos.x, line) == FALSE)
+	if (put_position(i, &camera->pos.x, line) == FALSE)
 		return (FALSE);
-	if (put_view_point(i, &camera->pos.y, line) == FALSE)
+	if (put_position(i, &camera->pos.y, line) == FALSE)
 		return (FALSE);
-	if (put_view_point(i, &camera->pos.z, line) == FALSE)
+	if (put_position(i, &camera->pos.z, line) == FALSE)
 		return (FALSE);
 	return (TRUE);
 }
@@ -62,11 +62,11 @@ int cam_view_point(char *line, int *i, t_camera *camera)
 int cam_vector(char *line, int *i, t_camera *camera)
 {
 	printf("enter rgb\n");
-	if (put_view_point(i, &camera->vector.a, line) == FALSE)
+	if (put_vector(i, &camera->vector.a, line) == FALSE)
 		return (FALSE);
-	if (put_view_point(i, &camera->vector.b, line) == FALSE)
+	if (put_vector(i, &camera->vector.b, line) == FALSE)
 		return (FALSE);
-	if (put_view_point(i, &camera->vector.c, line) == FALSE)
+	if (put_vector(i, &camera->vector.c, line) == FALSE)
 		return (FALSE);
 	return (TRUE);
 }
