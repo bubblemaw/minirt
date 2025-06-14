@@ -6,7 +6,7 @@
 /*   By: masase <masase@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 18:42:57 by maw               #+#    #+#             */
-/*   Updated: 2025/06/06 15:58:50 by masase           ###   ########.fr       */
+/*   Updated: 2025/06/14 18:50:16 by masase           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,6 @@ char	*ft_strjoin(const char *s1, const char *s2);
 char	*ft_substr(const char *str, unsigned int start, size_t len);
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 512
+#  define BUFFER_SIZE 124
 # endif
 #endif

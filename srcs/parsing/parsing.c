@@ -6,11 +6,11 @@
 /*   By: masase <masase@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 15:15:47 by masase            #+#    #+#             */
-/*   Updated: 2025/06/14 14:49:58 by masase           ###   ########.fr       */
+/*   Updated: 2025/06/14 19:54:42 by masase           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/minirt.h"
+#include "../../inc/minirt.h"
 
 int parsing(char *file, t_params *params)
 {
@@ -36,11 +36,16 @@ int read_scene(char *file, t_params *params)
 			break ;
 		if (line)
 		{
-			printf("read line: %s\n", line);
 			if (fill_struct(line, params) == TRUE)
 			{
 				free(line);
-				line = NULL;
+			}
+			else 
+			{
+				free(line);
+				get_next_line(-1);
+				close(fd);
+				return (FALSE);	
 			}
 		}
 	}
@@ -53,10 +58,9 @@ int fill_struct(char *line, t_params *params)
 	int i;
 
 	i = 0;
-	printf("fill struct line: %s\n", line);
 	if (line[i])
 	{
-		while(isspace(line[i]))
+		while(ft_isspace(line[i]))
 			i++;
 		if(line[i] == 'A' && ft_isspace(line[i + 1]))
 			return(save_ambiant(line, params));
@@ -70,6 +74,10 @@ int fill_struct(char *line, t_params *params)
 			return(save_plane(line, params));
 		else if(line[i] == 'c' && line[i + 1] == 'y' && ft_isspace(line[i + 2]))
 			return(save_cylinder(line, params));
+		else if(line[i] == '\n' || line[i] == '\0')
+			return(TRUE);
+		else
+			return (ft_error("Unknow identifiers"));
 	}
 	return(FALSE);
 }

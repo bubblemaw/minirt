@@ -6,11 +6,11 @@
 /*   By: masase <masase@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 16:11:43 by maw               #+#    #+#             */
-/*   Updated: 2025/06/10 12:28:08 by masase           ###   ########.fr       */
+/*   Updated: 2025/06/14 19:21:29 by masase           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/minirt.h"
+#include "../../inc/minirt.h"
 
 int	ft_isdigit_point(int c)
 {

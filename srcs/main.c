@@ -6,7 +6,7 @@
 /*   By: masase <masase@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 12:39:14 by masase            #+#    #+#             */
-/*   Updated: 2025/06/14 15:08:09 by masase           ###   ########.fr       */
+/*   Updated: 2025/06/14 19:56:32 by masase           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,19 +71,21 @@ int	main(int ac, char **av)
     t_params params;
     ft_memset(&params, 0, sizeof(t_params));
 
-    // printf("%f\n", ft_atof(av[1]));
-    // printf("atof: %f\n", atof(av[1]));
-    parsing(av[1], &params);
-    printf("let's print my objects\n");
-    print_ambiance_as_array(&params.ambient);
-    print_camera_as_array(&params.camera);
-    print_cylinder_as_array(params.cylinder[0]);
-    print_plane_as_array(params.plane[0]);
-    print_point_as_array(params.light[0]);
-    print_point_as_array(params.light[1]);
-    print_sphere_as_array(params.sphere[0]);	t_params	params;
+    // printf("let's print my objects\n");
+    // print_ambiance_as_array(&params.ambient);
+    // print_camera_as_array(&params.camera);
+    // print_cylinder_as_array(params.cylinder[0]);
+    // print_plane_as_array(params.plane[0]);
+    // print_point_as_array(params.light[0]);
+    // print_point_as_array(params.light[1]);
+    // print_sphere_as_array(params.sphere[0]);
 
-	TEMP_simulation(&params); // replace with parser
+	// TEMP_simulation(&params); // replace with parser
+    if (parsing(av[1], &params) == FALSE)
+		return (FALSE);
+	print_sphere_as_array(params.sphere[0]);
+	print_sphere_as_array(params.sphere[1]);
+	print_sphere_as_array(params.sphere[2]);	
 	params.mlx = mlx_init();
 	params.window = mlx_new_window(params.mlx, WIDTH, HEIGHT,
 			"Made by math haters");

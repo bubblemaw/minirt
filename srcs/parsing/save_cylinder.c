@@ -6,11 +6,11 @@
 /*   By: masase <masase@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 16:40:50 by maw               #+#    #+#             */
-/*   Updated: 2025/06/14 14:36:04 by masase           ###   ########.fr       */
+/*   Updated: 2025/06/14 19:20:26 by masase           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/minirt.h"
+#include "../../inc/minirt.h"
 
 int save_cylinder(char *line, t_params *params)
 {
@@ -22,7 +22,6 @@ int save_cylinder(char *line, t_params *params)
 	params->cylinder = alloc_tab(params, CYLINDER);
 	params->cylinder[j] = malloc (sizeof(t_cylinder));
 	params->cylinder[j + 1] = NULL;
-	printf("line: %s\n", line);
 	while (ft_isalpha(line[i]) && line[i])
 		i++;
 	while (ft_isspace(line[i]) && line[i])
@@ -70,7 +69,6 @@ int cylinder_height(char *line, int *i, t_cylinder *cylinder)
 
 int cylinder_view_point(char *line, int *i, t_cylinder *cylinder)
 {
-	printf("cam view point\n");
 	if (put_position(i, &cylinder->pos.x, line) == FALSE)
 		return (FALSE);
 	if (put_position(i, &cylinder->pos.y, line) == FALSE)
@@ -82,7 +80,6 @@ int cylinder_view_point(char *line, int *i, t_cylinder *cylinder)
 
 int cylinder_vector(char *line, int *i, t_cylinder *cylinder)
 {
-	printf("cam view point\n");
 	if (put_vector(i, &cylinder->vector.a, line) == FALSE)
 		return (FALSE);
 	if (put_vector(i, &cylinder->vector.b, line) == FALSE)
@@ -94,7 +91,6 @@ int cylinder_vector(char *line, int *i, t_cylinder *cylinder)
 
 int cylinder_rgb(char *line, int *i, t_cylinder *cylinder)
 {
-	printf("enter rgb\n");
 	if (put_rgb(i, &cylinder->color.r, line) == FALSE)
 		return (FALSE);
 	if (put_rgb(i, &cylinder->color.g, line) == FALSE)

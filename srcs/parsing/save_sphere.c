@@ -6,24 +6,22 @@
 /*   By: masase <masase@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 15:22:36 by maw               #+#    #+#             */
-/*   Updated: 2025/06/14 14:36:54 by masase           ###   ########.fr       */
+/*   Updated: 2025/06/14 19:20:58 by masase           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/minirt.h"
+#include "../../inc/minirt.h"
 
 int save_sphere(char *line, t_params *params)
 {
 	int i;
 	int j;
 
-	printf("line: %s\n", line);
 	j = params->quantity.sphere;
 	params->sphere = alloc_tab(params, SPHERE);
 	params->sphere[j] = malloc (sizeof(t_sphere));
 	params->sphere[j + 1] = NULL;
 	i = 0;
-	printf("line: %s\n", line);
 	while (ft_isalpha(line[i]) && line[i])
 		i++;
 	while (ft_isspace(line[i]) && line[i])

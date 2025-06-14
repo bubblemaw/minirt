@@ -6,11 +6,11 @@
 /*   By: masase <masase@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 15:46:44 by maw               #+#    #+#             */
-/*   Updated: 2025/06/14 14:36:16 by masase           ###   ########.fr       */
+/*   Updated: 2025/06/14 19:20:50 by masase           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/minirt.h"
+#include "../../inc/minirt.h"
 
 int save_plane(char *line, t_params *params)
 {
@@ -22,7 +22,6 @@ int save_plane(char *line, t_params *params)
 	params->plane[j] = malloc (sizeof(t_plane));
 	params->plane[j + 1] = NULL;
 	i = 0;
-	printf("line: %s\n", line);
 	while (ft_isalpha(line[i]) && line[i])
 		i++;
 	while (ft_isspace(line[i]) && line[i])
@@ -64,7 +63,6 @@ int plane_vector(char *line, int *i, t_plane *plane)
 
 int plane_rgb(char *line, int *i, t_plane *plane)
 {
-	printf("enter rgb\n");
 	if (put_rgb(i, &plane->color.r, line) == FALSE)
 		return (FALSE);
 	if (put_rgb(i, &plane->color.g, line) == FALSE)

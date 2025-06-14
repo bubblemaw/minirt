@@ -6,18 +6,17 @@
 /*   By: masase <masase@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 12:06:25 by masase            #+#    #+#             */
-/*   Updated: 2025/06/14 14:50:11 by masase           ###   ########.fr       */
+/*   Updated: 2025/06/14 19:20:02 by masase           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/minirt.h"
+#include "../../inc/minirt.h"
 
 int save_camera(char *line, t_params *params)
 {
 	int i;
 
 	i = 0;
-	printf("line: %s\n", line);
 	while (ft_isalpha(line[i]) && line[i])
 		i++;
 	while (ft_isspace(line[i]) && line[i])
@@ -49,7 +48,6 @@ int save_fov(char *line, int *i, t_camera *camera)
 
 int cam_view_point(char *line, int *i, t_camera *camera)
 {
-	printf("cam view point\n");
 	if (put_position(i, &camera->pos.x, line) == FALSE)
 		return (FALSE);
 	if (put_position(i, &camera->pos.y, line) == FALSE)
@@ -61,7 +59,6 @@ int cam_view_point(char *line, int *i, t_camera *camera)
 
 int cam_vector(char *line, int *i, t_camera *camera)
 {
-	printf("enter rgb\n");
 	if (put_vector(i, &camera->vector.a, line) == FALSE)
 		return (FALSE);
 	if (put_vector(i, &camera->vector.b, line) == FALSE)

@@ -6,11 +6,11 @@
 /*   By: masase <masase@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 11:50:48 by masase            #+#    #+#             */
-/*   Updated: 2025/06/12 18:32:07 by masase           ###   ########.fr       */
+/*   Updated: 2025/06/14 19:55:37 by masase           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/minirt.h"
+#include "../../inc/minirt.h"
 
 void	*ft_realloc(void *ptr, size_t old_size, size_t new_size)
 {
@@ -46,30 +46,7 @@ void *alloc_tab(t_params *params, e_tab_type type)
 	int	*current_size;
 	size_t element_size;
 
-	if (type == LIGHT)
-	{
-		tab = (void **)&params->light;
-		current_size = &params->quantity.light;
-		element_size = sizeof(t_light *); 
-	}
-	else if (type == PLANE)
-	{
-		tab = (void **)&params->plane;
-		current_size = &params->quantity.plane;
-		element_size = sizeof(t_plane *); 
-	}
-	else if (type == CYLINDER)
-	{
-		tab = (void **)&params->cylinder;
-		current_size = &params->quantity.cylinder;
-		element_size = sizeof(t_cylinder *); 
-	}
-	else if (type == SPHERE)
-	{
-		tab = (void **)&params->sphere;
-		current_size = &params->quantity.sphere;
-		element_size = sizeof(t_sphere *); 
-	}
+	element_size = setup_tab_type(&tab, &current_size, params, type);
 	*tab = ft_realloc (*tab,
 	element_size * (*current_size),
 	element_size * ((*current_size) + 2));
@@ -77,4 +54,35 @@ void *alloc_tab(t_params *params, e_tab_type type)
 		return (NULL);
 	(*current_size)++;
 	return (*tab);	
+}
+
+size_t setup_tab_type(void ***tab, int **current_size, t_params *params, e_tab_type type)
+{
+	size_t element_size;
+
+	if (type == LIGHT)
+	{
+		*tab = (void **)&params->light;
+		*current_size = &params->quantity.light;
+		element_size = sizeof(t_light *); 
+	}
+	else if (type == PLANE)
+	{
+		*tab = (void **)&params->plane;
+		*current_size = &params->quantity.plane;
+		element_size = sizeof(t_plane *); 
+	}
+	else if (type == CYLINDER)
+	{
+		*tab = (void **)&params->cylinder;
+		*current_size = &params->quantity.cylinder;
+		element_size = sizeof(t_cylinder *); 
+	}
+	else if (type == SPHERE)
+	{
+		*tab = (void **)&params->sphere;
+		*current_size = &params->quantity.sphere;
+		element_size = sizeof(t_sphere *); 
+	}
+	return (element_size);
 }

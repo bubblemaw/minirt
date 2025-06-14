@@ -6,28 +6,27 @@
 #    By: masase <masase@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/06 12:39:32 by masase            #+#    #+#              #
-#    Updated: 2025/06/14 15:09:46 by masase           ###   ########.fr        #
+#    Updated: 2025/06/14 16:15:42 by masase           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = miniRT
 
 SRCS = 	srcs/main.c \
-		srcs/parsing.c \
-		srcs/save_ambiance.c \
-		srcs/save_camera.c \
-		srcs/save_light.c \
-		srcs/save_plane.c \
-		srcs/save_sphere.c \
-		srcs/save_cylinder.c \
-		srcs/save_utils.c \
-		srcs/utils.c \
-		srcs/utils_2.c \
-		srcs/error_message.c \
-		srcs/print_struct.c \
+		srcs/parsing/parsing.c \
+		srcs/parsing/save_ambiance.c \
+		srcs/parsing/save_camera.c \
+		srcs/parsing/save_light.c \
+		srcs/parsing/save_plane.c \
+		srcs/parsing/save_sphere.c \
+		srcs/parsing/save_cylinder.c \
+		srcs/parsing/save_utils.c \
+		srcs/parsing/utils.c \
+		srcs/parsing/utils_2.c \
+		srcs/parsing/error_message.c \
+		srcs/parsing/print_struct.c \
 		gnl/get_next_line.c \
 		gnl/get_next_line_utils.c \
-SRCS = 	srcs/main.c\
 		srcs/free_all.c srcs/free_all2.c srcs/hook.c srcs/hook2.c srcs/hook3.c srcs/hook4.c\
 		srcs/vector.c srcs/vector2.c\
 		srcs/image_start.c srcs/image_create.c\

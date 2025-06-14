@@ -6,11 +6,11 @@
 /*   By: masase <masase@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 12:47:20 by maw               #+#    #+#             */
-/*   Updated: 2025/06/14 14:37:53 by masase           ###   ########.fr       */
+/*   Updated: 2025/06/14 19:20:38 by masase           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/minirt.h"
+#include "../../inc/minirt.h"
 
 int save_light(char *line, t_params *params)
 {
@@ -22,7 +22,6 @@ int save_light(char *line, t_params *params)
 	params->light[j] = malloc (sizeof(t_light));
 	params->light[j + 1] = NULL;
 	i = 0;
-	printf("line: %s\n", line);
 	while (ft_isalpha(line[i]) && line[i])
 		i++;
 	while (ft_isspace(line[i]) && line[i])

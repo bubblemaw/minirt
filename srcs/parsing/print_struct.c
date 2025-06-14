@@ -6,11 +6,11 @@
 /*   By: masase <masase@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 19:29:38 by masase            #+#    #+#             */
-/*   Updated: 2025/06/12 15:53:36 by masase           ###   ########.fr       */
+/*   Updated: 2025/06/14 16:19:39 by masase           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/minirt.h"
+#include "../../inc/minirt.h"
 
 void print_camera_as_array(t_camera *cam)
 {
