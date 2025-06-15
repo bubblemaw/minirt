@@ -6,11 +6,21 @@
 /*   By: hoannguy <hoannguy@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 15:44:53 by hoannguy          #+#    #+#             */
-/*   Updated: 2025/06/08 17:57:00 by hoannguy         ###   ########.fr       */
+/*   Updated: 2025/06/15 20:10:20 by hoannguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minirt.h"
+
+t_vector	vector_cross(t_vector v1, t_vector v2)
+{
+	t_vector	v3;
+
+	v3.a = v1.b * v2.c - v1.c * v2.b;
+	v3.b = v1.c * v2.a - v1.a * v2.c;
+	v3.c = v1.a * v2.b - v1.b * v2.a;
+	return (v3);
+}
 
 float	vector_norm2(t_vector v1)
 {
@@ -40,4 +50,20 @@ t_vector	pos_to_vector(t_pos pos)
 	v.b = pos.y;
 	v.c = pos.z;
 	return (v);
+}
+
+t_color	color_add(t_color c1, t_color c2)
+{
+	t_color	c3;
+
+	c3.r = c1.r + c2.r;
+	c3.g = c1.g + c2.g;
+	c3.b = c1.b + c2.b;
+	if (c3.r > 255)
+		c3.r = 255;
+	if (c3.g > 255)
+		c3.g = 255;
+	if (c3.b > 255)
+		c3.b = 255;
+	return (c3);
 }

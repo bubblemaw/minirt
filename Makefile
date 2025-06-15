@@ -6,15 +6,18 @@
 #    By: hoannguy <hoannguy@student.42lausanne.c    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/06 12:39:32 by masase            #+#    #+#              #
-#    Updated: 2025/06/08 15:45:33 by hoannguy         ###   ########.fr        #
+#    Updated: 2025/06/15 17:35:55 by hoannguy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minirt
 
 SRCS = 	srcs/main.c\
-		srcs/free_all.c srcs/hook.c srcs/vector.c srcs/vector2.c\
+		srcs/free_all.c srcs/free_all2.c srcs/hook.c srcs/hook2.c srcs/hook3.c srcs/hook4.c\
+		srcs/vector.c srcs/vector2.c\
 		srcs/image_start.c srcs/image_create.c\
+		srcs/image_inter_sphere.c\
+		srcs/light_ambient.c srcs/light_diffuse.c\
 
 OBJS = $(SRCS:%.c=%.o)
 

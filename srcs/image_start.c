@@ -6,7 +6,7 @@
 /*   By: hoannguy <hoannguy@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/07 21:17:12 by hoannguy          #+#    #+#             */
-/*   Updated: 2025/06/08 18:47:39 by hoannguy         ###   ########.fr       */
+/*   Updated: 2025/06/09 14:45:35 by hoannguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,31 +24,20 @@ void	my_mlx_pixel_put(t_params *params, int x, int y, t_color color)
 	}
 }
 
-void	image_create(t_params *params)
-{
-	render_object(params);
-	// render_light(params);
-	// render_shadow(params);
-}
-
 void	image_display(t_params *params)
 {
 	params->data.img = mlx_new_image(params->mlx, WIDTH, HEIGHT);
 	params->data.addr = mlx_get_data_addr(params->data.img,
 			&params->data.bits_per_pixel, &params->data.line_length,
 			&params->data.endian);
-	image_create(params);
+	render_object(params);
 	mlx_put_image_to_window(params->mlx,
 		params->window, params->data.img, 0, 0);
 }
 
-int	render(t_params *params)
+void	render(t_params *params)
 {
-	params->mlx = mlx_init();
-	params->window = mlx_new_window(params->mlx, WIDTH, HEIGHT,
-			"I don't like math");
 	hook(params);
 	image_display(params);
 	mlx_loop(params->mlx);
-	return (0);
 }

@@ -14,29 +14,104 @@
 
 void	TEMP_simulation(t_params *params)
 {
+	// SPHERE
 	t_sphere	*sphere1;
+	t_sphere	*sphere2;
+	t_sphere	*sphere3;
 
 	sphere1 = malloc(sizeof(t_sphere));
 	sphere1->pos.x = 0;
 	sphere1->pos.y = 0;
-	sphere1->pos.z = 0;
-	sphere1->d = 5;
+	sphere1->pos.z = 15;
+	sphere1->d = 3;
 	sphere1->color.r = 255;
-	sphere1->color.g = 0;
+	sphere1->color.g = 255;
 	sphere1->color.b = 0;
-	params->sphere = malloc(sizeof(t_sphere *) * 2);
-	params->sphere[0] = sphere1;
-	params->sphere[1] = NULL;
 
+	sphere2 = malloc(sizeof(t_sphere));
+	sphere2->pos.x = 3;
+	sphere2->pos.y = 1;
+	sphere2->pos.z = 15;
+	sphere2->d = 5;
+	sphere2->color.r = 255;
+	sphere2->color.g = 0;
+	sphere2->color.b = 255;
+
+	sphere3 = malloc(sizeof(t_sphere));
+	sphere3->pos.x = -5;
+	sphere3->pos.y = -4;
+	sphere3->pos.z = 10;
+	sphere3->d = 7;
+	sphere3->color.r = 0;
+	sphere3->color.g = 255;
+	sphere3->color.b = 255;
+
+	params->sphere = malloc(sizeof(t_sphere *) * 4);
+	params->sphere[0] = sphere1;
+	params->sphere[1] = sphere2;
+	params->sphere[2] = sphere3;
+	params->sphere[3] = NULL;
+
+	// CAMERA
 	params->camera.vector.a = 0;
-	params->camera.vector.b = -0.2;
+	params->camera.vector.b = 0;
 	params->camera.vector.c = 1;
 	params->camera.pos.x = 0;
 	params->camera.pos.y = 0;
 	params->camera.pos.z = -10;
-	params->camera.fov = 90;
+	params->camera.fov = 60;
 
-	params->light = NULL;
+	// AMBIENT
+	params->ambient.ratio = 0.6;
+	params->ambient.color.r = 200;
+	params->ambient.color.g = 30;
+	params->ambient.color.b = 200;
+
+
+	// LIGHT
+	// t_light	*light1;
+	t_light	*light2;
+	t_light	*light3;
+
+	// light1 = malloc(sizeof(t_light));
+	// light1->pos.x = 10.0;
+	// light1->pos.y = 20.0;
+	// light1->pos.z = -10.0;
+	// light1->ratio = 0.9;
+	// light1->color.r = 50;
+	// light1->color.g = 50;
+	// light1->color.b = 50;
+
+	light2 = malloc(sizeof(t_light));
+	light2->pos.x = 0.0;
+	light2->pos.y = -40.0;
+	light2->pos.z = 10.0;
+	light2->ratio = 1;
+	light2->color.r = 250;
+	light2->color.g = 250;
+	light2->color.b = 250;
+
+	light3 = malloc(sizeof(t_light));
+	light3->pos.x = 0.0;
+	light3->pos.y = 40.0;
+	light3->pos.z = 10.0;
+	light3->ratio = 1;
+	light3->color.r = 250;
+	light3->color.g = 250;
+	light3->color.b = 250;
+
+	// params->light = malloc(sizeof(t_light *) * 4);
+	// params->light[0] = light1;
+	// params->light[1] = light2;
+	// params->light[2] = light3;
+	// params->light[3] = NULL;
+
+	params->light = malloc(sizeof(t_light *) * 3);
+	params->light[0] = light3;
+	params->light[1] = light2;
+	params->light[2] = NULL;
+
+	// OTHER
 	params->plane = NULL;
 	params->cylinder = NULL;
 }
@@ -47,12 +122,10 @@ int	main(int ac, char **av)
 	(void)av;
 	t_params	params;
 
-	TEMP_simulation(&params);
-	if (!render(&params))
-	{
-		mlx_destroy_image(params.mlx, params.data.img);
-		mlx_destroy_window(params.mlx, params.window);
-		return (free_all(&params), 1);
-	}
+	TEMP_simulation(&params); // replace with parser
+	params.mlx = mlx_init();
+	params.window = mlx_new_window(params.mlx, WIDTH, HEIGHT,
+			"Made by math haters");
+	render(&params);
 	return (0);
 }
