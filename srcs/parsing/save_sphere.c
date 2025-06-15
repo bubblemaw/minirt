@@ -6,7 +6,7 @@
 /*   By: masase <masase@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 15:22:36 by maw               #+#    #+#             */
-/*   Updated: 2025/06/14 19:20:58 by masase           ###   ########.fr       */
+/*   Updated: 2025/06/15 13:22:32 by masase           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,11 @@ int sphere_diameter(char *line, int *i, t_sphere *sphere)
 {
 	sphere->d = atof(line + (*i));
 	if (sphere->d <= 0)
-		return(ft_error("Sphere diameter have to be bigger than 0"));
+		return(ft_error("Sphere diameter have to be a number bigger than 0"));
 	while (ft_isdigit_point(line[*i]))
 		(*i)++;
+	if (!ft_isspace(line[*i]))
+		return (ft_error("there is too much sphere diameter arguments"));
     return (TRUE);
 }
 
@@ -57,6 +59,8 @@ int sphere_view_point(char *line, int *i, t_sphere *sphere)
 		return (FALSE);
 	if (put_position(i, &sphere->pos.z, line) == FALSE)
 		return (FALSE);
+	if (!ft_isspace(line[*i]))
+		return (ft_error("Too much arguments for the position parameters"));		
 	return (TRUE);
 }
 
@@ -68,6 +72,8 @@ int sphere_rgb(char *line, int *i, t_sphere *sphere)
 		return (FALSE);
 	if (put_rgb(i, &sphere->color.b, line) == FALSE)
 		return (FALSE);
+	if (!ft_isspace(line[*i]))
+		return (ft_error("Too much arguments for the RGB parameters"));		
 	return (TRUE);
 }
 

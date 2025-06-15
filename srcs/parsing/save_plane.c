@@ -6,7 +6,7 @@
 /*   By: masase <masase@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 15:46:44 by maw               #+#    #+#             */
-/*   Updated: 2025/06/14 19:20:50 by masase           ###   ########.fr       */
+/*   Updated: 2025/06/15 13:22:28 by masase           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ int plane_view_point(char *line, int *i, t_plane *plane)
 		return (FALSE);
 	if (put_position(i, &plane->pos.z, line) == FALSE)
 		return (FALSE);
+	if (!ft_isspace(line[*i]))
+		return (ft_error("Too much arguments for the position parameters"));		
 	return (TRUE);
 }
 
@@ -58,6 +60,8 @@ int plane_vector(char *line, int *i, t_plane *plane)
 		return (FALSE);
 	if (put_vector(i, &plane->vector.c, line) == FALSE)
 		return (FALSE);
+	if (!ft_isspace(line[*i]))
+		return (ft_error("Too much arguments for the vector parameters"));		
 	return (TRUE);
 }
 
@@ -69,6 +73,8 @@ int plane_rgb(char *line, int *i, t_plane *plane)
 		return (FALSE);
 	if (put_rgb(i, &plane->color.b, line) == FALSE)
 		return (FALSE);
+	if (!ft_isspace(line[*i]))
+		return (ft_error("Too much arguments for the RGB parameters"));		
 	return (TRUE);
 }
 

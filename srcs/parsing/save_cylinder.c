@@ -6,7 +6,7 @@
 /*   By: masase <masase@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 16:40:50 by maw               #+#    #+#             */
-/*   Updated: 2025/06/14 19:20:26 by masase           ###   ########.fr       */
+/*   Updated: 2025/06/15 13:22:16 by masase           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,11 @@ int cylinder_diameter(char *line, int *i, t_cylinder *cylinder)
 {
     cylinder->d = ft_atof(line + (*i));
     if (cylinder->d <= 0)
-		return(ft_error("Cylinder diameter have to be bigger than 0"));
+		return(ft_error("Cylinder diameter have to be number bigger than 0"));
 	while (ft_isdigit_point(line[*i]))
 		(*i)++;
+	if (!ft_isspace(line[*i]))
+		return (ft_error("there is too much cylinder diameter arguments"));		
     return (TRUE);
 }
 
@@ -61,9 +63,11 @@ int cylinder_height(char *line, int *i, t_cylinder *cylinder)
 {
     cylinder->h = ft_atof(line + (*i));
     if (cylinder->h <= 0)
-		return(ft_error("Cylinder height have to be bigger than 0"));
+		return(ft_error("Cylinder height have to be a number bigger than 0"));
 	while (ft_isdigit_point(line[*i]))
 		(*i)++;
+	if (!ft_isspace(line[*i]))
+		return (ft_error("there is too much cylinder height arguments"));
     return (TRUE);
 }
 
@@ -75,6 +79,8 @@ int cylinder_view_point(char *line, int *i, t_cylinder *cylinder)
 		return (FALSE);
 	if (put_position(i, &cylinder->pos.z, line) == FALSE)
 		return (FALSE);
+	if (!ft_isspace(line[*i]))
+		return (ft_error("Too much arguments for the position parameters"));		
 	return (TRUE);
 }
 
@@ -86,6 +92,8 @@ int cylinder_vector(char *line, int *i, t_cylinder *cylinder)
 		return (FALSE);
 	if (put_vector(i, &cylinder->vector.c, line) == FALSE)
 		return (FALSE);
+	if (!ft_isspace(line[*i]))
+		return (ft_error("Too much arguments for the vector parameters"));		
 	return (TRUE);
 }
 
@@ -97,5 +105,7 @@ int cylinder_rgb(char *line, int *i, t_cylinder *cylinder)
 		return (FALSE);
 	if (put_rgb(i, &cylinder->color.b, line) == FALSE)
 		return (FALSE);
+	if (!ft_isspace(line[*i]))
+		return (ft_error("Too much arguments for the RGB parameters"));		
 	return (TRUE);
 }

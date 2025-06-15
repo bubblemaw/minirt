@@ -6,7 +6,7 @@
 /*   By: masase <masase@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 12:47:20 by maw               #+#    #+#             */
-/*   Updated: 2025/06/14 19:20:38 by masase           ###   ########.fr       */
+/*   Updated: 2025/06/15 13:22:25 by masase           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,12 @@ int light_ratio(char *line, int *i, t_light *light)
 	light->ratio = atof(line + (*i));
     if (light->ratio < 0 || light->ratio > 1)
     {
-        return (ft_error("Light ratio can be set from 0.0 to 1.0"));
+        return (ft_error("Light ratio have to be a number set from 0.0 to 1.0"));
     }
 	while (ft_isdigit_point(line[*i]))
 		(*i)++;
+	if (!ft_isspace(line[*i]))
+		return (ft_error("there is too much light ratio arguments"));		
     return (TRUE);
 }
 
@@ -59,6 +61,8 @@ int light_view_point(char *line, int *i, t_light *light)
 		return (FALSE);
 	if (put_position(i, &light->pos.z, line) == FALSE)
 		return (FALSE);
+	if (!ft_isspace(line[*i]))
+		return (ft_error("Too much arguments for the position parameters"));		
 	return (TRUE);
 }
 
@@ -70,5 +74,7 @@ int light_rgb(char *line, int *i, t_light *light)
 		return (FALSE);
 	if (put_rgb(i, &light->color.b, line) == FALSE)
 		return (FALSE);
+	if (!ft_isspace(line[*i]))
+		return (ft_error("Too much arguments for the RGB parameters"));		
 	return (TRUE);
 }

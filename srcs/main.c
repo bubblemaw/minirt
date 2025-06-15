@@ -6,7 +6,7 @@
 /*   By: masase <masase@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 12:39:14 by masase            #+#    #+#             */
-/*   Updated: 2025/06/14 19:56:32 by masase           ###   ########.fr       */
+/*   Updated: 2025/06/15 12:30:59 by masase           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,8 +84,8 @@ int	main(int ac, char **av)
     if (parsing(av[1], &params) == FALSE)
 		return (FALSE);
 	print_sphere_as_array(params.sphere[0]);
-	print_sphere_as_array(params.sphere[1]);
-	print_sphere_as_array(params.sphere[2]);	
+	// print_sphere_as_array(params.sphere[1]);
+	// print_sphere_as_array(params.sphere[2]);	
 	params.mlx = mlx_init();
 	params.window = mlx_new_window(params.mlx, WIDTH, HEIGHT,
 			"Made by math haters");

@@ -6,7 +6,7 @@
 /*   By: masase <masase@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 13:05:52 by masase            #+#    #+#             */
-/*   Updated: 2025/06/14 19:49:24 by masase           ###   ########.fr       */
+/*   Updated: 2025/06/15 13:12:25 by masase           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -186,72 +186,73 @@ typedef struct	s_params
 
 // PARSING ---------------------------------
 
-int ft_error(char *str);
-int	check_arg(char *str);
-int fill_struct(char *line, t_params *params);
-int read_scene(char *file, t_params *params);
-int parsing(char *file, t_params *params);
-int	ft_isdigit_point(int c);
+int 	ft_error(char *str);
+int		check_arg(char *str);
+int		fill_struct(char *line, t_params *params);
+int		read_scene(char *file, t_params *params);
+int		parsing(char *file, t_params *params);
+int		ft_isdigit_point(int c);
 
 //save utils
-int put_rgb(int *i, int *value, char *line);
-int put_vector(int *i, float *value, char *line);
-int put_position(int *i, float *value, char *line);
+int		put_rgb(int *i, int *value, char *line);
+int		put_vector(int *i, float *value, char *line);
+int		put_position(int *i, float *value, char *line);
 
 //save camera
-int save_camera(char *line, t_params *params);
-int save_fov(char *line, int *i, t_camera *camera);
-int cam_view_point(char *line, int *i, t_camera *camera);
-int cam_vector(char *line, int *i, t_camera *camera);
+int		save_camera(char *line, t_params *params);
+int		save_fov(char *line, int *i, t_camera *camera);
+int		cam_view_point(char *line, int *i, t_camera *camera);
+int		cam_vector(char *line, int *i, t_camera *camera);
 
 // save ambient
-int save_ambiant(char *line, t_params *params);
-int amb_rgb(char *line, int *i, t_ambient *ambiance);
+int		save_ambiant(char *line, t_params *params);
+int		amb_rgb(char *line, int *i, t_ambient *ambient);
+int		amb_ratio(char *line, int *i, t_ambient *ambient);
 
 // save light
-int save_light(char *line, t_params *params);
-int light_view_point(char *line, int *i, t_light *light);
-int light_rgb(char *line, int *i, t_light *light);
-int light_ratio(char *line, int *i, t_light *light);
+int		save_light(char *line, t_params *params);
+int		light_view_point(char *line, int *i, t_light *light);
+int		light_rgb(char *line, int *i, t_light *light);
+int		light_ratio(char *line, int *i, t_light *light);
 
 // save sphere
-int save_sphere(char *line, t_params *params);
-int sphere_view_point(char *line, int *i, t_sphere *sphere);
-int sphere_rgb(char *line, int *i, t_sphere *sphere);
-int sphere_diameter(char *line, int *i, t_sphere *sphere);
+int		save_sphere(char *line, t_params *params);
+int		sphere_view_point(char *line, int *i, t_sphere *sphere);
+int		sphere_rgb(char *line, int *i, t_sphere *sphere);
+int		sphere_diameter(char *line, int *i, t_sphere *sphere);
 
 // save plane
-int save_plane(char *line, t_params *params);
-int plane_vector(char *line, int *i, t_plane *plane);
-int plane_view_point(char *line, int *i, t_plane *plane);
-int plane_rgb(char *line, int *i, t_plane *plane);
+int		save_plane(char *line, t_params *params);
+int		plane_vector(char *line, int *i, t_plane *plane);
+int		plane_view_point(char *line, int *i, t_plane *plane);
+int		plane_rgb(char *line, int *i, t_plane *plane);
 
 // save cylinder
-int save_cylinder(char *line, t_params *params);
-int cylinder_diameter(char *line, int *i, t_cylinder *cylinder);
-int cylinder_height(char *line, int *i, t_cylinder *cylinder);
-int cylinder_view_point(char *line, int *i, t_cylinder *cylinder);
-int cylinder_vector(char *line, int *i, t_cylinder *cylinder);
-int cylinder_rgb(char *line, int *i, t_cylinder *cylinder);
+int		save_cylinder(char *line, t_params *params);
+int		cylinder_diameter(char *line, int *i, t_cylinder *cylinder);
+int		cylinder_height(char *line, int *i, t_cylinder *cylinder);
+int		cylinder_view_point(char *line, int *i, t_cylinder *cylinder);
+int		cylinder_vector(char *line, int *i, t_cylinder *cylinder);
+int		cylinder_rgb(char *line, int *i, t_cylinder *cylinder);
 
 //utils
-int	ft_isspace(int c);
+int		ft_isspace(int c);
 float	ft_atof(const char *str);
-void decimal_atof(int i, const char *str, float *resultat);
+void	decimal_atof(int i, const char *str, float *resultat);
 
 //utils 2
 void	*ft_realloc(void *ptr, size_t old_size, size_t new_size);
 void	*alloc_tab(t_params *params, e_tab_type type);
-size_t setup_tab_type(void ***tab, int **current_size, t_params *params, e_tab_type type);
+size_t	setup_tab_type(void ***tab, int **current_size, t_params *params, e_tab_type type);
 
 
 //printf
-void print_camera_as_array(t_camera *cam);
-void print_plane_as_array(t_plane *plane);
-void print_sphere_as_array(t_sphere *sp);
-void print_cylinder_as_array(t_cylinder *cyl);
-void print_ambiance_as_array(t_ambient *amb);
-void print_point_as_array(t_light *light);
+void	print_camera_as_array(t_camera *cam);
+void	print_plane_as_array(t_plane *plane);
+void	print_sphere_as_array(t_sphere *sp);
+void	print_cylinder_as_array(t_cylinder *cyl);
+void	print_ambiance_as_array(t_ambient *amb);
+void	print_point_as_array(t_light *light);
 
 // IMAGE -----------------------------------
 void		render(t_params *params);
