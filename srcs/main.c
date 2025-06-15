@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: masase <masase@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hoannguy <hoannguy@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 12:39:14 by masase            #+#    #+#             */
-/*   Updated: 2025/06/15 12:30:59 by masase           ###   ########.fr       */
+/*   Updated: 2025/06/15 20:26:53 by hoannguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,7 @@ int	main(int ac, char **av)
 	(void)ac;
 	(void)av;
     t_params params;
-    ft_memset(&params, 0, sizeof(t_params));
+    // ft_memset(&params, 0, sizeof(t_params));
 
     // printf("let's print my objects\n");
     // print_ambiance_as_array(&params.ambient);
@@ -132,10 +132,10 @@ int	main(int ac, char **av)
     // print_point_as_array(params.light[1]);
     // print_sphere_as_array(params.sphere[0]);
 
-	// TEMP_simulation(&params); // replace with parser
-    if (parsing(av[1], &params) == FALSE)
-		return (FALSE);
-	print_sphere_as_array(params.sphere[0]);
+	TEMP_simulation(&params); // replace with parser
+    // if (parsing(av[1], &params) == FALSE)
+	// 	return (FALSE);
+	// print_sphere_as_array(params.sphere[0]);
 	// print_sphere_as_array(params.sphere[1]);
 	// print_sphere_as_array(params.sphere[2]);	
 	params.mlx = mlx_init();
