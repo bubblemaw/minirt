@@ -6,7 +6,7 @@
 /*   By: hoannguy <hoannguy@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 15:44:53 by hoannguy          #+#    #+#             */
-/*   Updated: 2025/06/08 19:09:46 by hoannguy         ###   ########.fr       */
+/*   Updated: 2025/06/15 20:10:20 by hoannguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,4 +50,20 @@ t_vector	pos_to_vector(t_pos pos)
 	v.b = pos.y;
 	v.c = pos.z;
 	return (v);
+}
+
+t_color	color_add(t_color c1, t_color c2)
+{
+	t_color	c3;
+
+	c3.r = c1.r + c2.r;
+	c3.g = c1.g + c2.g;
+	c3.b = c1.b + c2.b;
+	if (c3.r > 255)
+		c3.r = 255;
+	if (c3.g > 255)
+		c3.g = 255;
+	if (c3.b > 255)
+		c3.b = 255;
+	return (c3);
 }

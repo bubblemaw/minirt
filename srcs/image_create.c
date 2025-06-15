@@ -6,7 +6,7 @@
 /*   By: hoannguy <hoannguy@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 11:48:26 by hoannguy          #+#    #+#             */
-/*   Updated: 2025/06/15 15:53:23 by hoannguy         ###   ########.fr       */
+/*   Updated: 2025/06/15 19:15:54 by hoannguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ void	intersection(t_params *params, t_ray *ray)
 {
 	intersection_sphere(params, ray);
 	calculate_ambient_light(params, ray);
-	ray->color = ray->ambient;
+	calculate_diffuse_light(params, ray);
+	ray->color = color_add(ray->ambient, ray->diffuse);
 }
 
 // Setup camera direction based on camera vector.
@@ -46,6 +47,9 @@ void	initialise_ray(t_params *params, t_ray *ray)
 	ray->hit_plane = NULL;
 	ray->hit_cylinder = NULL;
 	ray->hit_sphere = NULL;
+	ray->diffuse.r = 0;
+	ray->diffuse.g = 0;
+	ray->diffuse.b = 0;
 }
 
 // pixel.horiz shifts the ray horizontally
@@ -63,6 +67,7 @@ void	render_object(t_params *params)
 		pixel.j = -1;
 		while (++pixel.j < WIDTH)
 		{
+			initialise_ray(params, &ray);
 			pixel.horiz = vector_multi((2 * ((pixel.j + 0.5f) / WIDTH) - 1)
 					* world.aspect_ratio * world.fov_rad, world.right);
 			pixel.vert = vector_multi((1 - 2 * ((pixel.i + 0.5f) / HEIGHT))
@@ -70,7 +75,6 @@ void	render_object(t_params *params)
 			ray.direction = vector_add(world.forward,
 					vector_add(pixel.horiz, pixel.vert));
 			vector_normalize(&ray.direction);
-			initialise_ray(params, &ray);
 			intersection(params, &ray);
 			my_mlx_pixel_put(params, pixel.i, pixel.j, ray.color);
 		}

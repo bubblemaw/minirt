@@ -6,13 +6,13 @@
 /*   By: hoannguy <hoannguy@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/15 15:26:07 by hoannguy          #+#    #+#             */
-/*   Updated: 2025/06/15 16:10:57 by hoannguy         ###   ########.fr       */
+/*   Updated: 2025/06/15 17:41:24 by hoannguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minirt.h"
 
-void	get_color(int *r, int *g, int *b, t_ray *ray)
+void	get_object_color(int *r, int *g, int *b, t_ray *ray)
 {
 	if (ray->hit_sphere != NULL)
 	{
@@ -40,13 +40,14 @@ void	get_color(int *r, int *g, int *b, t_ray *ray)
 	}
 }
 
+// formula is object color * ambient ratio * (ambient color / 255)
 void	calculate_ambient_light(t_params *params, t_ray *ray)
 {
 	int	r;
 	int	g;
 	int	b;
 
-	get_color(&r, &g, &b, ray);
+	get_object_color(&r, &g, &b, ray);
 	ray->ambient.r = r * params->ambient.ratio
 		* (params->ambient.color.r / 255.0f);
 	ray->ambient.g = g * params->ambient.ratio
