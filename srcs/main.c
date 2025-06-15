@@ -1,13 +1,13 @@
 /* ************************************************************************** */
-/*																			*/
-/*														:::	  ::::::::   */
-/*   main.c											 :+:	  :+:	:+:   */
-/*													+:+ +:+		 +:+	 */
-/*   By: hoannguy <hoannguy@student.42lausanne.c	+#+  +:+	   +#+		*/
-/*												+#+#+#+#+#+   +#+		   */
-/*   Created: 2025/06/06 12:39:14 by masase			#+#	#+#			 */
-/*   Updated: 2025/06/08 09:49:53 by hoannguy		 ###   ########.fr	   */
-/*																			*/
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: masase <masase@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/06/06 12:39:14 by masase            #+#    #+#             */
+/*   Updated: 2025/06/15 12:30:59 by masase           ###   ########.fr       */
+/*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minirt.h"
@@ -120,9 +120,24 @@ int	main(int ac, char **av)
 {
 	(void)ac;
 	(void)av;
-	t_params	params;
+    t_params params;
+    ft_memset(&params, 0, sizeof(t_params));
 
-	TEMP_simulation(&params); // replace with parser
+    // printf("let's print my objects\n");
+    // print_ambiance_as_array(&params.ambient);
+    // print_camera_as_array(&params.camera);
+    // print_cylinder_as_array(params.cylinder[0]);
+    // print_plane_as_array(params.plane[0]);
+    // print_point_as_array(params.light[0]);
+    // print_point_as_array(params.light[1]);
+    // print_sphere_as_array(params.sphere[0]);
+
+	// TEMP_simulation(&params); // replace with parser
+    if (parsing(av[1], &params) == FALSE)
+		return (FALSE);
+	print_sphere_as_array(params.sphere[0]);
+	// print_sphere_as_array(params.sphere[1]);
+	// print_sphere_as_array(params.sphere[2]);	
 	params.mlx = mlx_init();
 	params.window = mlx_new_window(params.mlx, WIDTH, HEIGHT,
 			"Made by math haters");
