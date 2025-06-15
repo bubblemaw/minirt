@@ -6,7 +6,7 @@
 #    By: masase <masase@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/06 12:39:32 by masase            #+#    #+#              #
-#    Updated: 2025/06/14 16:15:42 by masase           ###   ########.fr        #
+#    Updated: 2025/06/15 17:35:55 by hoannguy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,7 @@ SRCS = 	srcs/main.c \
 		srcs/vector.c srcs/vector2.c\
 		srcs/image_start.c srcs/image_create.c\
 		srcs/image_inter_sphere.c\
+		srcs/light_ambient.c srcs/light_diffuse.c\
 
 OBJS = $(SRCS:%.c=%.o)
 

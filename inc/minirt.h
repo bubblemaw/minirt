@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: masase <masase@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hoannguy <hoannguy@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 13:05:52 by masase            #+#    #+#             */
-/*   Updated: 2025/06/15 13:12:25 by masase           ###   ########.fr       */
+/*   Updated: 2025/06/15 18:42:21 by hoannguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,6 +160,8 @@ typedef struct	s_ray
 	t_plane		*hit_plane;
 	t_cylinder	*hit_cylinder;
 	t_sphere	*hit_sphere;
+	t_color		ambient;
+	t_color		diffuse;
 }	t_ray;
 
 typedef struct s_quantity
@@ -263,7 +265,8 @@ void		my_mlx_pixel_put(t_params *params, int x, int y, t_color color);
 void	intersection_sphere(t_params *params, t_ray *ray);
 
 // LIGHT -----------------------------------
-
+void	calculate_ambient_light(t_params *params, t_ray *ray);
+void	calculate_diffuse_light(t_params *params, t_ray *ray);
 
 // SHADOW ----------------------------------
 
@@ -279,6 +282,7 @@ float		vector_dot(t_vector v1, t_vector v2);
 float		vector_norm2(t_vector v1);
 void		vector_normalize(t_vector *v1);
 t_vector	pos_to_vector(t_pos pos);
+t_color		color_add(t_color c1, t_color c2);
 
 // HOOk ------------------------------------
 void		hook(t_params *params);

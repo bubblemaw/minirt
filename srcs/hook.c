@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hook.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: masase <masase@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hoannguy <hoannguy@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 10:41:26 by hoannguy          #+#    #+#             */
-/*   Updated: 2025/06/10 13:40:48 by masase           ###   ########.fr       */
+/*   Updated: 2025/06/15 14:25:54 by hoannguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	camera_reset(t_params *params)
 	params->camera.vector.a = 0;
 	params->camera.vector.b = 0;
 	mlx_destroy_image(params->mlx, params->data.img);
-	render(params);	
+	render(params);
 }
 
 int	key_press(int keycode, t_params *params)
