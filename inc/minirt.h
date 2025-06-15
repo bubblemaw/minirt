@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: masase <masase@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hoannguy <hoannguy@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 13:05:52 by masase            #+#    #+#             */
-/*   Updated: 2025/06/10 13:41:55 by masase           ###   ########.fr       */
+/*   Updated: 2025/06/15 16:15:43 by hoannguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,6 +124,8 @@ typedef struct	s_ray
 	t_plane		*hit_plane;
 	t_cylinder	*hit_cylinder;
 	t_sphere	*hit_sphere;
+	t_color		ambient;
+	t_color		diffuse;
 }	t_ray;
 
 typedef struct	s_params
@@ -170,7 +172,7 @@ void		my_mlx_pixel_put(t_params *params, int x, int y, t_color color);
 void	intersection_sphere(t_params *params, t_ray *ray);
 
 // LIGHT -----------------------------------
-
+void	calculate_ambient_light(t_params *params, t_ray *ray);
 
 // SHADOW ----------------------------------
 

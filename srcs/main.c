@@ -14,6 +14,7 @@
 
 void	TEMP_simulation(t_params *params)
 {
+	// SPHERE
 	t_sphere	*sphere1;
 	t_sphere	*sphere2;
 	t_sphere	*sphere3;
@@ -51,6 +52,7 @@ void	TEMP_simulation(t_params *params)
 	params->sphere[2] = sphere3;
 	params->sphere[3] = NULL;
 
+	// CAMERA
 	params->camera.vector.a = 0;
 	params->camera.vector.b = 0;
 	params->camera.vector.c = 1;
@@ -59,6 +61,13 @@ void	TEMP_simulation(t_params *params)
 	params->camera.pos.z = -10;
 	params->camera.fov = 60;
 
+	// AMBIENT
+	params->ambient.ratio = 0.6;
+	params->ambient.color.r = 200;
+	params->ambient.color.g = 30;
+	params->ambient.color.b = 200;
+
+	// OTHER
 	params->light = NULL;
 	params->plane = NULL;
 	params->cylinder = NULL;
