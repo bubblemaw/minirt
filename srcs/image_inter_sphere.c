@@ -6,7 +6,7 @@
 /*   By: hoannguy <hoannguy@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 11:48:26 by hoannguy          #+#    #+#             */
-/*   Updated: 2025/06/15 20:10:55 by hoannguy         ###   ########.fr       */
+/*   Updated: 2025/06/16 19:11:47 by hoannguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	set_t_value(t_sphere *sphere, t_ray *ray, float t1, float t2)
 		ray->normal = vector_sub(ray->hit_point, temp);
 		vector_normalize(&ray->normal);
 	}
-	else if (t2 > 0 && t2 < ray-> t)
+	else if (t2 > 0 && t2 < ray->t)
 	{
 		ray->t = t2;
 		ray->color = sphere->color;

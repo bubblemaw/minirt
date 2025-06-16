@@ -6,7 +6,7 @@
 /*   By: hoannguy <hoannguy@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 13:05:52 by masase            #+#    #+#             */
-/*   Updated: 2025/06/15 18:42:21 by hoannguy         ###   ########.fr       */
+/*   Updated: 2025/06/16 19:34:12 by hoannguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -269,7 +269,7 @@ void	calculate_ambient_light(t_params *params, t_ray *ray);
 void	calculate_diffuse_light(t_params *params, t_ray *ray);
 
 // SHADOW ----------------------------------
-
+bool		shadow_check(t_params *params, t_ray *ray, t_vector *hit_light);
 
 // UTIL ------------------------------------
 void		free_all(t_params *params);
