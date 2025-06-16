@@ -12,6 +12,9 @@
 
 #include "../inc/minirt.h"
 
+// Dot product of normal and hit_light vector:
+// if > 0, then light hits the surface, else the surface is in other side.
+// Light hit at 90o if == 0. 
 void	all_diffuse(t_params *params, t_ray *ray,
 		t_color *diffuse_total, t_color *object_color)
 {
@@ -24,6 +27,8 @@ void	all_diffuse(t_params *params, t_ray *ray,
 		hit_light = vector_sub(pos_to_vector(params->light[i]->pos),
 				ray->hit_point);
 		vector_normalize(&hit_light);
+		if (shadow_check(params, ray, &hit_light) == true)
+			continue ;
 		if (vector_dot(ray->normal, hit_light) <= 0)
 			continue ;
 		diffuse_total->r += object_color->r * params->light[i]->color.r

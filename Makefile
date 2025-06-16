@@ -6,7 +6,7 @@
 #    By: hoannguy <hoannguy@student.42lausanne.c    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/06 12:39:32 by masase            #+#    #+#              #
-#    Updated: 2025/06/15 20:27:54 by hoannguy         ###   ########.fr        #
+#    Updated: 2025/06/16 19:08:42 by hoannguy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,6 +32,7 @@ SRCS = 	srcs/main.c \
 		srcs/image_start.c srcs/image_create.c\
 		srcs/image_inter_sphere.c\
 		srcs/light_ambient.c srcs/light_diffuse.c\
+		srcs/light_shadow.c\
 
 OBJS = $(SRCS:%.c=%.o)
 
