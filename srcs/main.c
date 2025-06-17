@@ -6,7 +6,7 @@
 /*   By: hoannguy <hoannguy@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 12:39:14 by masase            #+#    #+#             */
-/*   Updated: 2025/06/16 19:45:15 by hoannguy         ###   ########.fr       */
+/*   Updated: 2025/06/17 23:12:26 by hoannguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,58 +19,69 @@ void	TEMP_simulation(t_params *params)
 	t_sphere	*sphere2;
 	t_sphere	*sphere3;
 	t_sphere	*sphere4;
+	t_sphere	*sphere5;
 
 	sphere1 = malloc(sizeof(t_sphere));
 	sphere1->pos.x = 0;
 	sphere1->pos.y = 0;
 	sphere1->pos.z = 15;
-	sphere1->d = 3;
+	sphere1->d = 13;
 	sphere1->color.r = 255;
 	sphere1->color.g = 255;
 	sphere1->color.b = 255;
 
 	sphere2 = malloc(sizeof(t_sphere));
-	sphere2->pos.x = 3;
-	sphere2->pos.y = 1;
-	sphere2->pos.z = 15;
-	sphere2->d = 5;
+	sphere2->pos.x = 6;
+	sphere2->pos.y = 5;
+	sphere2->pos.z = 10;
+	sphere2->d = 6;
 	sphere2->color.r = 255;
 	sphere2->color.g = 255;
 	sphere2->color.b = 255;
 
 	sphere3 = malloc(sizeof(t_sphere));
-	sphere3->pos.x = -5;
+	sphere3->pos.x = 5;
 	sphere3->pos.y = -4;
-	sphere3->pos.z = 10;
-	sphere3->d = 7;
+	sphere3->pos.z = 12;
+	sphere3->d = 6;
 	sphere3->color.r = 255;
 	sphere3->color.g = 255;
 	sphere3->color.b = 255;
 
 	sphere4 = malloc(sizeof(t_sphere));
-	sphere4->pos.x = -8;
-	sphere4->pos.y = -7;
+	sphere4->pos.x = -3;
+	sphere4->pos.y = -8;
 	sphere4->pos.z = 10;
 	sphere4->d = 7;
 	sphere4->color.r = 255;
 	sphere4->color.g = 255;
 	sphere4->color.b = 255;
 
-	params->sphere = malloc(sizeof(t_sphere *) * 5);
+	sphere5 = malloc(sizeof(t_sphere));
+	sphere5->pos.x = -9;
+	sphere5->pos.y = 0;
+	sphere5->pos.z = 20;
+	sphere5->d = 6;
+	sphere5->color.r = 255;
+	sphere5->color.g = 255;
+	sphere5->color.b = 255;
+
+	params->sphere = malloc(sizeof(t_sphere *) * 6);
 	params->sphere[0] = sphere1;
 	params->sphere[1] = sphere2;
 	params->sphere[2] = sphere3;
 	params->sphere[3] = sphere4;
-	params->sphere[4] = NULL;
+	params->sphere[4] = sphere5;
+	params->sphere[5] = NULL;
 
 	// CAMERA
 	params->camera.vector.a = 0;
 	params->camera.vector.b = 0;
 	params->camera.vector.c = 1;
 	params->camera.pos.x = 0;
-	params->camera.pos.y = 0;
+	params->camera.pos.y = -2;
 	params->camera.pos.z = -10;
-	params->camera.fov = 60;
+	params->camera.fov = 70;
 
 	// AMBIENT
 	params->ambient.ratio = 0.6;

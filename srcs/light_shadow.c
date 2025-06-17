@@ -6,13 +6,13 @@
 /*   By: hoannguy <hoannguy@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 18:46:02 by hoannguy          #+#    #+#             */
-/*   Updated: 2025/06/16 19:40:43 by hoannguy         ###   ########.fr       */
+/*   Updated: 2025/06/17 22:58:51 by hoannguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minirt.h"
 
-bool	shadow_sphere_check(t_params *params, t_ray *shadow)
+bool	shadow_sphere_check(t_params *params, t_ray *shadow, t_ray *ray)
 {
 	int			i;
 	float		b;
@@ -24,6 +24,8 @@ bool	shadow_sphere_check(t_params *params, t_ray *shadow)
 	i = -1;
 	while (params->sphere[++i])
 	{
+		if (params->sphere[i] == ray->hit_sphere)
+			continue ;
 		oc = vector_sub(shadow->origin, pos_to_vector(params->sphere[i]->pos));
 		b = 2 * vector_dot(shadow->direction, oc);
 		discriminant = b * b - 4 * (vector_dot(oc, oc)
@@ -42,7 +44,7 @@ bool	shadow_sphere_check(t_params *params, t_ray *shadow)
 void	initialise_shadow_ray(t_ray *ray, t_ray *shadow)
 {
 	shadow->origin = vector_add(ray->hit_point,
-			vector_multi(0.001f, ray->normal));
+			vector_multi(0.0001f, ray->normal));
 	shadow->color.r = 0;
 	shadow->color.g = 0;
 	shadow->color.b = 0;
@@ -58,7 +60,7 @@ bool	shadow_check(t_params *params, t_ray *ray, t_vector *hit_light)
 
 	shadow.direction = *hit_light;
 	initialise_shadow_ray(ray, &shadow);
-	if (shadow_sphere_check(params, &shadow) == true)
+	if (shadow_sphere_check(params, &shadow, ray) == true)
 		return (true);
 	// if (shadow_plane_check(params, &shadow) == true)
 	// 	return (true);
