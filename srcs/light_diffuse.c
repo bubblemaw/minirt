@@ -53,7 +53,7 @@ void	all_diffuse(t_params *params, t_ray *ray,
 		vector_normalize(&hit_light);
 		// if (inside_check(params, ray, &i))
 		// 	continue ;
-		if (shadow_check(params, ray, &hit_light))
+		if (shadow_check(params, ray, &hit_light, i))
 			continue ;
 		dot = vector_dot(ray->normal, hit_light);
 		if (dot <= 0)
