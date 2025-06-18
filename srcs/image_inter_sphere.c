@@ -6,13 +6,13 @@
 /*   By: hoannguy <hoannguy@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 11:48:26 by hoannguy          #+#    #+#             */
-/*   Updated: 2025/06/09 15:08:14 by hoannguy         ###   ########.fr       */
+/*   Updated: 2025/06/11 13:15:00 by hoannguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minirt.h"
 
-void	set_t_value(t_sphere *sphere, t_ray *ray, float t1, float t2)
+void	set_t_value(t_sphere *sphere, t_ray *ray, double t1, double t2)
 {
 	if (t1 > 0 && t1 < ray->t)
 	{
@@ -31,11 +31,11 @@ void	set_t_value(t_sphere *sphere, t_ray *ray, float t1, float t2)
 void	intersection_sphere(t_params *params, t_ray *ray)
 {
 	int			i;
-	float		b;
-	float		c;
-	float		delta;
-	float		t1;
-	float		t2;
+	double		b;
+	double		c;
+	double		delta;
+	double		t1;
+	double		t2;
 	t_vector	oc;
 
 	if (!params->sphere)

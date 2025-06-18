@@ -6,7 +6,7 @@
 /*   By: hoannguy <hoannguy@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 11:48:26 by hoannguy          #+#    #+#             */
-/*   Updated: 2025/06/09 14:47:50 by hoannguy         ###   ########.fr       */
+/*   Updated: 2025/06/11 13:14:59 by hoannguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ void	initialise_values(t_params *params, t_world *world)
 	world->right = vector_cross(world->world_up, world->forward);
 	vector_normalize(&world->right);
 	world->up = vector_cross(world->forward, world->right);
-	world->aspect_ratio = (float)WIDTH / HEIGHT;
-	world->fov_rad = tan((params->camera.fov * M_PI / 180.0f) / 2.0f);
+	world->aspect_ratio = (double)WIDTH / HEIGHT;
+	world->fov_rad = tan((params->camera.fov * M_PI / 180.0) / 2.0);
 }
 
 void	render_object(t_params *params)
@@ -52,9 +52,9 @@ void	render_object(t_params *params)
 		pixel.j = -1;
 		while (++pixel.j < WIDTH)
 		{
-			pixel.horiz = vector_multi((2 * ((pixel.j + 0.5f) / WIDTH) - 1)
+			pixel.horiz = vector_multi((2 * ((pixel.j + 0.5) / WIDTH) - 1)
 					* world.aspect_ratio * world.fov_rad, world.right);
-			pixel.vert = vector_multi((1 - 2 * ((pixel.i + 0.5f) / HEIGHT))
+			pixel.vert = vector_multi((1 - 2 * ((pixel.i + 0.5) / HEIGHT))
 					* world.fov_rad, world.up);
 			ray.direction = vector_add(world.forward, vector_add(pixel.horiz, pixel.vert));
 			vector_normalize(&ray.direction);
