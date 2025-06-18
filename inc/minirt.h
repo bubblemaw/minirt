@@ -6,7 +6,7 @@
 /*   By: hoannguy <hoannguy@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 13:05:52 by masase            #+#    #+#             */
-/*   Updated: 2025/06/18 10:51:40 by hoannguy         ###   ########.fr       */
+/*   Updated: 2025/06/18 11:01:07 by hoannguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@
 # include <stdio.h>
 # include <unistd.h>
 # include <math.h>
-# include <double.h>
+// # include <double.h>
+# include <float.h>
 # include <stdbool.h>
 # include "../libft/libft.h" 
 # include "../gnl/get_next_line.h" 
@@ -36,8 +37,8 @@
 # define H 104
 # define R 114
 
-# define HEIGHT 720
-# define WIDTH 1080
+# define HEIGHT 1080
+# define WIDTH 1920
 
 // syntax
 enum
@@ -129,33 +130,6 @@ typedef struct	s_sphere
 	double	d;
 }	t_sphere;
 
-// MAIN STRUCT -----------------------------
-typedef struct	s_ray
-{
-	t_vector	origin;
-	t_vector	direction;
-	t_color		color;
-	double		t;
-	t_vector	hit_point;
-	t_vector	normal;
-	t_plane		*hit_plane;
-	t_cylinder	*hit_cylinder;
-	t_sphere	*hit_sphere;
-}	t_ray;
-
-typedef struct	s_params
-{
-	t_camera	camera;
-	t_ambient	ambient;
-	t_light		**light;
-	t_plane		**plane;
-	t_cylinder	**cylinder;
-	t_sphere	**sphere;
-	void		*mlx;
-	void		*window;
-	t_data		data;
-}	t_params;
-
 // SAVE LINE -------------------------------
 typedef struct	s_pixel
 {
@@ -222,12 +196,12 @@ int		read_scene(char *file, t_params *params);
 int		parsing(char *file, t_params *params);
 int		ft_isdigit_point(int c);
 
-//save utils
+// save utils
 int		put_rgb(int *i, int *value, char *line);
 int		put_vector(int *i, float *value, char *line);
 int		put_position(int *i, float *value, char *line);
 
-//save camera
+// save camera
 int		save_camera(char *line, t_params *params);
 int		save_fov(char *line, int *i, t_camera *camera);
 int		cam_view_point(char *line, int *i, t_camera *camera);
@@ -264,18 +238,18 @@ int		cylinder_view_point(char *line, int *i, t_cylinder *cylinder);
 int		cylinder_vector(char *line, int *i, t_cylinder *cylinder);
 int		cylinder_rgb(char *line, int *i, t_cylinder *cylinder);
 
-//utils
+// utils
 int		ft_isspace(int c);
 float	ft_atof(const char *str);
 void	decimal_atof(int i, const char *str, float *resultat);
 
-//utils 2
+// utils 2
 void	*ft_realloc(void *ptr, size_t old_size, size_t new_size);
 void	*alloc_tab(t_params *params, e_tab_type type);
 size_t	setup_tab_type(void ***tab, int **current_size, t_params *params, e_tab_type type);
 
 
-//printf
+// printf
 void	print_camera_as_array(t_camera *cam);
 void	print_plane_as_array(t_plane *plane);
 void	print_sphere_as_array(t_sphere *sp);
@@ -289,11 +263,11 @@ void		render_object(t_params *params);
 void		my_mlx_pixel_put(t_params *params, int x, int y, t_color color);
 
 // RAYON -----------------------------------
-void	intersection_sphere(t_params *params, t_ray *ray);
+void		intersection_sphere(t_params *params, t_ray *ray);
 
 // LIGHT -----------------------------------
-void	calculate_ambient_light(t_params *params, t_ray *ray);
-void	calculate_diffuse_light(t_params *params, t_ray *ray);
+void		calculate_ambient_light(t_params *params, t_ray *ray);
+void		calculate_diffuse_light(t_params *params, t_ray *ray);
 
 // SHADOW ----------------------------------
 bool		shadow_check(t_params *params, t_ray *ray, t_vector *hit_light, int index);

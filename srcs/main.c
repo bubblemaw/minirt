@@ -6,7 +6,7 @@
 /*   By: hoannguy <hoannguy@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 12:39:14 by masase            #+#    #+#             */
-/*   Updated: 2025/06/17 23:12:26 by hoannguy         ###   ########.fr       */
+/*   Updated: 2025/06/18 11:04:37 by hoannguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	TEMP_simulation(t_params *params)
 	sphere3->color.b = 255;
 
 	sphere4 = malloc(sizeof(t_sphere));
-	sphere4->pos.x = -3;
+	sphere4->pos.x = -6;
 	sphere4->pos.y = -8;
 	sphere4->pos.z = 10;
 	sphere4->d = 7;
