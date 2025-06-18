@@ -1,13 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hook4.c                                            :+:      :+:    :+:   */
+/*   error_message.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hoannguy <hoannguy@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: masase <masase@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/08 22:33:00 by hoannguy          #+#    #+#             */
-/*   Updated: 2025/06/15 14:26:26 by hoannguy         ###   ########.fr       */
+/*   Created: 2025/06/07 23:02:43 by maw               #+#    #+#             */
+/*   Updated: 2025/06/14 16:19:46 by masase           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/minirt.h"
+#include "../../inc/minirt.h"
+
+int ft_error(char *str)
+{
+	printf("Error\n");
+	printf("%s\n", str);
+	return (FALSE);
+}
