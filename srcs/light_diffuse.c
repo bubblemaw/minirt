@@ -12,28 +12,28 @@
 
 #include "../inc/minirt.h"
 
-bool	inside_check(t_params *params, t_ray *ray, int *i)
-{
-	int			j;
-	t_vector	center;
-	float		dist_hit;
-	float		dist_light;
+// bool	inside_check(t_params *params, t_ray *ray, int *i)
+// {
+// 	int			j;
+// 	t_vector	center;
+// 	float		dist_hit;
+// 	float		dist_light;
 
-	j = -1;
-	while (params->sphere[++j])
-	{
-		center = pos_to_vector(params->sphere[j]->pos);
-		dist_hit = vector_dot(vector_sub(ray->hit_point, center),
-				vector_sub(ray->hit_point, center));
-		dist_light = vector_dot
-			(vector_sub(pos_to_vector(params->light[*i]->pos), center),
-				vector_sub(pos_to_vector(params->light[*i]->pos), center));
-		if (dist_hit < pow((params->sphere[j]->d / 2.0f), 2)
-			&& dist_light > pow((params->sphere[j]->d / 2.0f), 2))
-			return (true);
-	}
-	return (false);
-}
+// 	j = -1;
+// 	while (params->sphere[++j])
+// 	{
+// 		center = pos_to_vector(params->sphere[j]->pos);
+// 		dist_hit = vector_dot(vector_sub(ray->hit_point, center),
+// 				vector_sub(ray->hit_point, center));
+// 		dist_light = vector_dot
+// 			(vector_sub(pos_to_vector(params->light[*i]->pos), center),
+// 				vector_sub(pos_to_vector(params->light[*i]->pos), center));
+// 		if (dist_hit < pow((params->sphere[j]->d / 2.0f), 2)
+// 			&& dist_light > pow((params->sphere[j]->d / 2.0f), 2))
+// 			return (true);
+// 	}
+// 	return (false);
+// }
 
 // Dot product of normal and hit_light vector:
 // if > 0, then light hits the surface, else the surface is in other side.

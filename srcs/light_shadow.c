@@ -6,7 +6,7 @@
 /*   By: hoannguy <hoannguy@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 18:46:02 by hoannguy          #+#    #+#             */
-/*   Updated: 2025/06/17 23:25:32 by hoannguy         ###   ########.fr       */
+/*   Updated: 2025/06/18 19:53:58 by hoannguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,13 @@ void	initialise_shadow_ray(t_ray *ray, t_ray *shadow)
 	shadow->hit_sphere = NULL;
 }
 
-bool	shadow_sphere_check(t_params *params, t_ray *shadow, t_ray *ray, float light_dist)
+bool	shadow_sphere_check(t_params *params, t_ray *shadow,
+		t_ray *ray, float light_dist)
 {
 	int			i;
-	float		b;
-	float		discriminant;
-	float		t1, t2;
+	float		d;
+	float		t1;
+	float		t2;
 	t_vector	oc;
 
 	if (!params->sphere)
@@ -41,14 +42,12 @@ bool	shadow_sphere_check(t_params *params, t_ray *shadow, t_ray *ray, float ligh
 		if (params->sphere[i] == ray->hit_sphere)
 			continue ;
 		oc = vector_sub(shadow->origin, pos_to_vector(params->sphere[i]->pos));
-		b = 2 * vector_dot(shadow->direction, oc);
-		discriminant = b * b - 4 * (vector_dot(oc, oc)
-				- pow(params->sphere[i]->d / 2, 2));
-		if (discriminant < 0)
+		d = pow(2 * vector_dot(shadow->direction, oc), 2)
+			- 4 * (vector_dot(oc, oc) - pow(params->sphere[i]->d / 2, 2));
+		if (d < 0)
 			continue ;
-		discriminant = sqrtf(discriminant);
-		t1 = (-b - discriminant) / 2.0f;
-		t2 = (-b + discriminant) / 2.0f;
+		t1 = (-(2 * vector_dot(shadow->direction, oc)) - sqrtf(d)) / 2.0f;
+		t2 = (-(2 * vector_dot(shadow->direction, oc)) + sqrtf(d)) / 2.0f;
 		if ((t1 > 0 && t1 * t1 < light_dist)
 			|| (t2 > 0 && t2 * t2 < light_dist))
 			return (true);
@@ -56,7 +55,8 @@ bool	shadow_sphere_check(t_params *params, t_ray *shadow, t_ray *ray, float ligh
 	return (false);
 }
 
-bool	shadow_check(t_params *params, t_ray *ray, t_vector *hit_light, int index)
+bool	shadow_check(t_params *params, t_ray *ray,
+	t_vector *hit_light, int index)
 {
 	t_ray		shadow;
 	t_vector	light_pos;

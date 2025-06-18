@@ -6,7 +6,7 @@
 /*   By: hoannguy <hoannguy@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 13:05:52 by masase            #+#    #+#             */
-/*   Updated: 2025/06/18 11:01:07 by hoannguy         ###   ########.fr       */
+/*   Updated: 2025/06/18 20:02:42 by hoannguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@
 // syntax
 enum
 {
-    FALSE,
-    TRUE,
+	FALSE,
+	TRUE,
 };
 
 typedef enum
@@ -248,7 +248,6 @@ void	*ft_realloc(void *ptr, size_t old_size, size_t new_size);
 void	*alloc_tab(t_params *params, e_tab_type type);
 size_t	setup_tab_type(void ***tab, int **current_size, t_params *params, e_tab_type type);
 
-
 // printf
 void	print_camera_as_array(t_camera *cam);
 void	print_plane_as_array(t_plane *plane);
@@ -270,7 +269,8 @@ void		calculate_ambient_light(t_params *params, t_ray *ray);
 void		calculate_diffuse_light(t_params *params, t_ray *ray);
 
 // SHADOW ----------------------------------
-bool		shadow_check(t_params *params, t_ray *ray, t_vector *hit_light, int index);
+bool		shadow_check(t_params *params, t_ray *ray,
+			t_vector *hit_light, int index);
 
 // UTIL ------------------------------------
 void		free_all(t_params *params);
