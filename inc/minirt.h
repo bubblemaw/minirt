@@ -6,7 +6,7 @@
 /*   By: hoannguy <hoannguy@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 13:05:52 by masase            #+#    #+#             */
-/*   Updated: 2025/06/18 20:02:42 by hoannguy         ###   ########.fr       */
+/*   Updated: 2025/06/19 08:22:38 by hoannguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -263,6 +263,7 @@ void		my_mlx_pixel_put(t_params *params, int x, int y, t_color color);
 
 // RAYON -----------------------------------
 void		intersection_sphere(t_params *params, t_ray *ray);
+void		intersection_plane(t_params *params, t_ray *ray);
 
 // LIGHT -----------------------------------
 void		calculate_ambient_light(t_params *params, t_ray *ray);

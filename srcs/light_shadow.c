@@ -6,7 +6,7 @@
 /*   By: hoannguy <hoannguy@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 18:46:02 by hoannguy          #+#    #+#             */
-/*   Updated: 2025/06/18 19:53:58 by hoannguy         ###   ########.fr       */
+/*   Updated: 2025/06/19 08:40:22 by hoannguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,32 @@ bool	shadow_sphere_check(t_params *params, t_ray *shadow,
 	return (false);
 }
 
+bool	shadow_plane_check(t_params *params, t_ray *shadow,
+		t_ray *ray, float light_dist)
+{
+	int			i;
+	float		denom;
+	float		t;
+	t_vector	op;
+
+	if (!params->plane)
+		return (false);
+	i = -1;
+	while (params->plane[++i])
+	{
+		if (params->plane[i] == ray->hit_plane)
+			continue ;
+		denom = vector_dot(shadow->direction, params->plane[i]->vector);
+		if (fabsf(denom) < 0.000001f)
+			continue ;
+		op = vector_sub(pos_to_vector(params->plane[i]->pos), shadow->origin);
+		t = vector_dot(op, params->plane[i]->vector) / denom;
+		if (t > 0 && t * t < light_dist)
+			return (true);
+	}
+	return (false);
+}
+
 bool	shadow_check(t_params *params, t_ray *ray,
 	t_vector *hit_light, int index)
 {
@@ -70,53 +96,9 @@ bool	shadow_check(t_params *params, t_ray *ray,
 	light_dist = vector_dot(light_vec, light_vec);
 	if (shadow_sphere_check(params, &shadow, ray, light_dist))
 		return (true);
-	// if (shadow_plane_check(...))
-	// 	return (true);
+	if (shadow_plane_check(params, &shadow, ray, light_dist))
+		return (true);
 	// if (shadow_cylinder_check(...))
 	//     return (true);
 	return (false);
 }
-
-// bool	shadow_sphere_check(t_params *params, t_ray *shadow, t_ray *ray)
-// {
-// 	int			i;
-// 	float		b;
-// 	float		discriminant;
-// 	t_vector	oc;
-
-// 	if (!params->sphere)
-// 		return (false);
-// 	i = -1;
-// 	while (params->sphere[++i])
-// 	{
-// 		if (params->sphere[i] == ray->hit_sphere)
-// 			continue ;
-// 		oc = vector_sub(shadow->origin, pos_to_vector(params->sphere[i]->pos));
-// 		b = 2 * vector_dot(shadow->direction, oc);
-// 		discriminant = b * b - 4 * (vector_dot(oc, oc)
-// 				- pow(params->sphere[i]->d / 2, 2));
-// 		if (discriminant < 0)
-// 			continue ;
-// 		discriminant = sqrtf(discriminant);
-// 		if (((-b - discriminant) / 2) > 0 && ((-b - discriminant) / 2) < 1.0f)
-// 			return (true);
-// 		if (((-b + discriminant) / 2) > 0 && ((-b + discriminant) / 2) < 1.0f)
-// 			return (true);
-// 	}
-// 	return (false);
-// }
-
-// bool	shadow_check(t_params *params, t_ray *ray, t_vector *hit_light)
-// {
-// 	t_ray	shadow;
-
-// 	shadow.direction = *hit_light;
-// 	initialise_shadow_ray(ray, &shadow);
-// 	if (shadow_sphere_check(params, &shadow, ray) == true)
-// 		return (true);
-// 	// if (shadow_plane_check(params, &shadow) == true)
-// 	// 	return (true);
-// 	// if (shadow_cylinder_check(params, &shadow) == true)
-// 	// 	return (true);
-// 	return (false);
-// }
