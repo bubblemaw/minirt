@@ -6,7 +6,7 @@
 /*   By: hoannguy <hoannguy@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 12:39:14 by masase            #+#    #+#             */
-/*   Updated: 2025/06/19 08:20:23 by hoannguy         ###   ########.fr       */
+/*   Updated: 2025/06/19 16:05:40 by hoannguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	TEMP_simulation(t_params *params)
 	sphere1->pos.x = 0;
 	sphere1->pos.y = 0;
 	sphere1->pos.z = 15;
-	sphere1->d = 13;
+	sphere1->d = 9;
 	sphere1->color.r = 255;
 	sphere1->color.g = 255;
 	sphere1->color.b = 255;
@@ -85,9 +85,9 @@ void	TEMP_simulation(t_params *params)
 	plane1->pos.x = 0;
 	plane1->pos.y = -25;
 	plane1->pos.z = 35;
-	plane1->color.r = 0;
-	plane1->color.g = 0;
-	plane1->color.b = 255;
+	plane1->color.r = 100;
+	plane1->color.g = 100;
+	plane1->color.b = 100;
 
 	plane2 = malloc(sizeof(t_plane));
 	plane2->vector.a = 0;
@@ -97,8 +97,8 @@ void	TEMP_simulation(t_params *params)
 	plane2->pos.y = -20;
 	plane2->pos.z = 30;
 	plane2->color.r = 255;
-	plane2->color.g = 0;
-	plane2->color.b = 0;
+	plane2->color.g = 255;
+	plane2->color.b = 255;
 
 	params->plane = malloc(sizeof(t_plane *) * 3);
 	params->plane[0] = plane1;
@@ -109,8 +109,8 @@ void	TEMP_simulation(t_params *params)
 	params->camera.vector.a = 0;
 	params->camera.vector.b = 0;
 	params->camera.vector.c = 1;
-	params->camera.pos.x = 0;
-	params->camera.pos.y = -2;
+	params->camera.pos.x = 1;
+	params->camera.pos.y = 0;
 	params->camera.pos.z = -10;
 	params->camera.fov = 70;
 
@@ -136,8 +136,8 @@ void	TEMP_simulation(t_params *params)
 	light1->color.b = 0;
 
 	light2 = malloc(sizeof(t_light));
-	light2->pos.x = 0.0;
-	light2->pos.y = -15.0;
+	light2->pos.x = 5.0;
+	light2->pos.y = -10.0;
 	light2->pos.z = 10.0;
 	light2->ratio = 1;
 	light2->color.r = 255;
@@ -154,9 +154,9 @@ void	TEMP_simulation(t_params *params)
 	light3->color.b = 255;
 
 	params->light = malloc(sizeof(t_light *) * 4);
-	params->light[0] = light1;
-	params->light[1] = light2;
-	params->light[2] = light3;
+	params->light[0] = light2;
+	params->light[1] = light3;
+	params->light[2] = light1;
 	params->light[3] = NULL;
 
 	// OTHER

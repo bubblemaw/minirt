@@ -6,7 +6,7 @@
 /*   By: hoannguy <hoannguy@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 13:05:52 by masase            #+#    #+#             */
-/*   Updated: 2025/06/19 08:22:38 by hoannguy         ###   ########.fr       */
+/*   Updated: 2025/06/19 15:14:16 by hoannguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,6 +161,7 @@ typedef struct	s_ray
 	t_plane		*hit_plane;
 	t_cylinder	*hit_cylinder;
 	t_sphere	*hit_sphere;
+	bool		hit_inside;
 	t_color		ambient;
 	t_color		diffuse;
 }	t_ray;

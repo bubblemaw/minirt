@@ -6,7 +6,7 @@
 /*   By: hoannguy <hoannguy@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 11:48:26 by hoannguy          #+#    #+#             */
-/*   Updated: 2025/06/19 06:49:13 by hoannguy         ###   ########.fr       */
+/*   Updated: 2025/06/19 15:14:53 by hoannguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	set_t2_sphere(t_sphere *sphere, t_ray *ray, float t2)
 	vector_normalize(&ray->normal);
 	ray->hit_point = vector_add(ray->hit_point,
 			vector_multi(0.0001f, ray->normal));
+	ray->hit_inside = true;
 }
 
 // t1 is first hit. Normal is perpendicular vector to hitpoint.
@@ -52,6 +53,7 @@ void	set_t_sphere(t_sphere *sphere, t_ray *ray, float t1, float t2)
 		vector_normalize(&ray->normal);
 		ray->hit_point = vector_add(ray->hit_point,
 				vector_multi(1e-4f, ray->normal));
+		ray->hit_inside = false;
 	}
 	else if (t2 > 0 && t2 < ray->t)
 		set_t2_sphere(sphere, ray, t2);
