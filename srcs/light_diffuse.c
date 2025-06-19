@@ -12,39 +12,64 @@
 
 #include "../inc/minirt.h"
 
+// bool	inside_check(t_params *params, t_ray *ray, int *i)
+// {
+// 	int			j;
+// 	t_vector	center;
+// 	float		dist_hit;
+// 	float		dist_light;
+
+// 	j = -1;
+// 	while (params->sphere[++j])
+// 	{
+// 		center = pos_to_vector(params->sphere[j]->pos);
+// 		dist_hit = vector_dot(vector_sub(ray->hit_point, center),
+// 				vector_sub(ray->hit_point, center));
+// 		dist_light = vector_dot
+// 			(vector_sub(pos_to_vector(params->light[*i]->pos), center),
+// 				vector_sub(pos_to_vector(params->light[*i]->pos), center));
+// 		if (dist_hit < pow((params->sphere[j]->d / 2.0f), 2)
+// 			&& dist_light > pow((params->sphere[j]->d / 2.0f), 2))
+// 			return (true);
+// 	}
+// 	return (false);
+// }
+
 // Dot product of normal and hit_light vector:
 // if > 0, then light hits the surface, else the surface is in other side.
 // Light hit at 90o if == 0. 
 void	all_diffuse(t_params *params, t_ray *ray,
-		t_color *diffuse_total, t_color *object_color)
+	t_color *diffuse_total, t_color *object_color)
 {
 	int			i;
 	t_vector	hit_light;
+	float		dot;
 
 	i = -1;
-	while (params->light[++i] != NULL)
+	while (params->light[++i])
 	{
 		hit_light = vector_sub(pos_to_vector(params->light[i]->pos),
 				ray->hit_point);
 		vector_normalize(&hit_light);
-		if (shadow_check(params, ray, &hit_light) == true)
+		// if (inside_check(params, ray, &i))
+		// 	continue ;
+		if (shadow_check(params, ray, &hit_light, i))
 			continue ;
-		if (vector_dot(ray->normal, hit_light) <= 0)
+		dot = vector_dot(ray->normal, hit_light);
+		if (dot <= 0)
 			continue ;
 		diffuse_total->r += object_color->r * params->light[i]->color.r
-			/ 255.0f * vector_dot(ray->normal, hit_light)
-			* params->light[i]->ratio;
+			/ 255.0f * dot * params->light[i]->ratio;
 		diffuse_total->g += object_color->g * params->light[i]->color.g
-			/ 255.0f * vector_dot(ray->normal, hit_light)
-			* params->light[i]->ratio;
+			/ 255.0f * dot * params->light[i]->ratio;
 		diffuse_total->b += object_color->b * params->light[i]->color.b
-			/ 255.0f * vector_dot(ray->normal, hit_light)
-			* params->light[i]->ratio;
+			/ 255.0f * dot * params->light[i]->ratio;
 	}
 }
 
 // formula is 
-// object color * light color * light ratio * (surface normal . hitToLight vector)
+// object color * light color * light ratio
+// * (surface normal . hitToLight vector)
 void	calculate_diffuse_light(t_params *params, t_ray *ray)
 {
 	t_color	object_color;

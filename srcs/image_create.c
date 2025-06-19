@@ -6,18 +6,22 @@
 /*   By: hoannguy <hoannguy@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 11:48:26 by hoannguy          #+#    #+#             */
-/*   Updated: 2025/06/15 19:15:54 by hoannguy         ###   ########.fr       */
+/*   Updated: 2025/06/19 07:57:07 by hoannguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minirt.h"
 
+// Ray equation: R(t) = O + t·D
+// Origin, Direction, t disrance, R(t) point on the ray at t
 void	intersection(t_params *params, t_ray *ray)
 {
 	intersection_sphere(params, ray);
+	intersection_plane(params, ray);
 	calculate_ambient_light(params, ray);
 	calculate_diffuse_light(params, ray);
 	ray->color = color_add(ray->ambient, ray->diffuse);
+	// ray->color = ray->ambient;
 }
 
 // Setup camera direction based on camera vector.
@@ -33,8 +37,8 @@ void	initialise_values(t_params *params, t_world *world)
 	world->right = vector_cross(world->world_up, world->forward);
 	vector_normalize(&world->right);
 	world->up = vector_cross(world->forward, world->right);
-	world->aspect_ratio = (float)WIDTH / HEIGHT;
-	world->fov_rad = tan((params->camera.fov * M_PI / 180.0f) / 2.0f);
+	world->aspect_ratio = (double)WIDTH / HEIGHT;
+	world->fov_rad = tan((params->camera.fov * M_PI / 180.0) / 2.0);
 }
 
 void	initialise_ray(t_params *params, t_ray *ray)
@@ -70,7 +74,7 @@ void	render_object(t_params *params)
 			initialise_ray(params, &ray);
 			pixel.horiz = vector_multi((2 * ((pixel.j + 0.5f) / WIDTH) - 1)
 					* world.aspect_ratio * world.fov_rad, world.right);
-			pixel.vert = vector_multi((1 - 2 * ((pixel.i + 0.5f) / HEIGHT))
+			pixel.vert = vector_multi((1 - 2 * ((pixel.i + 0.5) / HEIGHT))
 					* world.fov_rad, world.up);
 			ray.direction = vector_add(world.forward,
 					vector_add(pixel.horiz, pixel.vert));

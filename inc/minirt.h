@@ -6,7 +6,7 @@
 /*   By: hoannguy <hoannguy@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 13:05:52 by masase            #+#    #+#             */
-/*   Updated: 2025/06/16 19:34:12 by hoannguy         ###   ########.fr       */
+/*   Updated: 2025/06/19 08:22:38 by hoannguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <stdio.h>
 # include <unistd.h>
 # include <math.h>
+// # include <double.h>
 # include <float.h>
 # include <stdbool.h>
 # include "../libft/libft.h" 
@@ -36,14 +37,14 @@
 # define H 104
 # define R 114
 
-# define HEIGHT 720
-# define WIDTH 1080
+# define HEIGHT 1080
+# define WIDTH 1920
 
 // syntax
 enum
 {
-    FALSE,
-    TRUE,
+	FALSE,
+	TRUE,
 };
 
 typedef enum
@@ -66,16 +67,16 @@ typedef struct	s_data
 
 typedef struct	s_vector
 {
-	float	a;
-	float	b;
-	float	c;
+	double	a;
+	double	b;
+	double	c;
 }	t_vector;
 
 typedef struct	s_pos
 {
-	float	x;
-	float	y;
-	float	z;
+	double	x;
+	double	y;
+	double	z;
 }	t_pos;
 
 typedef struct	s_color
@@ -97,12 +98,12 @@ typedef struct	s_light
 {
 	t_pos	pos;
 	t_color	color;
-	float	ratio;
+	double	ratio;
 }	t_light;
 
 typedef struct	s_ambient
 {
-	float	ratio;
+	double	ratio;
 	t_color	color;
 }	t_ambient;
 
@@ -118,15 +119,15 @@ typedef struct	s_cylinder
 	t_vector	vector;
 	t_pos		pos;
 	t_color		color;
-	float		d;
-	float		h;
+	double		d;
+	double		h;
 }	t_cylinder;
 
 typedef struct	s_sphere
 {
 	t_pos	pos;
 	t_color	color;
-	float	d;
+	double	d;
 }	t_sphere;
 
 // SAVE LINE -------------------------------
@@ -140,8 +141,8 @@ typedef struct	s_pixel
 
 typedef	struct	s_world
 {
-	float		aspect_ratio;
-	float		fov_rad;
+	double		aspect_ratio;
+	double		fov_rad;
 	t_vector	right;
 	t_vector	up;
 	t_vector	forward;
@@ -195,12 +196,12 @@ int		read_scene(char *file, t_params *params);
 int		parsing(char *file, t_params *params);
 int		ft_isdigit_point(int c);
 
-//save utils
+// save utils
 int		put_rgb(int *i, int *value, char *line);
 int		put_vector(int *i, float *value, char *line);
 int		put_position(int *i, float *value, char *line);
 
-//save camera
+// save camera
 int		save_camera(char *line, t_params *params);
 int		save_fov(char *line, int *i, t_camera *camera);
 int		cam_view_point(char *line, int *i, t_camera *camera);
@@ -237,18 +238,17 @@ int		cylinder_view_point(char *line, int *i, t_cylinder *cylinder);
 int		cylinder_vector(char *line, int *i, t_cylinder *cylinder);
 int		cylinder_rgb(char *line, int *i, t_cylinder *cylinder);
 
-//utils
+// utils
 int		ft_isspace(int c);
 float	ft_atof(const char *str);
 void	decimal_atof(int i, const char *str, float *resultat);
 
-//utils 2
+// utils 2
 void	*ft_realloc(void *ptr, size_t old_size, size_t new_size);
 void	*alloc_tab(t_params *params, e_tab_type type);
 size_t	setup_tab_type(void ***tab, int **current_size, t_params *params, e_tab_type type);
 
-
-//printf
+// printf
 void	print_camera_as_array(t_camera *cam);
 void	print_plane_as_array(t_plane *plane);
 void	print_sphere_as_array(t_sphere *sp);
@@ -262,24 +262,26 @@ void		render_object(t_params *params);
 void		my_mlx_pixel_put(t_params *params, int x, int y, t_color color);
 
 // RAYON -----------------------------------
-void	intersection_sphere(t_params *params, t_ray *ray);
+void		intersection_sphere(t_params *params, t_ray *ray);
+void		intersection_plane(t_params *params, t_ray *ray);
 
 // LIGHT -----------------------------------
-void	calculate_ambient_light(t_params *params, t_ray *ray);
-void	calculate_diffuse_light(t_params *params, t_ray *ray);
+void		calculate_ambient_light(t_params *params, t_ray *ray);
+void		calculate_diffuse_light(t_params *params, t_ray *ray);
 
 // SHADOW ----------------------------------
-bool		shadow_check(t_params *params, t_ray *ray, t_vector *hit_light);
+bool		shadow_check(t_params *params, t_ray *ray,
+			t_vector *hit_light, int index);
 
 // UTIL ------------------------------------
 void		free_all(t_params *params);
 t_vector	vector_add(t_vector v1, t_vector v2);
 t_vector	vector_sub(t_vector v1, t_vector v2);
-t_vector	vector_multi(float x, t_vector v1);
-t_vector	vector_divi(t_vector v1, float x);
+t_vector	vector_multi(double x, t_vector v1);
+t_vector	vector_divi(t_vector v1, double x);
 t_vector	vector_cross(t_vector v1, t_vector v2);
-float		vector_dot(t_vector v1, t_vector v2);
-float		vector_norm2(t_vector v1);
+double		vector_dot(t_vector v1, t_vector v2);
+double		vector_norm2(t_vector v1);
 void		vector_normalize(t_vector *v1);
 t_vector	pos_to_vector(t_pos pos);
 t_color		color_add(t_color c1, t_color c2);
