@@ -6,7 +6,7 @@
 /*   By: hoannguy <hoannguy@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 06:02:01 by hoannguy          #+#    #+#             */
-/*   Updated: 2025/06/19 07:18:58 by hoannguy         ###   ########.fr       */
+/*   Updated: 2025/06/19 15:15:05 by hoannguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	set_t_plane(t_plane *plane, t_ray *ray, float t)
 	ray->color = plane->color;
 	ray->hit_point = vector_add(ray->hit_point,
 			vector_multi(0.0001f, ray->normal));
+	ray->hit_inside = false;
 }
 
 // Linear equation: (P - O) · N = t * (D · N)
