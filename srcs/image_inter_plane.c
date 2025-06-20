@@ -6,13 +6,13 @@
 /*   By: hoannguy <hoannguy@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 06:02:01 by hoannguy          #+#    #+#             */
-/*   Updated: 2025/06/19 15:15:05 by hoannguy         ###   ########.fr       */
+/*   Updated: 2025/06/20 23:25:59 by hoannguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minirt.h"
 
-void	set_t_plane(t_plane *plane, t_ray *ray, float t)
+void	set_t_plane(t_plane *plane, t_ray *ray, float t, float denom)
 {
 	ray->t = t;
 	ray->hit_plane = plane;
@@ -21,9 +21,11 @@ void	set_t_plane(t_plane *plane, t_ray *ray, float t)
 	ray->hit_point = vector_add(ray->origin, vector_multi(t, ray->direction));
 	ray->normal = plane->vector;
 	ray->color = plane->color;
-	ray->hit_point = vector_add(ray->hit_point,
-			vector_multi(0.0001f, ray->normal));
-	ray->hit_inside = false;
+	if (denom > 0)
+		ray->normal = vector_multi(-1.0f, ray->normal);
+	else
+		ray->hit_point = vector_add(ray->hit_point,
+				vector_multi(0.0001f, ray->normal));
 }
 
 // Linear equation: (P - O) · N = t * (D · N)
@@ -46,7 +48,7 @@ void	intersection_plane(t_params *params, t_ray *ray)
 			continue ;
 		op = vector_sub(pos_to_vector(params->plane[i]->pos), ray->origin);
 		t = vector_dot(op, params->plane[i]->vector) / denom;
-		if (t > 0 && t < ray->t)
-			set_t_plane(params->plane[i], ray, t);
+		if ((t > 0.0001f && t < ray->t))
+			set_t_plane(params->plane[i], ray, t, denom);
 	}
 }

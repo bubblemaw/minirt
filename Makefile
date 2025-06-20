@@ -6,7 +6,7 @@
 #    By: hoannguy <hoannguy@student.42lausanne.c    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/06 12:39:32 by masase            #+#    #+#              #
-#    Updated: 2025/06/19 06:49:46 by hoannguy         ###   ########.fr        #
+#    Updated: 2025/06/20 15:20:40 by hoannguy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ SRCS = 	srcs/main.c \
 		srcs/image_start.c srcs/image_create.c\
 		srcs/image_inter_sphere.c srcs/image_inter_plane.c\
 		srcs/light_ambient.c srcs/light_diffuse.c\
-		srcs/light_shadow.c\
+		srcs/light_shadow.c srcs/light_shadow_sphere.c srcs/light_shadow_plane.c\
 		# srcs/parsing/parsing.c \
 		# srcs/parsing/save_ambiance.c \
 		# srcs/parsing/save_camera.c \

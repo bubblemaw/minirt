@@ -28,7 +28,7 @@ void	all_diffuse(t_params *params, t_ray *ray,
 		hit_light = vector_sub(pos_to_vector(params->light[i]->pos),
 				ray->hit_point);
 		vector_normalize(&hit_light);
-		if (ray->hit_inside == true)
+		if ((ray->hit_sphere || ray->hit_cylinder) && ray->hit_inside == true)
 			hit_light = vector_multi(-1.0f, hit_light);
 		if (shadow_check(params, ray, &hit_light, i))
 			continue ;
