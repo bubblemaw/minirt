@@ -6,7 +6,7 @@
 /*   By: hoannguy <hoannguy@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/20 15:18:10 by hoannguy          #+#    #+#             */
-/*   Updated: 2025/06/20 15:37:23 by hoannguy         ###   ########.fr       */
+/*   Updated: 2025/06/20 16:53:21 by hoannguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,14 @@ bool	shadow_plane_check(t_params *params, t_ray *shadow,
 		// if (ray->hit_inside == true)
 		// 	continue ;
 		denom = vector_dot(shadow->direction, params->plane[i]->vector);
-		if (denom < 0.000001f)
+		if (fabsf(denom) < 0.000001f)
 			continue ;
 		op = vector_sub(pos_to_vector(params->plane[i]->pos), shadow->origin);
 		t = vector_dot(op, params->plane[i]->vector) / denom;
 		if (t > 0 && t * t < light_dist)
-			return (true);
+			if (vector_dot(shadow->direction, params->plane[i]->vector) < 0)
+				return (true);
 	}
 	return (false);
 }
+

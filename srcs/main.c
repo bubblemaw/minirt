@@ -6,7 +6,7 @@
 /*   By: hoannguy <hoannguy@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 12:39:14 by masase            #+#    #+#             */
-/*   Updated: 2025/06/20 16:13:45 by hoannguy         ###   ########.fr       */
+/*   Updated: 2025/06/20 16:53:40 by hoannguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ void	TEMP_simulation(t_params *params)
 	sphere1->pos.x = 0;
 	sphere1->pos.y = 0;
 	sphere1->pos.z = 15;
-	sphere1->d = 20;
+	sphere1->d = 40;
 	sphere1->color.r = 255;
-	sphere1->color.g = 255;
+	sphere1->color.g = 0;
 	sphere1->color.b = 255;
 
 	sphere2 = malloc(sizeof(t_sphere));
@@ -95,7 +95,7 @@ void	TEMP_simulation(t_params *params)
 
 	plane2 = malloc(sizeof(t_plane));
 	plane2->vector.a = 0;
-	plane2->vector.b = 1;
+	plane2->vector.b = -1;
 	plane2->vector.c = 0;
 	plane2->pos.x = 0;
 	plane2->pos.y = -20;
@@ -115,7 +115,7 @@ void	TEMP_simulation(t_params *params)
 	params->camera.vector.c = 1;
 	params->camera.pos.x = 1;
 	params->camera.pos.y = 0;
-	params->camera.pos.z = 6;
+	params->camera.pos.z = -30;
 	params->camera.fov = 70;
 
 	// AMBIENT
@@ -131,8 +131,8 @@ void	TEMP_simulation(t_params *params)
 	t_light	*light3;
 
 	light1 = malloc(sizeof(t_light));
-	light1->pos.x = 0;
-	light1->pos.y = 10;
+	light1->pos.x = 6;
+	light1->pos.y = 0;
 	light1->pos.z = 10.0;
 	light1->ratio = 1;
 	light1->color.r = 0;
@@ -141,12 +141,12 @@ void	TEMP_simulation(t_params *params)
 
 	light2 = malloc(sizeof(t_light));
 	light2->pos.x = 0.0;
-	light2->pos.y = -5;
+	light2->pos.y = -23;
 	light2->pos.z = 10;
 	light2->ratio = 1;
 	light2->color.r = 255;
 	light2->color.g = 0;
-	light2->color.b = 0;
+	light2->color.b = 255;
 
 	light3 = malloc(sizeof(t_light));
 	light3->pos.x = 20.0;
