@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vector.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hoannguy <hoannguy@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: maw <maw@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 15:07:17 by hoannguy          #+#    #+#             */
-/*   Updated: 2025/06/11 13:15:01 by hoannguy         ###   ########.fr       */
+/*   Updated: 2025/06/20 18:02:40 by maw              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ t_vector	vector_sub(t_vector v1, t_vector v2)
 	return (v3);
 }
 
-t_vector	vector_multi(double x, t_vector v1)
+t_vector	vector_multi(float x, t_vector v1)
 {
 	t_vector	v2;
 
@@ -42,7 +42,7 @@ t_vector	vector_multi(double x, t_vector v1)
 	return (v2);
 }
 
-t_vector	vector_divi(t_vector v1, double x)
+t_vector	vector_divi(t_vector v1, float x)
 {
 	t_vector	v2;
 
@@ -52,9 +52,9 @@ t_vector	vector_divi(t_vector v1, double x)
 	return (v2);
 }
 
-double	vector_dot(t_vector v1, t_vector v2)
+float	vector_dot(t_vector v1, t_vector v2)
 {
-	double	x;
+	float	x;
 
 	x = v1.a * v2.a + v1.b * v2.b + v1.c * v2.c;
 	return (x);

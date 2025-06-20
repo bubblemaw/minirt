@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hoannguy <hoannguy@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: maw <maw@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 13:05:52 by masase            #+#    #+#             */
-/*   Updated: 2025/06/19 08:22:38 by hoannguy         ###   ########.fr       */
+/*   Updated: 2025/06/20 18:01:59 by maw              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <stdio.h>
 # include <unistd.h>
 # include <math.h>
-// # include <double.h>
+// # include <float.h>
 # include <float.h>
 # include <stdbool.h>
 # include "../libft/libft.h" 
@@ -67,16 +67,16 @@ typedef struct	s_data
 
 typedef struct	s_vector
 {
-	double	a;
-	double	b;
-	double	c;
+	float	a;
+	float	b;
+	float	c;
 }	t_vector;
 
 typedef struct	s_pos
 {
-	double	x;
-	double	y;
-	double	z;
+	float	x;
+	float	y;
+	float	z;
 }	t_pos;
 
 typedef struct	s_color
@@ -98,12 +98,12 @@ typedef struct	s_light
 {
 	t_pos	pos;
 	t_color	color;
-	double	ratio;
+	float	ratio;
 }	t_light;
 
 typedef struct	s_ambient
 {
-	double	ratio;
+	float	ratio;
 	t_color	color;
 }	t_ambient;
 
@@ -119,15 +119,15 @@ typedef struct	s_cylinder
 	t_vector	vector;
 	t_pos		pos;
 	t_color		color;
-	double		d;
-	double		h;
+	float		d;
+	float		h;
 }	t_cylinder;
 
 typedef struct	s_sphere
 {
 	t_pos	pos;
 	t_color	color;
-	double	d;
+	float	d;
 }	t_sphere;
 
 // SAVE LINE -------------------------------
@@ -141,8 +141,8 @@ typedef struct	s_pixel
 
 typedef	struct	s_world
 {
-	double		aspect_ratio;
-	double		fov_rad;
+	float		aspect_ratio;
+	float		fov_rad;
 	t_vector	right;
 	t_vector	up;
 	t_vector	forward;
@@ -264,6 +264,7 @@ void		my_mlx_pixel_put(t_params *params, int x, int y, t_color color);
 // RAYON -----------------------------------
 void		intersection_sphere(t_params *params, t_ray *ray);
 void		intersection_plane(t_params *params, t_ray *ray);
+void		intersection_cylinder(t_params *params, t_ray *ray);
 
 // LIGHT -----------------------------------
 void		calculate_ambient_light(t_params *params, t_ray *ray);
@@ -277,11 +278,11 @@ bool		shadow_check(t_params *params, t_ray *ray,
 void		free_all(t_params *params);
 t_vector	vector_add(t_vector v1, t_vector v2);
 t_vector	vector_sub(t_vector v1, t_vector v2);
-t_vector	vector_multi(double x, t_vector v1);
-t_vector	vector_divi(t_vector v1, double x);
+t_vector	vector_multi(float x, t_vector v1);
+t_vector	vector_divi(t_vector v1, float x);
 t_vector	vector_cross(t_vector v1, t_vector v2);
-double		vector_dot(t_vector v1, t_vector v2);
-double		vector_norm2(t_vector v1);
+float		vector_dot(t_vector v1, t_vector v2);
+float		vector_norm2(t_vector v1);
 void		vector_normalize(t_vector *v1);
 t_vector	pos_to_vector(t_pos pos);
 t_color		color_add(t_color c1, t_color c2);
