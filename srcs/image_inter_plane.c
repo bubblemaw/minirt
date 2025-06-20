@@ -6,7 +6,7 @@
 /*   By: hoannguy <hoannguy@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 06:02:01 by hoannguy          #+#    #+#             */
-/*   Updated: 2025/06/19 15:15:05 by hoannguy         ###   ########.fr       */
+/*   Updated: 2025/06/20 15:36:06 by hoannguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,32 @@
 
 void	set_t_plane(t_plane *plane, t_ray *ray, float t)
 {
-	ray->t = t;
-	ray->hit_plane = plane;
-	ray->hit_sphere = NULL;
-	ray->hit_cylinder = NULL;
-	ray->hit_point = vector_add(ray->origin, vector_multi(t, ray->direction));
-	ray->normal = plane->vector;
-	ray->color = plane->color;
-	ray->hit_point = vector_add(ray->hit_point,
-			vector_multi(0.0001f, ray->normal));
-	ray->hit_inside = false;
+	if (t > 0)
+	{
+		ray->t = t;
+		ray->hit_plane = plane;
+		ray->hit_sphere = NULL;
+		ray->hit_cylinder = NULL;
+		ray->hit_point = vector_add(ray->origin, vector_multi(t, ray->direction));
+		ray->normal = plane->vector;
+		ray->color = plane->color;
+		ray->hit_point = vector_add(ray->hit_point,
+				vector_multi(0.0001f, ray->normal));
+		ray->hit_inside = false;
+	}
+	// else
+	// {
+	// 	ray->t = t;
+	// 	ray->hit_plane = plane;
+	// 	ray->hit_sphere = NULL;
+	// 	ray->hit_cylinder = NULL;
+	// 	ray->hit_point = vector_add(ray->origin, vector_multi(t, ray->direction));
+	// 	ray->normal = plane->vector;
+	// 	ray->color = plane->color;
+	// 	ray->hit_point = vector_add(ray->hit_point,
+	// 			vector_multi(-0.0001f, ray->normal));
+	// 	ray->hit_inside = true;
+	// }
 }
 
 // Linear equation: (P - O) · N = t * (D · N)
@@ -46,7 +62,9 @@ void	intersection_plane(t_params *params, t_ray *ray)
 			continue ;
 		op = vector_sub(pos_to_vector(params->plane[i]->pos), ray->origin);
 		t = vector_dot(op, params->plane[i]->vector) / denom;
-		if (t > 0 && t < ray->t)
+		// if ((t > 0 && t < ray->t) || (t < 0 && t < ray->t))
+		// 	set_t_plane(params->plane[i], ray, t);
+		if ((t > 0 && t < ray->t))
 			set_t_plane(params->plane[i], ray, t);
 	}
 }

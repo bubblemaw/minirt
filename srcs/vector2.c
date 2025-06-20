@@ -6,7 +6,7 @@
 /*   By: hoannguy <hoannguy@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 15:44:53 by hoannguy          #+#    #+#             */
-/*   Updated: 2025/06/18 10:52:43 by hoannguy         ###   ########.fr       */
+/*   Updated: 2025/06/20 14:21:28 by hoannguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ t_vector	vector_cross(t_vector v1, t_vector v2)
 	return (v3);
 }
 
-double	vector_norm2(t_vector v1)
+float	vector_norm2(t_vector v1)
 {
-	double	x;
+	float	x;
 
 	x = v1.a * v1.a + v1.b * v1.b + v1.c * v1.c;
 	return (x);
@@ -32,7 +32,7 @@ double	vector_norm2(t_vector v1)
 
 void	vector_normalize(t_vector *v1)
 {
-	double	norm;
+	float	norm;
 
 	norm = sqrt(vector_norm2(*v1));
 	if (norm == 0.0)

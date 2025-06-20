@@ -6,7 +6,7 @@
 /*   By: hoannguy <hoannguy@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 11:48:26 by hoannguy          #+#    #+#             */
-/*   Updated: 2025/06/19 15:14:53 by hoannguy         ###   ########.fr       */
+/*   Updated: 2025/06/20 16:00:15 by hoannguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,6 @@ void	set_t2_sphere(t_sphere *sphere, t_ray *ray, float t2)
 			vector_multi(t2, ray->direction));
 	temp = pos_to_vector(sphere->pos);
 	ray->normal = vector_sub(ray->hit_point, temp);
-	if (vector_dot(ray->normal, ray->direction) > 0)
-		vector_multi(-1.0f, ray->normal);
 	vector_normalize(&ray->normal);
 	ray->hit_point = vector_add(ray->hit_point,
 			vector_multi(0.0001f, ray->normal));
@@ -52,7 +50,7 @@ void	set_t_sphere(t_sphere *sphere, t_ray *ray, float t1, float t2)
 		ray->normal = vector_sub(ray->hit_point, temp);
 		vector_normalize(&ray->normal);
 		ray->hit_point = vector_add(ray->hit_point,
-				vector_multi(1e-4f, ray->normal));
+				vector_multi(0.0001f, ray->normal));
 		ray->hit_inside = false;
 	}
 	else if (t2 > 0 && t2 < ray->t)
@@ -76,7 +74,7 @@ void	intersection_sphere(t_params *params, t_ray *ray)
 	while (params->sphere[++i])
 	{
 		oc = vector_sub(ray->origin, pos_to_vector(params->sphere[i]->pos));
-		b = 2 * vector_dot(ray->direction, oc);
+		b = 2.0f * vector_dot(ray->direction, oc);
 		if ((b * b - 4 * (vector_dot(oc, oc)
 					- pow((params->sphere[i]->d / 2), 2))) < 0)
 			continue ;
