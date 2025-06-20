@@ -6,7 +6,7 @@
 /*   By: hoannguy <hoannguy@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 12:39:14 by masase            #+#    #+#             */
-/*   Updated: 2025/06/20 16:53:40 by hoannguy         ###   ########.fr       */
+/*   Updated: 2025/06/20 23:46:29 by hoannguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	TEMP_simulation(t_params *params)
 	sphere1->pos.z = 15;
 	sphere1->d = 40;
 	sphere1->color.r = 255;
-	sphere1->color.g = 0;
+	sphere1->color.g = 255;
 	sphere1->color.b = 255;
 
 	sphere2 = malloc(sizeof(t_sphere));
@@ -40,7 +40,7 @@ void	TEMP_simulation(t_params *params)
 	sphere2->color.b = 255;
 
 	sphere3 = malloc(sizeof(t_sphere));
-	sphere3->pos.x = 5;
+	sphere3->pos.x = 30;
 	sphere3->pos.y = -4;
 	sphere3->pos.z = 12;
 	sphere3->d = 6;
@@ -114,8 +114,8 @@ void	TEMP_simulation(t_params *params)
 	params->camera.vector.b = 0;
 	params->camera.vector.c = 1;
 	params->camera.pos.x = 1;
-	params->camera.pos.y = 0;
-	params->camera.pos.z = -30;
+	params->camera.pos.y = -25;
+	params->camera.pos.z = 0;
 	params->camera.fov = 70;
 
 	// AMBIENT
