@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   image_inter_cylinder.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maw <maw@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: masase <masase@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 14:59:56 by maw               #+#    #+#             */
-/*   Updated: 2025/06/20 19:37:12 by maw              ###   ########.fr       */
+/*   Updated: 2025/06/21 12:38:17 by masase           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,9 @@ void	intersection_cylinder(t_params *params, t_ray *ray)
 					- pow((params->cylinder[i]->d / 2), 2))) < 0)
 			continue ;
 		t1 = (-b - sqrtf(b * b - 4 * (vector_dot(oc, oc)
-						- pow((params->cylinder[i]->d / 2), 2)))) / 2;
+						- powf((params->cylinder[i]->d / 2), 2)))) / 2;
 		t2 = (-b + sqrtf(b * b - 4 * (vector_dot(oc, oc)
-						- pow((params->cylinder[i]->d / 2), 2)))) / 2;
+						- powf((params->cylinder[i]->d / 2), 2)))) / 2;
 		if (t2 < 0)
 			continue ;
 		set_t_sphere(params->cylinder[i], ray, t1, t2);
