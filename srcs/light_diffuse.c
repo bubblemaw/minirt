@@ -49,21 +49,21 @@ void	all_diffuse(t_params *params, t_ray *ray,
 // * (surface normal . hitToLight vector)
 void	calculate_diffuse_light(t_params *params, t_ray *ray)
 {
-	t_color	object_color;
+	t_color	color;
 	t_color	diffuse_total;
 
 	if (!ray->hit_sphere && !ray->hit_cylinder && !ray->hit_plane)
 		return ;
 	if (ray->hit_sphere)
-		object_color = ray->hit_sphere->color;
+		get_sphere_color(params, ray, &color);
 	else if (ray->hit_cylinder)
-		object_color = ray->hit_cylinder->color;
+		get_cylinder_color(params, ray, &color);
 	else if (ray->hit_plane)
-		object_color = ray->hit_plane->color;
+		get_plane_color(params, ray, &color);
 	diffuse_total.r = 0;
 	diffuse_total.g = 0;
 	diffuse_total.b = 0;
-	all_diffuse(params, ray, &diffuse_total, &object_color);
+	all_diffuse(params, ray, &diffuse_total, &color);
 	ray->diffuse.r = (int)diffuse_total.r;
 	ray->diffuse.g = (int)diffuse_total.g;
 	ray->diffuse.b = (int)diffuse_total.b;

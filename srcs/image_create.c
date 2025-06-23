@@ -6,7 +6,7 @@
 /*   By: hoannguy <hoannguy@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 11:48:26 by hoannguy          #+#    #+#             */
-/*   Updated: 2025/06/23 13:42:59 by hoannguy         ###   ########.fr       */
+/*   Updated: 2025/06/24 00:34:32 by hoannguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	intersection(t_params *params, t_ray *ray)
 	else
 		ray->color = color_add(ray->specular,
 				color_add(ray->ambient, ray->diffuse));
+	// ray->color = ray->ambient;
 }
 
 // Setup camera direction based on camera vector.
@@ -75,6 +76,7 @@ void	render_object(t_params *params)
 		pixel.j = -1;
 		while (++pixel.j < WIDTH)
 		{
+			printf("Rendering row %d/%d\n", pixel.i + 1, HEIGHT);
 			initialise_ray(params, &ray);
 			pixel.horiz = vector_multi((2 * ((pixel.j + 0.5f) / WIDTH) - 1)
 					* world.aspect_ratio * world.fov_rad, world.right);

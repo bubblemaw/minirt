@@ -6,7 +6,7 @@
 #    By: hoannguy <hoannguy@student.42lausanne.c    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/06 12:39:32 by masase            #+#    #+#              #
-#    Updated: 2025/06/23 15:23:50 by hoannguy         ###   ########.fr        #
+#    Updated: 2025/06/24 00:02:21 by hoannguy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,7 @@ SRCS = 	srcs/main.c \
 		srcs/inter_sphere.c srcs/inter_plane.c\
 		srcs/light_ambient.c srcs/light_diffuse.c srcs/light_specular.c\
 		srcs/shadow.c srcs/shadow_sphere.c srcs/shadow_plane.c\
+		srcs/pattern_checkerboard.c srcs/pattern_stripe.c\
 		# srcs/parsing/parsing.c \
 		# srcs/parsing/save_ambiance.c \
 		# srcs/parsing/save_camera.c \

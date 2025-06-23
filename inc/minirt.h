@@ -6,7 +6,7 @@
 /*   By: hoannguy <hoannguy@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 13:05:52 by masase            #+#    #+#             */
-/*   Updated: 2025/06/23 13:53:11 by hoannguy         ###   ########.fr       */
+/*   Updated: 2025/06/24 00:16:31 by hoannguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,11 @@
 # define F 102
 # define H 104
 # define R 114
+
+# define NONE 0
+# define CHECKER 1
+# define STRIPE 2
+# define PPM 3
 
 # define HEIGHT 1080
 # define WIDTH 1920
@@ -85,6 +90,13 @@ typedef struct	s_color
 	int	b;
 }	t_color;
 
+typedef struct	s_pattern
+{
+	int	size;
+	t_color	color1;
+	t_color	color2;
+}	t_pattern;
+
 // SCENE ITEM STRUCT -----------------------
 typedef struct	s_camera
 {
@@ -111,6 +123,8 @@ typedef struct	s_plane
 	t_vector	vector;
 	t_pos		pos;
 	t_color		color;
+	bool		has_texture;
+	int			texture_type;
 }	t_plane;
 
 typedef struct	s_cylinder
@@ -121,14 +135,18 @@ typedef struct	s_cylinder
 	float		d;
 	float		h;
 	float		shine;
+	bool		has_texture;
+	int			texture_type;
 }	t_cylinder;
 
 typedef struct	s_sphere
 {
-	t_pos	pos;
-	t_color	color;
-	float	d;
-	float	shine;
+	t_pos		pos;
+	t_color		color;
+	float		d;
+	float		shine;
+	bool		has_texture;
+	int			texture_type;
 }	t_sphere;
 
 // SAVE LINE -------------------------------
@@ -185,6 +203,8 @@ typedef struct	s_params
 	t_plane		**plane;
 	t_cylinder	**cylinder;
 	t_sphere	**sphere;
+	t_pattern	checker;
+	t_pattern	stripe;
 	t_quantity	quantity;
 	void		*mlx;
 	void		*window;
@@ -276,10 +296,22 @@ void		calculate_specular_light(t_params *params, t_ray *ray);
 
 // SHADOW ----------------------------------
 bool		shadow_check(t_params *params, t_ray *ray, int index);
-bool 		shadow_sphere_check(t_params *params, t_ray *shadow,
+bool		shadow_sphere_check(t_params *params, t_ray *shadow,
 			float light_dist, t_vector light_pos);
 bool		shadow_plane_check(t_params *params, t_ray *shadow,
 			t_ray *ray, t_vector light_pos);
+
+// PATTERN ---------------------------------
+void		initialise_pattern(t_params *params);
+t_color		checkerboard_plane(t_params *params, t_vector hit_point);
+t_color		checkerboard_sphere(t_params *params, t_vector hit_point, t_sphere *sphere);
+t_color		checkerboard_cylinder(t_params *params, t_vector hit_point, t_cylinder *cyl);
+t_color		stripe_plane(t_params *params, t_vector hit_point);
+t_color		stripe_sphere(t_params *params, t_vector hit_point, t_sphere *sphere);
+t_color		stripe_cylinder(t_params *params, t_vector hit_point, t_cylinder *cyl);
+void		get_sphere_color(t_params *params, t_ray *ray, t_color *color);
+void		get_cylinder_color(t_params *params, t_ray *ray, t_color *color);
+void		get_plane_color(t_params *params, t_ray *ray, t_color *color);
 
 // UTIL ------------------------------------
 void		free_all(t_params *params);
