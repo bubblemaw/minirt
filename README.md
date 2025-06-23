@@ -8,11 +8,11 @@
 All inmages below are in the same scene. The scene has:
 - Outside sphere1:
   - 2 lights, 2 planes and 2 spheres:
-  - ![image](https://github.com/user-attachments/assets/e96fa054-672a-44f2-bcc6-5db7e78ddfc2)
+  - ![image](https://github.com/user-attachments/assets/f56d29c0-ed7e-4295-af59-96f1d4588b25)
 
 - Inside sphere1:
   - 2 lights, 2 planes intersections and 2 spheres: The sphere in the center is sphere2, there is a light inside sphere2.
-  - ![image](https://github.com/user-attachments/assets/03d518b3-8c28-4ee4-bd5e-cff420022852)
+  - ![image](https://github.com/user-attachments/assets/7857c835-21ff-429e-ab11-c609887bbaf4)
 
 - Inside sphere2:
   - 1 lights: it is entirely blue because the light is blue, nothing else inside so everything is blue.
