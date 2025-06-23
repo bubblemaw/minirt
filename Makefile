@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: masase <masase@student.42.fr>              +#+  +:+       +#+         #
+#    By: maw <maw@student.42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/06 12:39:32 by masase            #+#    #+#              #
-#    Updated: 2025/06/22 19:44:49 by masase           ###   ########.fr        #
+#    Updated: 2025/06/23 15:26:20 by maw              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ SRCS = 	srcs/main.c \
 		srcs/free_all.c srcs/free_all2.c srcs/hook.c srcs/hook2.c srcs/hook3.c srcs/hook4.c\
 		srcs/vector.c srcs/vector2.c\
 		srcs/image_start.c srcs/image_create.c\
-		srcs/image_inter_sphere.c srcs/image_inter_plane.c\
+		srcs/image_inter_sphere.c srcs/image_inter_plane.c srcs/image_inter_cylinder.c\
 		srcs/light_ambient.c srcs/light_diffuse.c\
 		srcs/light_shadow.c\
 		srcs/parsing/parsing.c \

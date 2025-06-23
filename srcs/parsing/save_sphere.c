@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   save_sphere.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: masase <masase@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maw <maw@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 15:22:36 by maw               #+#    #+#             */
-/*   Updated: 2025/06/15 13:22:32 by masase           ###   ########.fr       */
+/*   Updated: 2025/06/23 13:26:56 by maw              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,8 @@ int sphere_rgb(char *line, int *i, t_sphere *sphere)
 		return (FALSE);
 	if (put_rgb(i, &sphere->color.b, line) == FALSE)
 		return (FALSE);
-	if (!ft_isspace(line[*i]))
-		return (ft_error("Too much arguments for the RGB parameters"));		
+	if (ft_isprint(line[*i]))
+		return (ft_error("Too much arguments for the sphere RGB parameters"));		
 	return (TRUE);
 }
 

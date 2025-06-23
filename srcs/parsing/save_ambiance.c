@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   save_ambiance.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: masase <masase@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maw <maw@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 12:06:32 by masase            #+#    #+#             */
-/*   Updated: 2025/06/15 13:12:28 by masase           ###   ########.fr       */
+/*   Updated: 2025/06/23 13:27:04 by maw              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int amb_rgb(char *line, int *i, t_ambient *ambient)
 		return (FALSE);
 	if (put_rgb(i, &ambient->color.b, line) == FALSE)
 		return (FALSE);
-	if (!ft_isspace(line[*i]))
-		return (ft_error("Too much arguments for the RGB parameters"));		
+	if (ft_isprint(line[*i]))
+		return (ft_error("Too much arguments for the ambient RGB parameters"));		
 	return (TRUE);
 }

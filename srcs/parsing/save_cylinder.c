@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   save_cylinder.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: masase <masase@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maw <maw@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 16:40:50 by maw               #+#    #+#             */
-/*   Updated: 2025/06/15 13:22:16 by masase           ###   ########.fr       */
+/*   Updated: 2025/06/23 13:24:47 by maw              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ int cylinder_rgb(char *line, int *i, t_cylinder *cylinder)
 		return (FALSE);
 	if (put_rgb(i, &cylinder->color.b, line) == FALSE)
 		return (FALSE);
-	if (!ft_isspace(line[*i]))
-		return (ft_error("Too much arguments for the RGB parameters"));		
+	if (ft_isprint(line[*i]))
+		return (ft_error("Too much arguments for the cylinder RGB parameters"));		
 	return (TRUE);
 }

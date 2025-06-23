@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   save_plane.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: masase <masase@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maw <maw@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 15:46:44 by maw               #+#    #+#             */
-/*   Updated: 2025/06/15 13:22:28 by masase           ###   ########.fr       */
+/*   Updated: 2025/06/23 13:26:30 by maw              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,8 @@ int plane_rgb(char *line, int *i, t_plane *plane)
 		return (FALSE);
 	if (put_rgb(i, &plane->color.b, line) == FALSE)
 		return (FALSE);
-	if (!ft_isspace(line[*i]))
-		return (ft_error("Too much arguments for the RGB parameters"));		
+	if (ft_isprint(line[*i]))
+		return (ft_error("Too much arguments for the plane RGB parameters"));		
 	return (TRUE);
 }
 

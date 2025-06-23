@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   save_light.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: masase <masase@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maw <maw@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 12:47:20 by maw               #+#    #+#             */
-/*   Updated: 2025/06/15 13:22:25 by masase           ###   ########.fr       */
+/*   Updated: 2025/06/23 13:26:05 by maw              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ int light_rgb(char *line, int *i, t_light *light)
 		return (FALSE);
 	if (put_rgb(i, &light->color.b, line) == FALSE)
 		return (FALSE);
-	if (!ft_isspace(line[*i]))
-		return (ft_error("Too much arguments for the RGB parameters"));		
+	if (ft_isprint(line[*i]))
+		return (ft_error("Too much arguments for the light RGB parameters"));		
 	return (TRUE);
 }

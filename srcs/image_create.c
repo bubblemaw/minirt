@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   image_create.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hoannguy <hoannguy@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: maw <maw@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 11:48:26 by hoannguy          #+#    #+#             */
-/*   Updated: 2025/06/19 07:57:07 by hoannguy         ###   ########.fr       */
+/*   Updated: 2025/06/23 15:24:04 by maw              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	intersection(t_params *params, t_ray *ray)
 {
 	intersection_sphere(params, ray);
 	intersection_plane(params, ray);
+	intersection_cylinder(params, ray);
 	calculate_ambient_light(params, ray);
 	calculate_diffuse_light(params, ray);
 	ray->color = color_add(ray->ambient, ray->diffuse);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: masase <masase@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maw <maw@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 12:39:14 by masase            #+#    #+#             */
-/*   Updated: 2025/06/22 19:44:13 by masase           ###   ########.fr       */
+/*   Updated: 2025/06/23 13:30:29 by maw              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -168,7 +168,7 @@ int	main(int ac, char **av)
 	(void)ac;
 	(void)av;
     t_params params;
-    // ft_memset(&params, 0, sizeof(t_params));
+    ft_memset(&params, 0, sizeof(t_params));
 
     // printf("let's print my objects\n");
     // print_ambiance_as_array(&params.ambient);
