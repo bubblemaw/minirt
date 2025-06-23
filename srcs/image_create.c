@@ -6,7 +6,7 @@
 /*   By: maw <maw@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 11:48:26 by hoannguy          #+#    #+#             */
-/*   Updated: 2025/06/23 15:24:04 by maw              ###   ########.fr       */
+/*   Updated: 2025/06/23 15:41:03 by maw              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,12 @@ void	intersection(t_params *params, t_ray *ray)
 	intersection_cylinder(params, ray);
 	calculate_ambient_light(params, ray);
 	calculate_diffuse_light(params, ray);
-	ray->color = color_add(ray->ambient, ray->diffuse);
-	// ray->color = ray->ambient;
+	calculate_specular_light(params, ray);
+	if (ray->hit_plane)
+		ray->color = color_add(ray->ambient, ray->diffuse);
+	else
+		ray->color = color_add(ray->specular,
+				color_add(ray->ambient, ray->diffuse));
 }
 
 // Setup camera direction based on camera vector.
