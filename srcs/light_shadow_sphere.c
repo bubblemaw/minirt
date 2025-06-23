@@ -6,7 +6,7 @@
 /*   By: hoannguy <hoannguy@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/20 14:43:56 by hoannguy          #+#    #+#             */
-/*   Updated: 2025/06/20 23:44:36 by hoannguy         ###   ########.fr       */
+/*   Updated: 2025/06/23 10:59:03 by hoannguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ bool	point_inside_sphere(t_vector point, t_sphere *sphere)
 	return (distance < (radius * radius + 0.001f));
 }
 
-float	calculate_t_values(float b, float a,
+bool	calculate_t_values(float b, float a,
 		float discriminant, float light_dist)
 {
 	float	t1;

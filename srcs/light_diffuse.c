@@ -20,8 +20,9 @@ void	all_diffuse(t_params *params, t_ray *ray,
 {
 	int			i;
 	t_vector	hit_light;
-	float		dot;
 
+	if (!params->light)
+		return ;
 	i = -1;
 	while (params->light[++i])
 	{
@@ -30,17 +31,16 @@ void	all_diffuse(t_params *params, t_ray *ray,
 		vector_normalize(&hit_light);
 		if ((ray->hit_sphere || ray->hit_cylinder) && ray->hit_inside == true)
 			hit_light = vector_multi(-1.0f, hit_light);
-		if (shadow_check(params, ray, &hit_light, i))
+		if (shadow_check(params, ray, i))
 			continue ;
-		dot = vector_dot(ray->normal, hit_light);
-		if (dot <= 0)
+		if (vector_dot(ray->normal, hit_light) <= 0)
 			continue ;
-		diffuse_total->r += object_color->r * params->light[i]->color.r
-			/ 255.0f * dot * params->light[i]->ratio;
-		diffuse_total->g += object_color->g * params->light[i]->color.g
-			/ 255.0f * dot * params->light[i]->ratio;
-		diffuse_total->b += object_color->b * params->light[i]->color.b
-			/ 255.0f * dot * params->light[i]->ratio;
+		diffuse_total->r += object_color->r * params->light[i]->color.r / 255.0f
+			* vector_dot(ray->normal, hit_light) * params->light[i]->ratio;
+		diffuse_total->g += object_color->g * params->light[i]->color.g / 255.0f
+			* vector_dot(ray->normal, hit_light) * params->light[i]->ratio;
+		diffuse_total->b += object_color->b * params->light[i]->color.b / 255.0f
+			* vector_dot(ray->normal, hit_light) * params->light[i]->ratio;
 	}
 }
 

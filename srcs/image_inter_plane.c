@@ -6,7 +6,7 @@
 /*   By: hoannguy <hoannguy@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 06:02:01 by hoannguy          #+#    #+#             */
-/*   Updated: 2025/06/20 23:25:59 by hoannguy         ###   ########.fr       */
+/*   Updated: 2025/06/23 10:26:11 by hoannguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,8 @@ void	set_t_plane(t_plane *plane, t_ray *ray, float t, float denom)
 	ray->color = plane->color;
 	if (denom > 0)
 		ray->normal = vector_multi(-1.0f, ray->normal);
-	else
-		ray->hit_point = vector_add(ray->hit_point,
-				vector_multi(0.0001f, ray->normal));
+	ray->hit_point = vector_add(ray->hit_point,
+			vector_multi(0.0001f, ray->normal));
 }
 
 // Linear equation: (P - O) · N = t * (D · N)
