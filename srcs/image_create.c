@@ -6,7 +6,7 @@
 /*   By: hoannguy <hoannguy@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 11:48:26 by hoannguy          #+#    #+#             */
-/*   Updated: 2025/06/23 10:26:04 by hoannguy         ###   ########.fr       */
+/*   Updated: 2025/06/23 13:42:59 by hoannguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,12 @@ void	intersection(t_params *params, t_ray *ray)
 	intersection_plane(params, ray);
 	calculate_ambient_light(params, ray);
 	calculate_diffuse_light(params, ray);
-	ray->color = color_add(ray->ambient, ray->diffuse);
-	// ray->color = ray->ambient;
+	calculate_specular_light(params, ray);
+	if (ray->hit_plane)
+		ray->color = color_add(ray->ambient, ray->diffuse);
+	else
+		ray->color = color_add(ray->specular,
+				color_add(ray->ambient, ray->diffuse));
 }
 
 // Setup camera direction based on camera vector.

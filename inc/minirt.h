@@ -6,7 +6,7 @@
 /*   By: hoannguy <hoannguy@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 13:05:52 by masase            #+#    #+#             */
-/*   Updated: 2025/06/23 12:08:26 by hoannguy         ###   ########.fr       */
+/*   Updated: 2025/06/23 13:53:11 by hoannguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +120,7 @@ typedef struct	s_cylinder
 	t_color		color;
 	float		d;
 	float		h;
+	float		shine;
 }	t_cylinder;
 
 typedef struct	s_sphere
@@ -127,6 +128,7 @@ typedef struct	s_sphere
 	t_pos	pos;
 	t_color	color;
 	float	d;
+	float	shine;
 }	t_sphere;
 
 // SAVE LINE -------------------------------
@@ -157,12 +159,14 @@ typedef struct	s_ray
 	float		t;
 	t_vector	hit_point;
 	t_vector	normal;
+	t_vector	reflect;
 	t_plane		*hit_plane;
 	t_cylinder	*hit_cylinder;
 	t_sphere	*hit_sphere;
 	bool		hit_inside;
 	t_color		ambient;
 	t_color		diffuse;
+	t_color		specular;
 }	t_ray;
 
 typedef struct s_quantity
@@ -268,6 +272,7 @@ void		intersection_plane(t_params *params, t_ray *ray);
 // LIGHT -----------------------------------
 void		calculate_ambient_light(t_params *params, t_ray *ray);
 void		calculate_diffuse_light(t_params *params, t_ray *ray);
+void		calculate_specular_light(t_params *params, t_ray *ray);
 
 // SHADOW ----------------------------------
 bool		shadow_check(t_params *params, t_ray *ray, int index);
