@@ -5,7 +5,7 @@
 - Camera position and vector don't scale well because of scalar addition instead of matrix manipulation. Wont fix because of complexity.
 
 # Current progress
-The scene has:
+All inmages below are in the same scene. The scene has:
 - Outside sphere1:
   - 2 lights and 2 spheres:
   - ![image](https://github.com/user-attachments/assets/e96fa054-672a-44f2-bcc6-5db7e78ddfc2)
