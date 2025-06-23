@@ -6,7 +6,7 @@
 /*   By: hoannguy <hoannguy@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 18:46:02 by hoannguy          #+#    #+#             */
-/*   Updated: 2025/06/20 23:44:33 by hoannguy         ###   ########.fr       */
+/*   Updated: 2025/06/23 12:08:15 by hoannguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,23 +30,23 @@ void	initialise_shadow_ray(t_ray *ray, t_ray *shadow)
 	shadow->hit_sphere = NULL;
 }
 
-bool	shadow_check(t_params *params, t_ray *ray,
-	t_vector *hit_light, int index)
+bool	shadow_check(t_params *params, t_ray *ray, int index)
 {
 	t_ray		shadow;
 	t_vector	light_pos;
 	t_vector	light_vec;
 	float		light_dist;
 
-	shadow.direction = *hit_light;
 	initialise_shadow_ray(ray, &shadow);
 	light_pos = pos_to_vector(params->light[index]->pos);
 	light_vec = vector_sub(light_pos, ray->hit_point);
 	light_dist = vector_dot(light_vec, light_vec);
+	vector_normalize(&light_vec);
+	shadow.direction = light_vec;
 	if (shadow_sphere_check(params, &shadow, light_dist,
 			pos_to_vector(params->light[index]->pos)))
 		return (true);
-	if (shadow_plane_check(params, &shadow, ray, light_dist))
+	if (shadow_plane_check(params, &shadow, ray, light_pos))
 		return (true);
 	// if (shadow_cylinder_check(...))
 	//     return (true);
