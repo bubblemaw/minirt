@@ -6,7 +6,7 @@
 /*   By: hoannguy <hoannguy@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 12:39:14 by masase            #+#    #+#             */
-/*   Updated: 2025/06/23 12:08:00 by hoannguy         ###   ########.fr       */
+/*   Updated: 2025/06/23 15:17:35 by hoannguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	TEMP_simulation(t_params *params)
 	sphere1->color.r = 255;
 	sphere1->color.g = 255;
 	sphere1->color.b = 255;
+	sphere1->shine = 10.0f;
 
 	sphere2 = malloc(sizeof(t_sphere));
 	sphere2->pos.x = 0;
@@ -37,6 +38,7 @@ void	TEMP_simulation(t_params *params)
 	sphere2->color.r = 255;
 	sphere2->color.g = 255;
 	sphere2->color.b = 255;
+	sphere2->shine = 50.0f;
 
 	sphere3 = malloc(sizeof(t_sphere));
 	sphere3->pos.x = 6;
@@ -46,6 +48,7 @@ void	TEMP_simulation(t_params *params)
 	sphere3->color.r = 255;
 	sphere3->color.g = 255;
 	sphere3->color.b = 255;
+	sphere3->shine = 150.0f;
 	
 	sphere4 = malloc(sizeof(t_sphere));
 	sphere4->pos.x = -27;
@@ -55,6 +58,7 @@ void	TEMP_simulation(t_params *params)
 	sphere4->color.r = 255;
 	sphere4->color.g = 255;
 	sphere4->color.b = 255;
+	sphere4->shine = 150.0f;
 
 	params->sphere = malloc(sizeof(t_sphere *) * 5);
 	params->sphere[0] = sphere1;
@@ -119,8 +123,8 @@ void	TEMP_simulation(t_params *params)
 
 	light1 = malloc(sizeof(t_light));
 	light1->pos.x = 0;
-	light1->pos.y = 0;
-	light1->pos.z = -5;
+	light1->pos.y = -1;
+	light1->pos.z = -9;
 	light1->ratio = 1;
 	light1->color.r = 0;
 	light1->color.g = 255;
@@ -128,7 +132,7 @@ void	TEMP_simulation(t_params *params)
 
 	light2 = malloc(sizeof(t_light));
 	light2->pos.x = 0;
-	light2->pos.y = -7;
+	light2->pos.y = -5;
 	light2->pos.z = -5;
 	light2->ratio = 1;
 	light2->color.r = 255;
