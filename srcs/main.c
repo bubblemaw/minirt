@@ -6,7 +6,7 @@
 /*   By: maw <maw@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 12:39:14 by masase            #+#    #+#             */
-/*   Updated: 2025/06/23 15:43:06 by maw              ###   ########.fr       */
+/*   Updated: 2025/06/23 15:54:24 by maw              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -194,9 +194,9 @@ int	main(int ac, char **av)
     // print_point_as_array(params.light[1]);
     // print_sphere_as_array(params.sphere[0]);
 
-	// TEMP_simulation(&params); // replace with parser
-    if (parsing(av[1], &params) == FALSE)
-		return (FALSE);
+	TEMP_simulation(&params); // replace with parser
+    // if (parsing(av[1], &params) == FALSE)
+	// 	return (FALSE);
 	// print_sphere_as_array(params.sphere[0]);
 	// print_sphere_as_array(params.sphere[1]);
 	// print_sphere_as_array(params.sphere[2]);	
