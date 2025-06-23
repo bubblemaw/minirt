@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   image_inter_sphere.c                               :+:      :+:    :+:   */
+/*   inter_sphere.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hoannguy <hoannguy@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 11:48:26 by hoannguy          #+#    #+#             */
-/*   Updated: 2025/06/23 14:42:05 by hoannguy         ###   ########.fr       */
+/*   Updated: 2025/06/23 22:52:17 by hoannguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 void	set_t2_sphere(t_sphere *sphere, t_ray *ray, float t2)
 {
-	t_vector	temp;
-
 	ray->t = t2;
 	ray->color = sphere->color;
 	ray->hit_sphere = sphere;
@@ -23,8 +21,7 @@ void	set_t2_sphere(t_sphere *sphere, t_ray *ray, float t2)
 	ray->hit_plane = NULL;
 	ray->hit_point = vector_add(ray->origin,
 			vector_multi(t2, ray->direction));
-	temp = pos_to_vector(sphere->pos);
-	ray->normal = vector_sub(ray->hit_point, temp);
+	ray->normal = vector_sub(ray->hit_point, pos_to_vector(sphere->pos));
 	vector_normalize(&ray->normal);
 	ray->hit_point = vector_add(ray->hit_point,
 			vector_multi(0.0001f, ray->normal));
@@ -35,8 +32,6 @@ void	set_t2_sphere(t_sphere *sphere, t_ray *ray, float t2)
 // t2 is second hit.
 void	set_t_sphere(t_sphere *sphere, t_ray *ray, float t1, float t2)
 {
-	t_vector	temp;
-
 	if (t1 > 0 && t1 < ray->t)
 	{
 		ray->t = t1;
@@ -46,8 +41,7 @@ void	set_t_sphere(t_sphere *sphere, t_ray *ray, float t1, float t2)
 		ray->hit_plane = NULL;
 		ray->hit_point = vector_add(ray->origin,
 				vector_multi(t1, ray->direction));
-		temp = pos_to_vector(sphere->pos);
-		ray->normal = vector_sub(ray->hit_point, temp);
+		ray->normal = vector_sub(ray->hit_point, pos_to_vector(sphere->pos));
 		vector_normalize(&ray->normal);
 		ray->hit_point = vector_add(ray->hit_point,
 				vector_multi(0.0001f, ray->normal));

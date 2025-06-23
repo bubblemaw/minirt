@@ -6,7 +6,7 @@
 /*   By: hoannguy <hoannguy@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 10:41:26 by hoannguy          #+#    #+#             */
-/*   Updated: 2025/06/23 11:50:14 by hoannguy         ###   ########.fr       */
+/*   Updated: 2025/06/24 00:29:19 by hoannguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ void	camera_reset(t_params *params)
 
 int	key_press(int keycode, t_params *params)
 {
-	printf("keypressed: %d\n", keycode);
 	if (keycode == ESC_KEY)
 		x_close_window(params);
 	else if (keycode == W)
