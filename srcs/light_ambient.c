@@ -6,7 +6,7 @@
 /*   By: hoannguy <hoannguy@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/15 15:26:07 by hoannguy          #+#    #+#             */
-/*   Updated: 2025/06/24 00:02:51 by hoannguy         ###   ########.fr       */
+/*   Updated: 2025/06/24 00:37:48 by hoannguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void	get_plane_color(t_params *params, t_ray *ray, t_color *color)
 		if (ray->hit_plane->texture_type == CHECKER)
 			temp = checkerboard_plane(params, ray->hit_point);
 		else if (ray->hit_plane->texture_type == STRIPE)
-			temp = stripe_plane(params, ray->hit_point, ray->hit_plane);
+			temp = stripe_plane(params, ray->hit_point);
 		else
 		{
 			temp.r = ray->hit_plane->color.r;
