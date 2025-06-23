@@ -6,7 +6,7 @@
 /*   By: hoannguy <hoannguy@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 12:39:14 by masase            #+#    #+#             */
-/*   Updated: 2025/06/24 00:29:07 by hoannguy         ###   ########.fr       */
+/*   Updated: 2025/06/24 00:43:22 by hoannguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,7 +145,7 @@ void	TEMP_simulation(t_params *params)
 	params->camera.vector.c = 1;
 	params->camera.pos.x = -5;
 	params->camera.pos.y = 0;
-	params->camera.pos.z = -100;
+	params->camera.pos.z = -20;
 	params->camera.fov = 70;
 
 	// AMBIENT
