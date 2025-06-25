@@ -6,7 +6,7 @@
 /*   By: hoannguy <hoannguy@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 10:41:26 by hoannguy          #+#    #+#             */
-/*   Updated: 2025/06/24 00:29:19 by hoannguy         ###   ########.fr       */
+/*   Updated: 2025/06/25 01:00:28 by hoannguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ int	key_press(int keycode, t_params *params)
 
 int	x_close_window(t_params *params)
 {
+	free_maps(params);
 	free_all(params);
 	mlx_destroy_image(params->mlx, params->data.img);
 	mlx_destroy_window(params->mlx, params->window);

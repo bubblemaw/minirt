@@ -6,7 +6,7 @@
 /*   By: hoannguy <hoannguy@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 13:05:52 by masase            #+#    #+#             */
-/*   Updated: 2025/06/24 00:16:31 by hoannguy         ###   ########.fr       */
+/*   Updated: 2025/06/25 02:05:47 by hoannguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,16 @@
 # define NONE 0
 # define CHECKER 1
 # define STRIPE 2
-# define PPM 3
+# define EARTH 3
+# define MARS 4
+# define MERCU 5
+# define PLUTO 6
+# define VENUS 7
+# define XPM_HEIGHT 500
+# define XPM_WIDTH 1000
 
-# define HEIGHT 1080
-# define WIDTH 1920
+# define HEIGHT 720
+# define WIDTH 1080
 
 // syntax
 enum
@@ -123,7 +129,6 @@ typedef struct	s_plane
 	t_vector	vector;
 	t_pos		pos;
 	t_color		color;
-	bool		has_texture;
 	int			texture_type;
 }	t_plane;
 
@@ -135,7 +140,6 @@ typedef struct	s_cylinder
 	float		d;
 	float		h;
 	float		shine;
-	bool		has_texture;
 	int			texture_type;
 }	t_cylinder;
 
@@ -145,7 +149,6 @@ typedef struct	s_sphere
 	t_color		color;
 	float		d;
 	float		shine;
-	bool		has_texture;
 	int			texture_type;
 }	t_sphere;
 
@@ -195,6 +198,20 @@ typedef struct s_quantity
 	int	sphere;
 }	t_quantity;
 
+typedef struct	s_bump
+{
+	void	*earth;
+	void	*earthbump;
+	void	*mars;
+	void	*marsbump;
+	void	*mercu;
+	void	*mercubump;
+	void	*pluto;
+	void	*plutobump;
+	void	*venus;
+	void	*venusbump;
+}	t_bump;
+
 typedef struct	s_params
 {
 	t_camera	camera;
@@ -205,6 +222,7 @@ typedef struct	s_params
 	t_sphere	**sphere;
 	t_pattern	checker;
 	t_pattern	stripe;
+	t_bump		bump;
 	t_quantity	quantity;
 	void		*mlx;
 	void		*window;
@@ -303,18 +321,21 @@ bool		shadow_plane_check(t_params *params, t_ray *shadow,
 
 // PATTERN ---------------------------------
 void		initialise_pattern(t_params *params);
+void		initialise_bump(t_params *params);
 t_color		checkerboard_plane(t_params *params, t_vector hit_point);
 t_color		checkerboard_sphere(t_params *params, t_vector hit_point, t_sphere *sphere);
 t_color		checkerboard_cylinder(t_params *params, t_vector hit_point, t_cylinder *cyl);
 t_color		stripe_plane(t_params *params, t_vector hit_point);
 t_color		stripe_sphere(t_params *params, t_vector hit_point, t_sphere *sphere);
 t_color		stripe_cylinder(t_params *params, t_vector hit_point, t_cylinder *cyl);
+t_color		planet_sphere(t_params *params, t_vector hit_point, t_sphere *sphere, int type);
 void		get_sphere_color(t_params *params, t_ray *ray, t_color *color);
 void		get_cylinder_color(t_params *params, t_ray *ray, t_color *color);
 void		get_plane_color(t_params *params, t_ray *ray, t_color *color);
 
 // UTIL ------------------------------------
 void		free_all(t_params *params);
+void		free_maps(t_params *params);
 t_vector	vector_add(t_vector v1, t_vector v2);
 t_vector	vector_sub(t_vector v1, t_vector v2);
 t_vector	vector_multi(float x, t_vector v1);
