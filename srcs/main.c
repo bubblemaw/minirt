@@ -6,7 +6,7 @@
 /*   By: hoannguy <hoannguy@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 12:39:14 by masase            #+#    #+#             */
-/*   Updated: 2025/06/24 00:43:22 by hoannguy         ###   ########.fr       */
+/*   Updated: 2025/06/25 02:16:01 by hoannguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ void	TEMP_simulation(t_params *params)
 	sphere1->color.g = 255;
 	sphere1->color.b = 255;
 	sphere1->shine = 10.0f;
-	sphere1->has_texture = true;
 	sphere1->texture_type = STRIPE;
 
 	sphere2 = malloc(sizeof(t_sphere));
@@ -42,7 +41,6 @@ void	TEMP_simulation(t_params *params)
 	sphere2->color.g = 255;
 	sphere2->color.b = 255;
 	sphere2->shine = 50.0f;
-	sphere2->has_texture = false;
 	sphere2->texture_type = NONE;
 
 	sphere3 = malloc(sizeof(t_sphere));
@@ -54,8 +52,7 @@ void	TEMP_simulation(t_params *params)
 	sphere3->color.g = 255;
 	sphere3->color.b = 255;
 	sphere3->shine = 150.0f;
-	sphere3->has_texture = false;
-	sphere3->texture_type = NONE;
+	sphere3->texture_type = STRIPE;
 	
 	sphere4 = malloc(sizeof(t_sphere));
 	sphere4->pos.x = -27;
@@ -66,7 +63,6 @@ void	TEMP_simulation(t_params *params)
 	sphere4->color.g = 255;
 	sphere4->color.b = 255;
 	sphere4->shine = 150.0f;
-	sphere4->has_texture = false;
 	sphere4->texture_type = NONE;
 
 	sphere5 = malloc(sizeof(t_sphere));
@@ -78,16 +74,59 @@ void	TEMP_simulation(t_params *params)
 	sphere5->color.g = 255;
 	sphere5->color.b = 255;
 	sphere5->shine = 150.0f;
-	sphere5->has_texture = true;
 	sphere5->texture_type = CHECKER;
 
-	params->sphere = malloc(sizeof(t_sphere *) * 6);
+	t_sphere	*sphere6;
+	t_sphere	*sphere7;
+	t_sphere	*sphere8;
+	// t_sphere	*sphere9;
+	// t_sphere	*sphere10;
+
+	sphere6 = malloc(sizeof(t_sphere));
+	sphere6->pos.x = 25;
+	sphere6->pos.y = 0;
+	sphere6->pos.z = -50;
+	sphere6->d = 10;
+	sphere6->color.r = 255;
+	sphere6->color.g = 255;
+	sphere6->color.b = 255;
+	sphere6->shine = 100.0f;
+	sphere6->texture_type = EARTH;
+
+	sphere7 = malloc(sizeof(t_sphere));
+	sphere7->pos.x = 30;
+	sphere7->pos.y = -10;
+	sphere7->pos.z = -50;
+	sphere7->d = 10;
+	sphere7->color.r = 255;
+	sphere7->color.g = 255;
+	sphere7->color.b = 255;
+	sphere7->shine = 100.0f;
+	sphere7->texture_type = MARS;
+
+	sphere8 = malloc(sizeof(t_sphere));
+	sphere8->pos.x = 20;
+	sphere8->pos.y = 10;
+	sphere8->pos.z = -50;
+	sphere8->d = 10;
+	sphere8->color.r = 255;
+	sphere8->color.g = 255;
+	sphere8->color.b = 255;
+	sphere8->shine = 100.0f;
+	sphere8->texture_type = VENUS;
+
+	params->sphere = malloc(sizeof(t_sphere *) * 11);
 	params->sphere[0] = sphere1;
 	params->sphere[1] = sphere2;
 	params->sphere[2] = sphere3;
 	params->sphere[3] = sphere4;
 	params->sphere[4] = sphere5;
-	params->sphere[5] = NULL;
+	params->sphere[5] = sphere6;
+	params->sphere[6] = sphere7;
+	params->sphere[7] = sphere8;
+	params->sphere[8] = NULL;
+	params->sphere[9] = NULL;
+	params->sphere[10] = NULL;
 
 	// PLANE
 	t_plane	*plane1;
@@ -104,7 +143,6 @@ void	TEMP_simulation(t_params *params)
 	plane1->color.r = 255;
 	plane1->color.g = 255;
 	plane1->color.b = 255;
-	plane1->has_texture = true;
 	plane1->texture_type = STRIPE;
 
 	plane2 = malloc(sizeof(t_plane));
@@ -117,7 +155,6 @@ void	TEMP_simulation(t_params *params)
 	plane2->color.r = 255;
 	plane2->color.g = 255;
 	plane2->color.b = 255;
-	plane2->has_texture = true;
 	plane2->texture_type = CHECKER;
 
 	plane3 = malloc(sizeof(t_plane));
@@ -130,7 +167,6 @@ void	TEMP_simulation(t_params *params)
 	plane3->color.r = 0;
 	plane3->color.g = 255;
 	plane3->color.b = 255;
-	plane3->has_texture = false;
 	plane3->texture_type = NONE;
 
 	params->plane = malloc(sizeof(t_plane *) * 4);
@@ -140,12 +176,12 @@ void	TEMP_simulation(t_params *params)
 	params->plane[3] = NULL;
 
 	// CAMERA
-	params->camera.vector.a = 0;
+	params->camera.vector.a = 0.2;
 	params->camera.vector.b = 0;
 	params->camera.vector.c = 1;
 	params->camera.pos.x = -5;
 	params->camera.pos.y = 0;
-	params->camera.pos.z = -20;
+	params->camera.pos.z = -80;
 	params->camera.fov = 70;
 
 	// AMBIENT
@@ -182,7 +218,7 @@ void	TEMP_simulation(t_params *params)
 	light3 = malloc(sizeof(t_light));
 	light3->pos.x = 20.0;
 	light3->pos.y = 40.0;
-	light3->pos.z = -40.0;
+	light3->pos.z = -70.0;
 	light3->ratio = 1;
 	light3->color.r = 255;
 	light3->color.g = 255;

@@ -6,7 +6,7 @@
 /*   By: hoannguy <hoannguy@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/15 15:26:07 by hoannguy          #+#    #+#             */
-/*   Updated: 2025/06/24 00:37:48 by hoannguy         ###   ########.fr       */
+/*   Updated: 2025/06/25 02:04:48 by hoannguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,80 +16,60 @@ void	get_sphere_color(t_params *params, t_ray *ray, t_color *color)
 {
 	t_color	temp;
 
-	if (ray->hit_sphere->has_texture)
-	{
-		if (ray->hit_sphere->texture_type == CHECKER)
-			temp = checkerboard_sphere(params, ray->hit_point, ray->hit_sphere);
-		else if (ray->hit_sphere->texture_type == STRIPE)
-			temp = stripe_sphere(params, ray->hit_point, ray->hit_sphere);
-		else
-		{
-			temp.r = ray->hit_sphere->color.r;
-			temp.g = ray->hit_sphere->color.g;
-			temp.b = ray->hit_sphere->color.b;
-		}
-		color->r = temp.r;
-		color->g = temp.g;
-		color->b = temp.b;
-		return ;
-	}
-	color->r = ray->hit_sphere->color.r;
-	color->g = ray->hit_sphere->color.g;
-	color->b = ray->hit_sphere->color.b;
+	if (ray->hit_sphere->texture_type == CHECKER)
+		temp = checkerboard_sphere(params, ray->hit_point, ray->hit_sphere);
+	else if (ray->hit_sphere->texture_type == STRIPE)
+		temp = stripe_sphere(params, ray->hit_point, ray->hit_sphere);
+	else if (ray->hit_sphere->texture_type == EARTH)
+		temp = planet_sphere(params, ray->hit_point, ray->hit_sphere, EARTH);
+	else if (ray->hit_sphere->texture_type == MARS)
+		temp = planet_sphere(params, ray->hit_point, ray->hit_sphere, MARS);
+	else if (ray->hit_sphere->texture_type == MERCU)
+		temp = planet_sphere(params, ray->hit_point, ray->hit_sphere, MERCU);
+	else if (ray->hit_sphere->texture_type == PLUTO)
+		temp = planet_sphere(params, ray->hit_point, ray->hit_sphere, PLUTO);
+	else if (ray->hit_sphere->texture_type == VENUS)
+		temp = planet_sphere(params, ray->hit_point, ray->hit_sphere, VENUS);
+	else
+		temp = ray->hit_sphere->color;
+	color->r = temp.r;
+	color->g = temp.g;
+	color->b = temp.b;
+	return ;
 }
 
 void	get_cylinder_color(t_params *params, t_ray *ray, t_color *color)
 {
 	t_color	temp;
 
-	if (ray->hit_cylinder->has_texture)
-	{
-		if (ray->hit_cylinder->texture_type == CHECKER)
-			temp = checkerboard_cylinder(params,
-					ray->hit_point, ray->hit_cylinder);
-		else if (ray->hit_cylinder->texture_type == STRIPE)
-			temp = stripe_cylinder(params,
-					ray->hit_point, ray->hit_cylinder);
-		else
-		{
-			temp.r = ray->hit_cylinder->color.r;
-			temp.g = ray->hit_cylinder->color.g;
-			temp.b = ray->hit_cylinder->color.b;
-		}
-		color->r = temp.r;
-		color->g = temp.g;
-		color->b = temp.b;
-		return ;
-	}
-	color->r = ray->hit_cylinder->color.r;
-	color->g = ray->hit_cylinder->color.g;
-	color->b = ray->hit_cylinder->color.b;
+	if (ray->hit_cylinder->texture_type == CHECKER)
+		temp = checkerboard_cylinder(params,
+				ray->hit_point, ray->hit_cylinder);
+	else if (ray->hit_cylinder->texture_type == STRIPE)
+		temp = stripe_cylinder(params,
+				ray->hit_point, ray->hit_cylinder);
+	else
+		temp = ray->hit_cylinder->color;
+	color->r = temp.r;
+	color->g = temp.g;
+	color->b = temp.b;
+	return ;
 }
 
 void	get_plane_color(t_params *params, t_ray *ray, t_color *color)
 {
 	t_color	temp;
 
-	if (ray->hit_plane->has_texture)
-	{
-		if (ray->hit_plane->texture_type == CHECKER)
-			temp = checkerboard_plane(params, ray->hit_point);
-		else if (ray->hit_plane->texture_type == STRIPE)
-			temp = stripe_plane(params, ray->hit_point);
-		else
-		{
-			temp.r = ray->hit_plane->color.r;
-			temp.g = ray->hit_plane->color.g;
-			temp.b = ray->hit_plane->color.b;
-		}
-		color->r = temp.r;
-		color->g = temp.g;
-		color->b = temp.b;
-		return ;
-	}
-	color->r = ray->hit_plane->color.r;
-	color->g = ray->hit_plane->color.g;
-	color->b = ray->hit_plane->color.b;
+	if (ray->hit_plane->texture_type == CHECKER)
+		temp = checkerboard_plane(params, ray->hit_point);
+	else if (ray->hit_plane->texture_type == STRIPE)
+		temp = stripe_plane(params, ray->hit_point);
+	else
+		temp = ray->hit_plane->color;
+	color->r = temp.r;
+	color->g = temp.g;
+	color->b = temp.b;
+	return ;
 }
 
 // formula is object color * ambient ratio * (ambient color / 255)
