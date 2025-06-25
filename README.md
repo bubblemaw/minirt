@@ -8,7 +8,7 @@
 All inmages below are in the same scene. The scene has:
 - Outside sphere1:
   - 2 lights, 3 planes and 3 spheres:
-  - ![image](https://github.com/user-attachments/assets/d1af3294-0209-49cc-9659-71f08563c16f)
+  - ![image](https://github.com/user-attachments/assets/cb292c52-3ce8-4351-988e-969faf46ffe8)
 
 - Inside sphere1:
   - 2 lights, 2 planes intersections and 2 spheres: The sphere in the center is sphere2, there is a light inside sphere2.
