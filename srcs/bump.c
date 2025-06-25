@@ -6,7 +6,7 @@
 /*   By: hoannguy <hoannguy@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 23:32:50 by hoannguy          #+#    #+#             */
-/*   Updated: 2025/06/25 01:12:33 by hoannguy         ###   ########.fr       */
+/*   Updated: 2025/06/25 02:27:18 by hoannguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,20 +49,18 @@ void	free_bump(t_params *params)
 
 void	initialise_more_bump(t_params *params, int height, int width)
 {
-	params->bump.mercu = NULL; // delete
-	// params->bump.mercu = mlx_xpm_file_to_image(params->mlx,
-	// 		"./srcs/maps/mercury.xpm", &width, &height);
-	// if (!params->bump.mercu)
-	// 	free_bump(params);
+	params->bump.mercu = mlx_xpm_file_to_image(params->mlx,
+			"./srcs/maps/mercury.xpm", &width, &height);
+	if (!params->bump.mercu)
+		free_bump(params);
 	params->bump.mercubump = mlx_xpm_file_to_image(params->mlx,
 			"./srcs/maps/mercurybump.xpm", &width, &height);
 	if (!params->bump.mercubump)
 		free_bump(params);
-	params->bump.pluto = NULL; // delete
-	// params->bump.pluto = mlx_xpm_file_to_image(params->mlx,
-	// 		"./srcs/maps/pluto.xpm", &width, &height);
-	// if (!params->bump.pluto)
-	// 	free_bump(params);
+	params->bump.pluto = mlx_xpm_file_to_image(params->mlx,
+			"./srcs/maps/pluto.xpm", &width, &height);
+	if (!params->bump.pluto)
+		free_bump(params);
 	params->bump.plutobump = mlx_xpm_file_to_image(params->mlx,
 			"./srcs/maps/plutobump.xpm", &width, &height);
 	if (!params->bump.plutobump)
