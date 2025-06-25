@@ -6,7 +6,7 @@
 /*   By: hoannguy <hoannguy@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 13:05:52 by masase            #+#    #+#             */
-/*   Updated: 2025/06/25 02:05:47 by hoannguy         ###   ########.fr       */
+/*   Updated: 2025/06/25 13:00:54 by hoannguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,18 @@
 # define MERCU 5
 # define PLUTO 6
 # define VENUS 7
+# define EARTH_BUMP 8
+# define MARS_BUMP 9
+# define MERCU_BUMP 10
+# define PLUTO_BUMP 11
+# define VENUS_BUMP 12
+# define U_SCALE 0.2f
+# define V_SCALE 0.15f
 # define XPM_HEIGHT 500
 # define XPM_WIDTH 1000
 
-# define HEIGHT 720
-# define WIDTH 1080
+# define HEIGHT 1080
+# define WIDTH 1920
 
 // syntax
 enum
@@ -150,6 +157,7 @@ typedef struct	s_sphere
 	float		d;
 	float		shine;
 	int			texture_type;
+	bool		bump;
 }	t_sphere;
 
 // SAVE LINE -------------------------------
@@ -170,6 +178,18 @@ typedef	struct	s_world
 	t_vector	forward;
 	t_vector	world_up;
 }	t_world;
+
+typedef struct	s_value_int
+{
+	int	x;
+	int	y;
+}	t_value_int;
+
+typedef struct	s_value_float
+{
+	float	t1;
+	float	t2;
+}	t_value_float;
 
 // MAIN STRUCT -----------------------------
 typedef struct	s_ray
@@ -322,6 +342,7 @@ bool		shadow_plane_check(t_params *params, t_ray *shadow,
 // PATTERN ---------------------------------
 void		initialise_pattern(t_params *params);
 void		initialise_bump(t_params *params);
+void		initialise_data(t_params *params, t_data *data, int type);
 t_color		checkerboard_plane(t_params *params, t_vector hit_point);
 t_color		checkerboard_sphere(t_params *params, t_vector hit_point, t_sphere *sphere);
 t_color		checkerboard_cylinder(t_params *params, t_vector hit_point, t_cylinder *cyl);
@@ -332,6 +353,7 @@ t_color		planet_sphere(t_params *params, t_vector hit_point, t_sphere *sphere, i
 void		get_sphere_color(t_params *params, t_ray *ray, t_color *color);
 void		get_cylinder_color(t_params *params, t_ray *ray, t_color *color);
 void		get_plane_color(t_params *params, t_ray *ray, t_color *color);
+void 		apply_bump(t_params *params, t_ray *ray, t_sphere *sphere);
 
 // UTIL ------------------------------------
 void		free_all(t_params *params);

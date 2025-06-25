@@ -6,13 +6,13 @@
 /*   By: hoannguy <hoannguy@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 11:48:26 by hoannguy          #+#    #+#             */
-/*   Updated: 2025/06/23 22:52:17 by hoannguy         ###   ########.fr       */
+/*   Updated: 2025/06/25 13:01:34 by hoannguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minirt.h"
 
-void	set_t2_sphere(t_sphere *sphere, t_ray *ray, float t2)
+void	set_t2_sphere(t_params *params, t_sphere *sphere, t_ray *ray, float t2)
 {
 	ray->t = t2;
 	ray->color = sphere->color;
@@ -23,6 +23,7 @@ void	set_t2_sphere(t_sphere *sphere, t_ray *ray, float t2)
 			vector_multi(t2, ray->direction));
 	ray->normal = vector_sub(ray->hit_point, pos_to_vector(sphere->pos));
 	vector_normalize(&ray->normal);
+	apply_bump(params, ray, sphere);
 	ray->hit_point = vector_add(ray->hit_point,
 			vector_multi(0.0001f, ray->normal));
 	ray->hit_inside = true;
@@ -30,25 +31,27 @@ void	set_t2_sphere(t_sphere *sphere, t_ray *ray, float t2)
 
 // t1 is first hit. Normal is perpendicular vector to hitpoint.
 // t2 is second hit.
-void	set_t_sphere(t_sphere *sphere, t_ray *ray, float t1, float t2)
+void	set_t_sphere(t_params *params, t_sphere *sphere,
+		t_ray *ray, t_value_float value)
 {
-	if (t1 > 0 && t1 < ray->t)
+	if (value.t1 > 0 && value.t1 < ray->t)
 	{
-		ray->t = t1;
+		ray->t = value.t1;
 		ray->color = sphere->color;
 		ray->hit_sphere = sphere;
 		ray->hit_cylinder = NULL;
 		ray->hit_plane = NULL;
 		ray->hit_point = vector_add(ray->origin,
-				vector_multi(t1, ray->direction));
+				vector_multi(value.t1, ray->direction));
 		ray->normal = vector_sub(ray->hit_point, pos_to_vector(sphere->pos));
 		vector_normalize(&ray->normal);
+		apply_bump(params, ray, sphere);
 		ray->hit_point = vector_add(ray->hit_point,
 				vector_multi(0.0001f, ray->normal));
 		ray->hit_inside = false;
 	}
-	else if (t2 > 0 && t2 < ray->t)
-		set_t2_sphere(sphere, ray, t2);
+	else if (value.t2 > 0 && value.t2 < ray->t)
+		set_t2_sphere(params, sphere, ray, value.t2);
 }
 
 // Quadratic equation: ||O + tD - C||² = r²
@@ -56,11 +59,10 @@ void	set_t_sphere(t_sphere *sphere, t_ray *ray, float t1, float t2)
 // Plugin: t = -b ± √(b² - c)
 void	intersection_sphere(t_params *params, t_ray *ray)
 {
-	int			i;
-	float		b;
-	float		t1;
-	float		t2;
-	t_vector	oc;
+	int				i;
+	float			b;
+	t_value_float	value;
+	t_vector		oc;
 
 	if (!params->sphere)
 		return ;
@@ -72,12 +74,12 @@ void	intersection_sphere(t_params *params, t_ray *ray)
 		if ((b * b - 4 * (vector_dot(oc, oc)
 					- pow((params->sphere[i]->d / 2), 2))) < 0)
 			continue ;
-		t1 = (-b - sqrtf(b * b - 4 * (vector_dot(oc, oc)
+		value.t1 = (-b - sqrtf(b * b - 4 * (vector_dot(oc, oc)
 						- pow((params->sphere[i]->d / 2), 2)))) / 2;
-		t2 = (-b + sqrtf(b * b - 4 * (vector_dot(oc, oc)
+		value.t2 = (-b + sqrtf(b * b - 4 * (vector_dot(oc, oc)
 						- pow((params->sphere[i]->d / 2), 2)))) / 2;
-		if (t2 < 0)
+		if (value.t2 < 0)
 			continue ;
-		set_t_sphere(params->sphere[i], ray, t1, t2);
+		set_t_sphere(params, params->sphere[i], ray, value);
 	}
 }
