@@ -7,7 +7,7 @@
 # Current progress
 All inmages below are in the same scene. The scene has:
 - Outside sphere1:
-  - 2 lights, 3 planes and 3 spheres:
+  - 2 lights, 3 planes and 6 spheres:
   - ![image](https://github.com/user-attachments/assets/cb292c52-3ce8-4351-988e-969faf46ffe8)
 
 - Inside sphere1:
