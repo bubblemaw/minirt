@@ -7,6 +7,7 @@
 # Current progress
 Mandatory:
 - Cylinders: IN PROGRESS.
+- PARSING: DONE.
 - Camera: DONE.
 - Spheres: DONE.
 - Planes: DONE.
