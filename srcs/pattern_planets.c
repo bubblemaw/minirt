@@ -6,7 +6,7 @@
 /*   By: hoannguy <hoannguy@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 00:32:27 by hoannguy          #+#    #+#             */
-/*   Updated: 2025/06/25 02:14:31 by hoannguy         ###   ########.fr       */
+/*   Updated: 2025/06/25 11:45:30 by hoannguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,16 @@ void	initialise_data(t_params *params, t_data *data, int type)
 		data->img = params->bump.pluto;
 	else if (type == VENUS)
 		data->img = params->bump.venus;
+	else if (type == EARTH_BUMP)
+		data->img = params->bump.earthbump;
+	else if (type == MARS_BUMP)
+		data->img = params->bump.marsbump;
+	else if (type == MERCU_BUMP)
+		data->img = params->bump.mercubump;
+	else if (type == PLUTO_BUMP)
+		data->img = params->bump.plutobump;
+	else if (type == VENUS_BUMP)
+		data->img = params->bump.venusbump;
 	data->addr = mlx_get_data_addr(data->img,
 			&data->bits_per_pixel, &data->line_length, &data->endian);
 }
@@ -38,12 +48,12 @@ void	set_xy(t_vector hit_point, t_sphere *sphere, int *x, int *y)
 	center = vector_sub(hit_point, pos_to_vector(sphere->pos));
 	u = 0.5f + atan2(center.c, center.a) / (2 * M_PI);
 	v = acos(center.b / (sphere->d / 2.0f)) / M_PI;
-	u = fmodf(u + 0.3f, 1.0f);
+	u = fmodf(u + U_SCALE, 1.0f);
 	if (u < 0)
 		u += 1.0f;
 	if (u > 1)
 		u = fmodf(u, 1.0f);
-	v = fmodf(v + 0.8f, 1.0f);
+	v = fmodf(v + V_SCALE, 1.0f);
 	if (v < 0)
 		v = 0.0f;
 	if (v > 1)

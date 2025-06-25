@@ -6,7 +6,7 @@
 /*   By: hoannguy <hoannguy@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 12:39:14 by masase            #+#    #+#             */
-/*   Updated: 2025/06/25 02:31:39 by hoannguy         ###   ########.fr       */
+/*   Updated: 2025/06/25 12:49:04 by hoannguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,58 +84,63 @@ void	TEMP_simulation(t_params *params)
 
 	sphere6 = malloc(sizeof(t_sphere));
 	sphere6->pos.x = 30;
-	sphere6->pos.y = 0;
+	sphere6->pos.y = 10;
 	sphere6->pos.z = -45;
-	sphere6->d = 10;
+	sphere6->d = 20;
 	sphere6->color.r = 255;
 	sphere6->color.g = 255;
 	sphere6->color.b = 255;
 	sphere6->shine = 100.0f;
 	sphere6->texture_type = EARTH;
+	sphere6->bump = true;
 
 	sphere7 = malloc(sizeof(t_sphere));
-	sphere7->pos.x = 20;
+	sphere7->pos.x = 10;
 	sphere7->pos.y = -10;
 	sphere7->pos.z = -40;
-	sphere7->d = 10;
+	sphere7->d = 20;
 	sphere7->color.r = 255;
 	sphere7->color.g = 255;
 	sphere7->color.b = 255;
 	sphere7->shine = 100.0f;
 	sphere7->texture_type = MARS;
+	sphere7->bump = true;
 
 	sphere8 = malloc(sizeof(t_sphere));
-	sphere8->pos.x = 40;
+	sphere8->pos.x = 50;
 	sphere8->pos.y = -10;
 	sphere8->pos.z = -50;
-	sphere8->d = 10;
+	sphere8->d = 20;
 	sphere8->color.r = 255;
 	sphere8->color.g = 255;
 	sphere8->color.b = 255;
 	sphere8->shine = 100.0f;
 	sphere8->texture_type = VENUS;
+	sphere8->bump = true;
 
 	sphere9 = malloc(sizeof(t_sphere));
-	sphere9->pos.x = 20;
-	sphere9->pos.y = 10;
+	sphere9->pos.x = 10;
+	sphere9->pos.y = 20;
 	sphere9->pos.z = -40;
-	sphere9->d = 10;
+	sphere9->d = 20;
 	sphere9->color.r = 255;
 	sphere9->color.g = 255;
 	sphere9->color.b = 255;
 	sphere9->shine = 100.0f;
 	sphere9->texture_type = MERCU;
+	sphere9->bump = true;
 
 	sphere10 = malloc(sizeof(t_sphere));
-	sphere10->pos.x = 40;
-	sphere10->pos.y = 10;
+	sphere10->pos.x = 50;
+	sphere10->pos.y = 20;
 	sphere10->pos.z = -50;
-	sphere10->d = 10;
+	sphere10->d = 20;
 	sphere10->color.r = 255;
 	sphere10->color.g = 255;
 	sphere10->color.b = 255;
 	sphere10->shine = 100.0f;
 	sphere10->texture_type = PLUTO;
+	sphere10->bump = true;
 
 	params->sphere = malloc(sizeof(t_sphere *) * 11);
 	params->sphere[0] = sphere1;
@@ -173,7 +178,7 @@ void	TEMP_simulation(t_params *params)
 	plane2->vector.c = 0;
 	plane2->pos.x = 0;
 	plane2->pos.y = -20;
-	plane2->pos.z = 45;
+	plane2->pos.z = 30;
 	plane2->color.r = 255;
 	plane2->color.g = 255;
 	plane2->color.b = 255;
