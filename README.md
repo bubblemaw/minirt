@@ -5,10 +5,27 @@
 - Camera position and vector don't scale well because of scalar addition instead of matrix manipulation. Wont fix because of complexity.
 
 # Current progress
+Mandatory:
+- Cylinders: IN PROGRESS.
+- Camera: DONE.
+- Spheres: DONE.
+- Planes: DONE.
+- Ambient light: DONE.
+- Diffuse light: DONE.
+- Shadow: DONE.
+
+Bonus:
+- Cones: IN PROGRESS.
+- Phong model (specular light): DONE.
+- Multiple light spots: DONE.
+- Checkerboard: DONE.
+- Bump texture: DONE.
+
+# Photo
 All inmages below are in the same scene. The scene has:
 - Outside sphere1:
   - 2 lights, 3 planes and 8 spheres:
-  - ![image](https://github.com/user-attachments/assets/d57e8023-25f9-4653-bf4d-0968cb4837e4)
+  - ![image](https://github.com/user-attachments/assets/12c226bc-a163-4ec2-9a40-2fb73850537f)
 
 - Inside sphere1:
   - 2 lights, 2 planes intersections and 2 spheres: The sphere in the center is sphere2, there is a light inside sphere2.
