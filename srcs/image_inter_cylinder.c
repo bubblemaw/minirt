@@ -6,12 +6,11 @@
 /*   By: maw <maw@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 14:59:56 by maw               #+#    #+#             */
-/*   Updated: 2025/06/23 15:22:23 by maw              ###   ########.fr       */
+/*   Updated: 2025/06/25 17:21:48 by maw              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minirt.h"
-
 
 void	set_t2_cylinder(t_cylinder *cylinder, t_ray *ray, float t2)
 {
@@ -70,22 +69,29 @@ void	intersection_cylinder(t_params *params, t_ray *ray)
 	float		t1;
 	float		t2;
 	t_vector	oc;
+	t_vector	d_perp;
+	t_vector	oc_perp;	
+	t_vector	axis;
 
 	if (!params->cylinder)
 		return ;
 	i = -1;
 	while (params->cylinder[++i])
 	{
-		oc = vector_sub(ray->origin, pos_to_vector(params->cylinder[i]->pos));		
-		a = powf(ray->direction.a, 2) + powf(ray->direction.c, 2);
-		c = powf(oc.a, 2) + powf(oc.c, 2) - powf(params->cylinder[i]->d / 2, 2);
-		b = 2 * oc.a * ray->direction.a + 2 * oc.c * ray->direction.c;
+		axis = params->cylinder[i]->vector;
+		vector_normalize(&axis);
+		d_perp = vector_sub(ray->direction, vector_multi(vector_dot(ray->direction, axis), axis));
+		oc = vector_sub(ray->origin, pos_to_vector(params->cylinder[i]->pos));	
+		oc_perp = vector_sub(oc, vector_multi(vector_dot(oc, axis), axis));
+		a = vector_dot(d_perp, d_perp);
+		c = vector_dot(oc_perp, oc_perp) - powf(params->cylinder[i]->d / 2, 2);
+		b = 2 * vector_dot(d_perp, oc_perp);			
+		// a = powf(ray->direction.a, 2) + powf(ray->direction.c, 2);		
+		// c = powf(oc.a, 2) + powf(oc.c, 2) - powf(params->cylinder[i]->d / 2, 2);
+		// b = 2 * oc.a * ray->direction.a + 2 * oc.c * ray->direction.c;
 		disc = b * b - 4 * a *c;
 		if (disc < 0)
-		{
-			printf("quel bail brother\n");
 			continue ;
-		}
 		t1 = (-b - sqrtf(disc)) / (2 * a);
 		t2 = (-b + sqrtf(disc)) / (2 * a);
 		if (t2 < 0)
