@@ -6,7 +6,7 @@
 #    By: maw <maw@student.42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/06 12:39:32 by masase            #+#    #+#              #
-#    Updated: 2025/06/23 15:40:27 by maw              ###   ########.fr        #
+#    Updated: 2025/06/27 14:16:00 by maw              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,10 +15,12 @@ NAME = minirt
 SRCS = 	srcs/main.c \
 		srcs/free_all.c srcs/free_all2.c srcs/hook.c srcs/hook2.c srcs/hook3.c srcs/hook4.c\
 		srcs/vector.c srcs/vector2.c\
-		srcs/image_start.c srcs/image_create.c\
-		srcs/inter_sphere.c srcs/inter_plane.c srcs/image_inter_cylinder.c\
+		srcs/image_start.c srcs/image_create.c srcs/image_get_color.c\
+		srcs/inter_sphere.c srcs/inter_plane.c\
 		srcs/light_ambient.c srcs/light_diffuse.c srcs/light_specular.c\
 		srcs/shadow.c srcs/shadow_sphere.c srcs/shadow_plane.c\
+		srcs/pattern_checkerboard.c srcs/pattern_stripe.c srcs/pattern_planets.c\
+		srcs/bump_initialise.c srcs/bump_sphere.c\
 		srcs/parsing/parsing.c \
 		srcs/parsing/save_ambiance.c \
 		srcs/parsing/save_camera.c \

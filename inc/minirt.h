@@ -6,7 +6,7 @@
 /*   By: maw <maw@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 13:05:52 by masase            #+#    #+#             */
-/*   Updated: 2025/06/27 13:45:25 by maw              ###   ########.fr       */
+/*   Updated: 2025/06/27 14:15:24 by maw              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,24 @@
 # define F 102
 # define H 104
 # define R 114
+
+# define NONE 0
+# define CHECKER 1
+# define STRIPE 2
+# define EARTH 3
+# define MARS 4
+# define MERCU 5
+# define PLUTO 6
+# define VENUS 7
+# define EARTH_BUMP 8
+# define MARS_BUMP 9
+# define MERCU_BUMP 10
+# define PLUTO_BUMP 11
+# define VENUS_BUMP 12
+# define U_SCALE 0.2f
+# define V_SCALE 0.15f
+# define XPM_HEIGHT 500
+# define XPM_WIDTH 1000
 
 # define HEIGHT 1080
 # define WIDTH 1920
@@ -85,6 +103,13 @@ typedef struct	s_color
 	int	b;
 }	t_color;
 
+typedef struct	s_pattern
+{
+	int	size;
+	t_color	color1;
+	t_color	color2;
+}	t_pattern;
+
 typedef struct s_inter
 {
 	float		height_projection;
@@ -124,6 +149,7 @@ typedef struct	s_plane
 	t_vector	vector;
 	t_pos		pos;
 	t_color		color;
+	int			texture_type;
 }	t_plane;
 
 typedef struct	s_cylinder
@@ -134,15 +160,18 @@ typedef struct	s_cylinder
 	float		d;
 	float		h;
 	float		shine;
+	int			texture_type;
 	t_inter		inter;
 }	t_cylinder;
 
 typedef struct	s_sphere
 {
-	t_pos	pos;
-	t_color	color;
-	float	d;
-	float	shine;
+	t_pos		pos;
+	t_color		color;
+	float		d;
+	float		shine;
+	int			texture_type;
+	bool		bump;
 }	t_sphere;
 
 // SAVE LINE -------------------------------
@@ -163,6 +192,18 @@ typedef	struct	s_world
 	t_vector	forward;
 	t_vector	world_up;
 }	t_world;
+
+typedef struct	s_value_int
+{
+	int	x;
+	int	y;
+}	t_value_int;
+
+typedef struct	s_value_float
+{
+	float	t1;
+	float	t2;
+}	t_value_float;
 
 // MAIN STRUCT -----------------------------
 typedef struct	s_ray
@@ -191,6 +232,20 @@ typedef struct s_quantity
 	int	sphere;
 }	t_quantity;
 
+typedef struct	s_bump
+{
+	void	*earth;
+	void	*earthbump;
+	void	*mars;
+	void	*marsbump;
+	void	*mercu;
+	void	*mercubump;
+	void	*pluto;
+	void	*plutobump;
+	void	*venus;
+	void	*venusbump;
+}	t_bump;
+
 typedef struct	s_params
 {
 	t_camera	camera;
@@ -199,6 +254,9 @@ typedef struct	s_params
 	t_plane		**plane;
 	t_cylinder	**cylinder;
 	t_sphere	**sphere;
+	t_pattern	checker;
+	t_pattern	stripe;
+	t_bump		bump;
 	t_quantity	quantity;
 	void		*mlx;
 	void		*window;
@@ -291,13 +349,30 @@ void		calculate_specular_light(t_params *params, t_ray *ray);
 
 // SHADOW ----------------------------------
 bool		shadow_check(t_params *params, t_ray *ray, int index);
-bool 		shadow_sphere_check(t_params *params, t_ray *shadow,
+bool		shadow_sphere_check(t_params *params, t_ray *shadow,
 			float light_dist, t_vector light_pos);
 bool		shadow_plane_check(t_params *params, t_ray *shadow,
 			t_ray *ray, t_vector light_pos);
 
+// PATTERN ---------------------------------
+void		initialise_pattern(t_params *params);
+void		initialise_bump(t_params *params);
+void		initialise_data(t_params *params, t_data *data, int type);
+t_color		checkerboard_plane(t_params *params, t_vector hit_point);
+t_color		checkerboard_sphere(t_params *params, t_vector hit_point, t_sphere *sphere);
+t_color		checkerboard_cylinder(t_params *params, t_vector hit_point, t_cylinder *cyl);
+t_color		stripe_plane(t_params *params, t_vector hit_point);
+t_color		stripe_sphere(t_params *params, t_vector hit_point, t_sphere *sphere);
+t_color		stripe_cylinder(t_params *params, t_vector hit_point, t_cylinder *cyl);
+t_color		planet_sphere(t_params *params, t_vector hit_point, t_sphere *sphere, int type);
+void		get_sphere_color(t_params *params, t_ray *ray, t_color *color);
+void		get_cylinder_color(t_params *params, t_ray *ray, t_color *color);
+void		get_plane_color(t_params *params, t_ray *ray, t_color *color);
+void 		apply_bump(t_params *params, t_ray *ray, t_sphere *sphere);
+
 // UTIL ------------------------------------
 void		free_all(t_params *params);
+void		free_maps(t_params *params);
 t_vector	vector_add(t_vector v1, t_vector v2);
 t_vector	vector_sub(t_vector v1, t_vector v2);
 t_vector	vector_multi(float x, t_vector v1);

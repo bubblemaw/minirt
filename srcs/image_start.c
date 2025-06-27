@@ -6,7 +6,7 @@
 /*   By: hoannguy <hoannguy@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/07 21:17:12 by hoannguy          #+#    #+#             */
-/*   Updated: 2025/06/09 14:45:35 by hoannguy         ###   ########.fr       */
+/*   Updated: 2025/06/24 23:32:55 by hoannguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ void	image_display(t_params *params)
 void	render(t_params *params)
 {
 	hook(params);
+	initialise_bump(params);
+	initialise_pattern(params);
 	image_display(params);
 	mlx_loop(params->mlx);
 }

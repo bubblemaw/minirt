@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   image_inter_plane.c                                :+:      :+:    :+:   */
+/*   inter_plane.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hoannguy <hoannguy@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 06:02:01 by hoannguy          #+#    #+#             */
-/*   Updated: 2025/06/23 10:26:11 by hoannguy         ###   ########.fr       */
+/*   Updated: 2025/06/25 13:17:02 by hoannguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	set_t_plane(t_plane *plane, t_ray *ray, float t, float denom)
 		ray->normal = vector_multi(-1.0f, ray->normal);
 	ray->hit_point = vector_add(ray->hit_point,
 			vector_multi(0.0001f, ray->normal));
+	ray->hit_inside = false;
 }
 
 // Linear equation: (P - O) · N = t * (D · N)

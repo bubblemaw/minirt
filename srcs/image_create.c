@@ -6,7 +6,7 @@
 /*   By: maw <maw@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 11:48:26 by hoannguy          #+#    #+#             */
-/*   Updated: 2025/06/27 11:52:31 by maw              ###   ########.fr       */
+/*   Updated: 2025/06/27 14:16:24 by maw              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ void	render_object(t_params *params)
 	while (++pixel.i < HEIGHT)
 	{
 		pixel.j = -1;
+		printf("Rendering row %d/%d\n", pixel.i + 1, HEIGHT);
 		while (++pixel.j < WIDTH)
 		{
 			initialise_ray(params, &ray);

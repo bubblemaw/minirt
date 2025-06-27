@@ -6,9 +6,10 @@
 /*   By: maw <maw@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 12:39:14 by masase            #+#    #+#             */
-/*   Updated: 2025/06/27 12:04:24 by maw              ###   ########.fr       */
+/*   Updated: 2025/06/27 14:18:34 by maw              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "../inc/minirt.h"
 
@@ -29,6 +30,7 @@ void	TEMP_simulation(t_params *params)
 	sphere1->color.g = 255;
 	sphere1->color.b = 0;
 	sphere1->shine = 10.0f;
+	sphere1->texture_type = STRIPE;
 
 	// sphere2 = malloc(sizeof(t_sphere));
 	// sphere2->pos.x = 0;
@@ -70,6 +72,7 @@ void	TEMP_simulation(t_params *params)
 	// PLANE
 	t_plane	*plane1;
 	t_plane *plane2;
+	t_plane *plane3;
 
 	plane1 = malloc(sizeof(t_plane));
 	plane1->vector.a = 0.5;
@@ -88,15 +91,16 @@ void	TEMP_simulation(t_params *params)
 	plane2->vector.c = 0;
 	plane2->pos.x = 0;
 	plane2->pos.y = -20;
-	plane2->pos.z = 45;
+	plane2->pos.z = 30;
 	plane2->color.r = 255;
 	plane2->color.g = 0;
 	plane2->color.b = 0;
 
-	params->plane = malloc(sizeof(t_plane *) * 3);
+	params->plane = malloc(sizeof(t_plane *) * 4);
 	params->plane[0] = plane1;
 	params->plane[1] = plane2;
-	params->plane[2] = NULL;
+	params->plane[2] = plane3;
+	params->plane[3] = NULL;
 
 	// CAMERA
 	params->camera.vector.a = -0.5;
@@ -112,7 +116,6 @@ void	TEMP_simulation(t_params *params)
 	params->ambient.color.r = 0;
 	params->ambient.color.g = 0;
 	params->ambient.color.b = 0;
-
 
 	// LIGHT
 	t_light	*light1;
