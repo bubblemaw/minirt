@@ -6,7 +6,7 @@
 /*   By: maw <maw@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 13:05:52 by masase            #+#    #+#             */
-/*   Updated: 2025/06/23 15:39:40 by maw              ###   ########.fr       */
+/*   Updated: 2025/06/27 13:45:25 by maw              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,19 @@ typedef struct	s_color
 	int	b;
 }	t_color;
 
+typedef struct s_inter
+{
+	float		height_projection;
+	t_vector	oc;
+	t_vector	d_perp;
+	t_vector	oc_perp;	
+	t_vector	axis;
+	float		b;
+	float		a;
+	float		c;
+	float		disc;
+} t_inter;
+
 // SCENE ITEM STRUCT -----------------------
 typedef struct	s_camera
 {
@@ -121,6 +134,7 @@ typedef struct	s_cylinder
 	float		d;
 	float		h;
 	float		shine;
+	t_inter		inter;
 }	t_cylinder;
 
 typedef struct	s_sphere

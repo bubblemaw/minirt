@@ -6,7 +6,7 @@
 /*   By: maw <maw@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 14:59:56 by maw               #+#    #+#             */
-/*   Updated: 2025/06/25 17:21:48 by maw              ###   ########.fr       */
+/*   Updated: 2025/06/27 14:09:06 by maw              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ void	set_t2_cylinder(t_cylinder *cylinder, t_ray *ray, float t2)
 void	set_t_cylinder(t_cylinder *cylinder, t_ray *ray, float t1, float t2)
 {
 	t_vector	temp;
+	t_vector	from_base;
+	float		height_projection;
 
 	if (t1 > 0 && t1 < ray->t)
 	{
@@ -47,6 +49,9 @@ void	set_t_cylinder(t_cylinder *cylinder, t_ray *ray, float t1, float t2)
 		ray->hit_plane = NULL;
 		ray->hit_point = vector_add(ray->origin,
 				vector_multi(t1, ray->direction));
+		from_base = vector_sub(ray->hit_point, cylinder->vector);
+		height_projection = vector_dot(from_base, cylinder->inter.axis);
+		
 		temp = pos_to_vector(cylinder->pos);
 		ray->normal = vector_sub(ray->hit_point, temp);
 		vector_normalize(&ray->normal);
@@ -68,34 +73,35 @@ void	intersection_cylinder(t_params *params, t_ray *ray)
 	float		disc;
 	float		t1;
 	float		t2;
+	float		height_projection;
 	t_vector	oc;
 	t_vector	d_perp;
 	t_vector	oc_perp;	
 	t_vector	axis;
+	t_cylinder **cy_tab;
+
 
 	if (!params->cylinder)
 		return ;
+	cy_tab = params->cylinder;		
 	i = -1;
-	while (params->cylinder[++i])
+	while (cy_tab[++i])
 	{
-		axis = params->cylinder[i]->vector;
-		vector_normalize(&axis);
-		d_perp = vector_sub(ray->direction, vector_multi(vector_dot(ray->direction, axis), axis));
-		oc = vector_sub(ray->origin, pos_to_vector(params->cylinder[i]->pos));	
-		oc_perp = vector_sub(oc, vector_multi(vector_dot(oc, axis), axis));
-		a = vector_dot(d_perp, d_perp);
-		c = vector_dot(oc_perp, oc_perp) - powf(params->cylinder[i]->d / 2, 2);
-		b = 2 * vector_dot(d_perp, oc_perp);			
-		// a = powf(ray->direction.a, 2) + powf(ray->direction.c, 2);		
-		// c = powf(oc.a, 2) + powf(oc.c, 2) - powf(params->cylinder[i]->d / 2, 2);
-		// b = 2 * oc.a * ray->direction.a + 2 * oc.c * ray->direction.c;
-		disc = b * b - 4 * a *c;
-		if (disc < 0)
+		cy_tab[i]->inter.axis = cy_tab[i]->vector;
+		vector_normalize(&cy_tab[i]->inter.axis);
+		cy_tab[i]->inter.d_perp = vector_sub(ray->direction, vector_multi(vector_dot(ray->direction, cy_tab[i]->inter.axis), cy_tab[i]->inter.axis));
+		cy_tab[i]->inter.oc = vector_sub(ray->origin, pos_to_vector(cy_tab[i]->pos));	
+		cy_tab[i]->inter.oc_perp = vector_sub(cy_tab[i]->inter.oc, vector_multi(vector_dot(cy_tab[i]->inter.oc, cy_tab[i]->inter.axis), cy_tab[i]->inter.axis));
+		cy_tab[i]->inter.a = vector_dot(cy_tab[i]->inter.d_perp, cy_tab[i]->inter.d_perp);
+		cy_tab[i]->inter.c = vector_dot(cy_tab[i]->inter.oc_perp, cy_tab[i]->inter.oc_perp) - powf(params->cylinder[i]->d / 2, 2);
+		cy_tab[i]->inter.b = 2 * vector_dot(cy_tab[i]->inter.d_perp, cy_tab[i]->inter.oc_perp);
+		cy_tab[i]->inter.disc = cy_tab[i]->inter.b * cy_tab[i]->inter.b - 4 * cy_tab[i]->inter.a * cy_tab[i]->inter.c;
+		if (cy_tab[i]->inter.disc < 0)
 			continue ;
-		t1 = (-b - sqrtf(disc)) / (2 * a);
-		t2 = (-b + sqrtf(disc)) / (2 * a);
+		t1 = (-cy_tab[i]->inter.b - sqrtf(cy_tab[i]->inter.disc)) / (2 * cy_tab[i]->inter.a);
+		t2 = (-cy_tab[i]->inter.b + sqrtf(cy_tab[i]->inter.disc)) / (2 * cy_tab[i]->inter.a);
 		if (t2 < 0)
 			continue ;
-		set_t_cylinder(params->cylinder[i], ray, t1, t2);
+		set_t_cylinder(cy_tab[i], ray, t1, t2);
 	}
 }
