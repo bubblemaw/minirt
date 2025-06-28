@@ -6,7 +6,7 @@
 /*   By: maw <maw@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 16:40:50 by maw               #+#    #+#             */
-/*   Updated: 2025/06/23 13:24:47 by maw              ###   ########.fr       */
+/*   Updated: 2025/06/28 18:24:53 by maw              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,16 @@ int save_cylinder(char *line, t_params *params)
 		i++;	
 	if (cylinder_rgb(line, &i, params->cylinder[j]) == FALSE)
 		return (FALSE);
+	while (ft_isspace(line[i]) && line[i])
+		i++;
+	if (save_shine(&i, &params->cylinder[j]->shine, line) == FALSE)
+		return (FALSE);
+	while (ft_isspace(line[i]) && line[i])
+		i++;
+	if (save_texture(&i, &params->cylinder[j]->texture_type, line) == FALSE)
+		return (FALSE);
+	if (ft_isprint(line[i]))
+		return (ft_error("Too much arguments for the cylinder RGB parameters"));
 	return (TRUE);
 }
 
@@ -104,8 +114,6 @@ int cylinder_rgb(char *line, int *i, t_cylinder *cylinder)
 	if (put_rgb(i, &cylinder->color.g, line) == FALSE)
 		return (FALSE);
 	if (put_rgb(i, &cylinder->color.b, line) == FALSE)
-		return (FALSE);
-	if (ft_isprint(line[*i]))
-		return (ft_error("Too much arguments for the cylinder RGB parameters"));		
+		return (FALSE);		
 	return (TRUE);
 }

@@ -6,7 +6,7 @@
 /*   By: maw <maw@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 11:48:26 by hoannguy          #+#    #+#             */
-/*   Updated: 2025/06/27 14:16:24 by maw              ###   ########.fr       */
+/*   Updated: 2025/06/28 16:13:57 by maw              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	intersection(t_params *params, t_ray *ray)
 	intersection_sphere(params, ray);
 	intersection_plane(params, ray);
 	intersection_cylinder(params, ray);
+	intersection_cylinder_cap(params, ray);
 	calculate_ambient_light(params, ray);
 	calculate_diffuse_light(params, ray);
 	calculate_specular_light(params, ray);

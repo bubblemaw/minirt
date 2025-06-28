@@ -3,14 +3,40 @@
 /*                                                        :::      ::::::::   */
 /*   save_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: masase <masase@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maw <maw@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 15:54:55 by masase            #+#    #+#             */
-/*   Updated: 2025/06/15 13:30:54 by masase           ###   ########.fr       */
+/*   Updated: 2025/06/28 18:33:47 by maw              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minirt.h"
+
+int save_texture(int *i, int *value, char *line)
+{
+	if (line[*i] && ft_isdigit(line[*i]))
+		*value = ft_atoi(line + (*i));
+	else
+		return (ft_error("Texture parameters have to be a number from 0 to 12"));
+	if (*value < 0 || *value > 12)
+		return (ft_error("Texture parameters have to be a number from 0 to 12"));
+	while(ft_isdigit(line[*i]) && line[*i])
+		(*i)++;
+	return (TRUE);
+}
+
+int save_shine(int *i, float *value, char *line)
+{
+	if (line[*i] && ft_isdigit(line[*i]))
+		*value = ft_atof(line + (*i));
+	else
+		return (ft_error("Shine parameters have to be a number from 10 to 200"));
+	if (*value < 10 || *value > 200)
+		return (ft_error("Shine can set be set from 0 to 255"));
+	while(ft_isdigit_point(line[*i]) && line[*i])
+		(*i)++;
+	return (TRUE);
+}
 
 int put_rgb(int *i, int *value, char *line)
 {

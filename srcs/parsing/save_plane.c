@@ -6,7 +6,7 @@
 /*   By: maw <maw@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 15:46:44 by maw               #+#    #+#             */
-/*   Updated: 2025/06/23 13:26:30 by maw              ###   ########.fr       */
+/*   Updated: 2025/06/28 18:08:53 by maw              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,12 @@ int save_plane(char *line, t_params *params)
 		i++;
 	if (plane_rgb(line, &i, params->plane[j]) == FALSE)
 		return (FALSE);
+    while (ft_isspace(line[i]) && line[i])
+		i++;
+	if (save_texture(&i, &params->plane[j]->texture_type, line) == FALSE)
+		return (FALSE);
+	if (ft_isprint(line[i]))
+		return (ft_error("Too much arguments for the plane RGB parameters"));			
 	return (TRUE);
 }
 
@@ -72,9 +78,7 @@ int plane_rgb(char *line, int *i, t_plane *plane)
 	if (put_rgb(i, &plane->color.g, line) == FALSE)
 		return (FALSE);
 	if (put_rgb(i, &plane->color.b, line) == FALSE)
-		return (FALSE);
-	if (ft_isprint(line[*i]))
-		return (ft_error("Too much arguments for the plane RGB parameters"));		
+		return (FALSE);		
 	return (TRUE);
 }
 

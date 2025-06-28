@@ -6,7 +6,7 @@
 /*   By: maw <maw@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 12:39:14 by masase            #+#    #+#             */
-/*   Updated: 2025/06/27 14:18:34 by maw              ###   ########.fr       */
+/*   Updated: 2025/06/28 17:32:40 by maw              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,14 @@ void	TEMP_simulation(t_params *params)
 
 	sphere1 = malloc(sizeof(t_sphere));
 	sphere1->pos.x = 0;
-	sphere1->pos.y = 0;
+	sphere1->pos.y = 40;
 	sphere1->pos.z = 0;
-	sphere1->d = 5;
+	sphere1->d = 50;
 	sphere1->color.r = 255;
 	sphere1->color.g = 255;
 	sphere1->color.b = 0;
-	sphere1->shine = 10.0f;
-	sphere1->texture_type = STRIPE;
+	sphere1->shine = 5.0f;
+	sphere1->texture_type = NONE;
 
 	// sphere2 = malloc(sizeof(t_sphere));
 	// sphere2->pos.x = 0;
@@ -72,7 +72,7 @@ void	TEMP_simulation(t_params *params)
 	// PLANE
 	t_plane	*plane1;
 	t_plane *plane2;
-	t_plane *plane3;
+	// t_plane *plane3;
 
 	plane1 = malloc(sizeof(t_plane));
 	plane1->vector.a = 0.5;
@@ -90,7 +90,7 @@ void	TEMP_simulation(t_params *params)
 	plane2->vector.b = -1;
 	plane2->vector.c = 0;
 	plane2->pos.x = 0;
-	plane2->pos.y = -20;
+	plane2->pos.y = -70;
 	plane2->pos.z = 30;
 	plane2->color.r = 255;
 	plane2->color.g = 0;
@@ -99,17 +99,17 @@ void	TEMP_simulation(t_params *params)
 	params->plane = malloc(sizeof(t_plane *) * 4);
 	params->plane[0] = plane1;
 	params->plane[1] = plane2;
-	params->plane[2] = plane3;
-	params->plane[3] = NULL;
+	// params->plane[2] = plane3;
+	params->plane[2] = NULL;
 
 	// CAMERA
-	params->camera.vector.a = -0.5;
+	params->camera.vector.a = 0.5;
 	params->camera.vector.b = 0;
 	params->camera.vector.c = 0.5;
 	params->camera.pos.x = 0;
-	params->camera.pos.y = 10;
+	params->camera.pos.y = 80;
 	params->camera.pos.z = -100;
-	params->camera.fov = 90;
+	params->camera.fov = 110;
 
 	// AMBIENT
 	params->ambient.ratio = 0.6;
@@ -119,7 +119,7 @@ void	TEMP_simulation(t_params *params)
 
 	// LIGHT
 	t_light	*light1;
-	t_light	*light2;
+	// t_light	*light2;
 	// t_light	*light3;
 	// t_light	*light4;
 	// t_light	*light5;
@@ -127,20 +127,20 @@ void	TEMP_simulation(t_params *params)
 	light1 = malloc(sizeof(t_light));
 	light1->pos.x = 0;
 	light1->pos.y = -1;
-	light1->pos.z = -9;
+	light1->pos.z = -100;
 	light1->ratio = 1;
 	light1->color.r = 255;
 	light1->color.g = 255;
 	light1->color.b = 255;
 
-	light2 = malloc(sizeof(t_light));
-	light2->pos.x = 0;
-	light2->pos.y = -5;
-	light2->pos.z = -5;
-	light2->ratio = 1;
-	light2->color.r = 255;
-	light2->color.g = 255;
-	light2->color.b = 255;
+	// light2 = malloc(sizeof(t_light));
+	// light2->pos.x = 0;
+	// light2->pos.y = -5;
+	// light2->pos.z = -5;
+	// light2->ratio = 1;
+	// light2->color.r = 255;
+	// light2->color.g = 255;
+	// light2->color.b = 255;
 
 	// light3 = malloc(sizeof(t_light));
 	// light3->pos.x = 20.0;
@@ -171,14 +171,32 @@ void	TEMP_simulation(t_params *params)
 
 	params->light = malloc(sizeof(t_light *) * 6);
 	params->light[0] = light1;
-	params->light[1] = light2;
+	// params->light[1] = light2;
 	// params->light[2] = light3;
 	// params->light[3] = light4;
 	// params->light[4] = light5;
-	params->light[2] = NULL;
+	params->light[1] = NULL;
 
 	// OTHER
-	params->cylinder = NULL;
+	t_cylinder *cylinder1;
+
+	cylinder1 = malloc(sizeof(t_cylinder));
+	cylinder1->pos.x = -50;
+	cylinder1->pos.y = 20;
+	cylinder1->pos.z = -80;
+	cylinder1->vector.a = 0;
+	cylinder1->vector.b = 1;
+	cylinder1->vector.c = 0;		
+	cylinder1->d = 20.2;
+	cylinder1->h= 10;	
+	cylinder1->color.r = 0;
+	cylinder1->color.g = 0;
+	cylinder1->color.b = 255;
+	cylinder1->shine = 10.0;
+	cylinder1->texture_type = NONE;
+	params->cylinder = malloc(sizeof(t_cylinder *)* 2);
+	params->cylinder[0] = cylinder1;
+	params->cylinder[1] = NULL;
 }
 
 int	main(int ac, char **av)

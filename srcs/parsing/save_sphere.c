@@ -6,7 +6,7 @@
 /*   By: maw <maw@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 15:22:36 by maw               #+#    #+#             */
-/*   Updated: 2025/06/23 13:26:56 by maw              ###   ########.fr       */
+/*   Updated: 2025/06/28 18:24:02 by maw              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,22 @@ int save_sphere(char *line, t_params *params)
 		i++;
 	if (sphere_rgb(line, &i, params->sphere[j]) == FALSE)
 		return (FALSE);
+    while (ft_isspace(line[i]) && line[i])
+		i++;
+	if (save_shine(&i, &params->sphere[j]->shine, line) == FALSE)
+		return (FALSE);
+	while (ft_isspace(line[i]) && line[i])
+		i++;
+	if (save_texture(&i, &params->sphere[j]->texture_type, line) == FALSE)
+		return (FALSE);
+	while (ft_isspace(line[i]) && line[i])
+		i++;
+	if (params->sphere[j]->texture_type >= 8 && params->sphere[j]->texture_type <= 12)
+		params->sphere[j]->bump = true;
+	else
+		params->sphere[j]->bump = false;
+	if (ft_isprint(line[i]))
+		return (ft_error("Too much arguments for the sphere RGB parameters"));			
 	return (TRUE);
 }
 
@@ -71,9 +87,7 @@ int sphere_rgb(char *line, int *i, t_sphere *sphere)
 	if (put_rgb(i, &sphere->color.g, line) == FALSE)
 		return (FALSE);
 	if (put_rgb(i, &sphere->color.b, line) == FALSE)
-		return (FALSE);
-	if (ft_isprint(line[*i]))
-		return (ft_error("Too much arguments for the sphere RGB parameters"));		
+		return (FALSE);	
 	return (TRUE);
 }
 

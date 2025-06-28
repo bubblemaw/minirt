@@ -6,7 +6,7 @@
 /*   By: maw <maw@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 13:05:52 by masase            #+#    #+#             */
-/*   Updated: 2025/06/27 14:15:24 by maw              ###   ########.fr       */
+/*   Updated: 2025/06/28 18:05:32 by maw              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,37 @@ typedef struct	s_pattern
 	t_color	color2;
 }	t_pattern;
 
+// SAVE LINE -------------------------------
+typedef struct	s_pixel
+{
+	int			i;
+	int			j;
+	t_vector	horiz;
+	t_vector	vert;
+}	t_pixel;
+
+typedef	struct	s_world
+{
+	float		aspect_ratio;
+	float		fov_rad;
+	t_vector	right;
+	t_vector	up;
+	t_vector	forward;
+	t_vector	world_up;
+}	t_world;
+
+typedef struct	s_value_int
+{
+	int	x;
+	int	y;
+}	t_value_int;
+
+typedef struct	s_value_float
+{
+	float	t1;
+	float	t2;
+}	t_value_float;
+
 typedef struct s_inter
 {
 	float		height_projection;
@@ -161,7 +192,6 @@ typedef struct	s_cylinder
 	float		h;
 	float		shine;
 	int			texture_type;
-	t_inter		inter;
 }	t_cylinder;
 
 typedef struct	s_sphere
@@ -173,37 +203,6 @@ typedef struct	s_sphere
 	int			texture_type;
 	bool		bump;
 }	t_sphere;
-
-// SAVE LINE -------------------------------
-typedef struct	s_pixel
-{
-	int			i;
-	int			j;
-	t_vector	horiz;
-	t_vector	vert;
-}	t_pixel;
-
-typedef	struct	s_world
-{
-	float		aspect_ratio;
-	float		fov_rad;
-	t_vector	right;
-	t_vector	up;
-	t_vector	forward;
-	t_vector	world_up;
-}	t_world;
-
-typedef struct	s_value_int
-{
-	int	x;
-	int	y;
-}	t_value_int;
-
-typedef struct	s_value_float
-{
-	float	t1;
-	float	t2;
-}	t_value_float;
 
 // MAIN STRUCT -----------------------------
 typedef struct	s_ray
@@ -276,6 +275,8 @@ int		ft_isdigit_point(int c);
 int		put_rgb(int *i, int *value, char *line);
 int		put_vector(int *i, float *value, char *line);
 int		put_position(int *i, float *value, char *line);
+int		save_shine(int *i, float *value, char *line);
+int		save_texture(int *i, int *value, char *line);
 
 // save camera
 int		save_camera(char *line, t_params *params);
@@ -341,6 +342,7 @@ void		my_mlx_pixel_put(t_params *params, int x, int y, t_color color);
 void		intersection_sphere(t_params *params, t_ray *ray);
 void		intersection_plane(t_params *params, t_ray *ray);
 void		intersection_cylinder(t_params *params, t_ray *ray);
+void		intersection_cylinder_cap(t_params *params, t_ray *ray);
 
 // LIGHT -----------------------------------
 void		calculate_ambient_light(t_params *params, t_ray *ray);
@@ -383,6 +385,7 @@ float		vector_norm2(t_vector v1);
 void		vector_normalize(t_vector *v1);
 t_vector	pos_to_vector(t_pos pos);
 t_color		color_add(t_color c1, t_color c2);
+float		vector_lenght(t_vector v1);
 
 // HOOk ------------------------------------
 void		hook(t_params *params);
