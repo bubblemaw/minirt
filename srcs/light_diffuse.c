@@ -23,6 +23,8 @@ void	all_diffuse(t_params *params, t_ray *ray,
 
 	if (!params->light)
 		return ;
+	// if (vector_dot(ray->normal, ray->direction) > 0)
+	// 		ray->normal = vector_multi(-1.0f, ray->normal);			
 	i = -1;
 	while (params->light[++i])
 	{

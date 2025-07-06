@@ -6,7 +6,7 @@
 /*   By: maw <maw@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 13:05:52 by masase            #+#    #+#             */
-/*   Updated: 2025/06/28 18:05:32 by maw              ###   ########.fr       */
+/*   Updated: 2025/07/05 16:34:08 by maw              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -342,7 +342,9 @@ void		my_mlx_pixel_put(t_params *params, int x, int y, t_color color);
 void		intersection_sphere(t_params *params, t_ray *ray);
 void		intersection_plane(t_params *params, t_ray *ray);
 void		intersection_cylinder(t_params *params, t_ray *ray);
-void		intersection_cylinder_cap(t_params *params, t_ray *ray);
+float		intersection_cylinder_cap(t_params *params, t_ray *ray);
+float		calculate_cap_t(t_cylinder *cylinder, t_ray *ray, t_vector *normal);
+void		set_t_cap(t_ray *ray, float t, t_cylinder *cylinder, t_vector normal);
 
 // LIGHT -----------------------------------
 void		calculate_ambient_light(t_params *params, t_ray *ray);
@@ -355,6 +357,10 @@ bool		shadow_sphere_check(t_params *params, t_ray *shadow,
 			float light_dist, t_vector light_pos);
 bool		shadow_plane_check(t_params *params, t_ray *shadow,
 			t_ray *ray, t_vector light_pos);
+bool		shadow_cylinder_check(t_params *params, t_ray *shadow,
+			float light_dist);
+bool		shadow_cylinder_cap_check(t_params *params, t_ray *shadow,
+			float light_dist);
 
 // PATTERN ---------------------------------
 void		initialise_pattern(t_params *params);

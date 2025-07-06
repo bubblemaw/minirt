@@ -6,7 +6,7 @@
 /*   By: maw <maw@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/28 16:03:24 by maw               #+#    #+#             */
-/*   Updated: 2025/06/28 18:31:18 by maw              ###   ########.fr       */
+/*   Updated: 2025/07/06 18:11:44 by maw              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,19 +29,19 @@ int touch_under_cap(t_vector axis, t_ray *ray, t_cylinder *cylinder)
 	float denom;
 	float t;
 	t_vector base;
-	
-	base = pos_to_vector(cylinder->pos);
+	t_vector hit_point;
+
+	base = vector_sub(pos_to_vector(cylinder->pos), vector_multi(cylinder->h / 2, axis));
 	denom = vector_dot(ray->direction, axis);
-	if (fabs(denom) < 1e-6)
-		return (0);
+	if (fabs(denom) < 1e-6f)
+		return (-1);
 	t = vector_dot(vector_sub(base, ray->origin), axis) / denom;
-	if (t < 0 || t > ray->t)
-		return (0);
-	ray->hit_point = vector_add(ray->origin, vector_multi(t, ray->direction));
-	if (vector_lenght(vector_sub(ray->hit_point, base)) > cylinder->d / 2)
-		return (0);
-	set_t_cap(ray, t, cylinder, vector_multi(-1, axis));
-	return (1);
+	if (t < 0 || t >= ray->t)
+		return (-1);
+	hit_point = vector_add(ray->origin, vector_multi(t, ray->direction));
+	if (vector_lenght(vector_sub(hit_point, base)) > cylinder->d / 2)
+		return (-1);
+	return (t);
 }
 
 int touch_top_cap(t_vector axis, t_ray *ray, t_cylinder *cylinder)
@@ -49,34 +49,43 @@ int touch_top_cap(t_vector axis, t_ray *ray, t_cylinder *cylinder)
 	float denom;
 	float t;
 	t_vector base;
-	
-	base = vector_add(pos_to_vector(cylinder->pos), vector_multi(cylinder->h, axis));
+	t_vector hit_point;	
+
+	base = vector_add(pos_to_vector(cylinder->pos), vector_multi(cylinder->h / 2, axis));
 	denom = vector_dot(ray->direction, axis);
-	if (fabs(denom) < 1e-6)
-		return (0);
+	if (fabs(denom) < 1e-6f)
+		return (-1);
 	t = vector_dot(vector_sub(base, ray->origin), axis) / denom;
-	if (t < 0 || t > ray->t)
-		return (0);
-	ray->hit_point = vector_add(ray->origin, vector_multi(t, ray->direction));
-	if (vector_lenght(vector_sub(ray->hit_point, base)) > cylinder->d / 2)
-		return (0);
-	set_t_cap(ray, t, cylinder, axis);
-	return (1);
+	if (t < 0 || t >= ray->t)
+		return (-1);
+	hit_point = vector_add(ray->origin, vector_multi(t, ray->direction));
+	if (vector_lenght(vector_sub(hit_point, base)) > cylinder->d / 2)
+		return (-1);
+	return (t);
 }
 
-void intersection_cylinder_cap(t_params *params, t_ray *ray)
+float calculate_cap_t(t_cylinder *cylinder, t_ray *ray, t_vector *normal)
 {
-	int i;
 	t_vector axis;
+	float t_top;
+	float t_under;
+	float	best;
 
-	if (!params->cylinder)
-		return;
-	i = -1;
-	while (params->cylinder[++i])
+	best = -1;
+	axis = cylinder->vector;
+	vector_normalize(&axis);
+	*normal =  axis;
+	t_under = touch_under_cap(axis, ray, cylinder);		
+	t_top = touch_top_cap(axis, ray, cylinder);
+	if (t_under >= 0)
 	{
-		axis = params->cylinder[i]->vector;
-		vector_normalize(&axis);		
-		touch_under_cap(axis, ray, params->cylinder[i]);
-		touch_top_cap(axis, ray, params->cylinder[i]);		
+		best = t_under;
+		*normal = vector_multi(-1, axis);
 	}
+	if (t_top >= 0 && (best == -1 || t_top < best))
+	{
+		best = t_top;
+		*normal = axis;	
+	}
+	return (best);
 }

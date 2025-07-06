@@ -6,7 +6,7 @@
 /*   By: maw <maw@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 12:39:14 by masase            #+#    #+#             */
-/*   Updated: 2025/06/28 17:32:40 by maw              ###   ########.fr       */
+/*   Updated: 2025/07/01 15:41:10 by maw              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -221,7 +221,7 @@ int	main(int ac, char **av)
 		if (parsing(av[1], &params) == FALSE)
 			return (FALSE);
 	}
-	print_sphere_as_array(params.sphere[0]);
+	// print_sphere_as_array(params.sphere[0]);
 	// print_sphere_as_array(params.sphere[0]);
 	// print_sphere_as_array(params.sphere[1]);
 	// print_sphere_as_array(params.sphere[2]);	

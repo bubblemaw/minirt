@@ -6,7 +6,7 @@
 /*   By: maw <maw@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 18:46:02 by hoannguy          #+#    #+#             */
-/*   Updated: 2025/06/28 13:34:40 by maw              ###   ########.fr       */
+/*   Updated: 2025/07/06 17:28:01 by maw              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,9 @@ bool	shadow_check(t_params *params, t_ray *ray, int index)
 		return (true);
 	if (shadow_plane_check(params, &shadow, ray, light_pos))
 		return (true);
-	// if (shadow_cylinder_check(...))
-	//     return (true);
+	if (shadow_cylinder_check(params, &shadow, light_dist))
+	    return (true);
+	if (shadow_cylinder_cap_check(params, &shadow, light_dist))
+	    return (true);
 	return (false);
 }
