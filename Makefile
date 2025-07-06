@@ -6,7 +6,7 @@
 #    By: maw <maw@student.42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/06 12:39:32 by masase            #+#    #+#              #
-#    Updated: 2025/06/30 17:34:58 by maw              ###   ########.fr        #
+#    Updated: 2025/07/06 21:39:17 by maw              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ SRCS = 	srcs/main.c \
 		srcs/free_all.c srcs/free_all2.c srcs/hook.c srcs/hook2.c srcs/hook3.c srcs/hook4.c\
 		srcs/vector.c srcs/vector2.c srcs/vector3.c \
 		srcs/image_start.c srcs/image_create.c srcs/image_get_color.c\
-		srcs/inter_sphere.c srcs/inter_plane.c srcs/inter_cylinder.c srcs/inter_cylinder_cap.c\
+		srcs/inter_sphere.c srcs/inter_plane.c srcs/inter_cylinder.c srcs/inter_cylinder_cap.c srcs/inter_cone.c\
 		srcs/light_ambient.c srcs/light_diffuse.c srcs/light_specular.c\
 		srcs/shadow.c srcs/shadow_sphere.c srcs/shadow_plane.c srcs/shadow_cylinder.c\
 		srcs/pattern_checkerboard.c srcs/pattern_stripe.c srcs/pattern_planets.c\

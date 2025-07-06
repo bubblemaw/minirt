@@ -6,7 +6,7 @@
 /*   By: maw <maw@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 13:05:52 by masase            #+#    #+#             */
-/*   Updated: 2025/07/05 16:34:08 by maw              ###   ########.fr       */
+/*   Updated: 2025/07/06 21:41:47 by maw              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -194,6 +194,17 @@ typedef struct	s_cylinder
 	int			texture_type;
 }	t_cylinder;
 
+typedef struct	s_cone
+{
+	t_vector	vector;
+	t_pos		pos;
+	t_color		color;
+	float		d;
+	float		h;
+	float		shine;
+	int			texture_type;
+}	t_cone;
+
 typedef struct	s_sphere
 {
 	t_pos		pos;
@@ -253,6 +264,7 @@ typedef struct	s_params
 	t_plane		**plane;
 	t_cylinder	**cylinder;
 	t_sphere	**sphere;
+	t_cone		**cone;
 	t_pattern	checker;
 	t_pattern	stripe;
 	t_bump		bump;
