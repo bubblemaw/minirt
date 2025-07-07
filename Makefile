@@ -6,7 +6,7 @@
 #    By: masase <masase@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/06 12:39:32 by masase            #+#    #+#              #
-#    Updated: 2025/07/07 12:04:22 by masase           ###   ########.fr        #
+#    Updated: 2025/07/07 16:07:43 by masase           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ SRCS = 	srcs/main.c \
 		srcs/image_start.c srcs/image_create.c srcs/image_get_color.c\
 		srcs/inter_sphere.c srcs/inter_plane.c srcs/inter_cylinder.c srcs/inter_cylinder_cap.c srcs/inter_cone.c\
 		srcs/light_ambient.c srcs/light_diffuse.c srcs/light_specular.c\
-		srcs/shadow.c srcs/shadow_sphere.c srcs/shadow_plane.c srcs/shadow_cylinder.c\
+		srcs/shadow.c srcs/shadow_sphere.c srcs/shadow_plane.c srcs/shadow_cylinder.c srcs/shadow_cone.c\
 		srcs/pattern_checkerboard.c srcs/pattern_stripe.c srcs/pattern_planets.c\
 		srcs/bump_initialise.c srcs/bump_sphere.c\
 		srcs/parsing/parsing.c \

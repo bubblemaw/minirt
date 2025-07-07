@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   inter_cylinder_cap.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maw <maw@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: masase <masase@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/28 16:03:24 by maw               #+#    #+#             */
-/*   Updated: 2025/07/06 18:11:44 by maw              ###   ########.fr       */
+/*   Updated: 2025/07/07 15:08:23 by masase           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void set_t_cap(t_ray *ray, float t, t_cylinder *cylinder, t_vector normal)
 	ray->hit_cylinder = cylinder;
 	ray->hit_plane = NULL;
 	ray->hit_sphere = NULL;
+	ray->hit_cone = NULL;
 	ray->color = cylinder->color;
 	ray->normal = normal;
 	ray->hit_point = vector_add(ray->origin, vector_multi(t, ray->direction));

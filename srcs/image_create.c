@@ -6,7 +6,7 @@
 /*   By: masase <masase@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 11:48:26 by hoannguy          #+#    #+#             */
-/*   Updated: 2025/07/07 12:20:16 by masase           ###   ########.fr       */
+/*   Updated: 2025/07/07 18:00:38 by masase           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	intersection(t_params *params, t_ray *ray)
 	intersection_sphere(params, ray);
 	intersection_plane(params, ray);
 	intersection_cylinder(params, ray);
-	
+	intersection_cone(params, ray);
 	calculate_ambient_light(params, ray);
 	calculate_diffuse_light(params, ray);
 	calculate_specular_light(params, ray);
@@ -57,6 +57,7 @@ void	initialise_ray(t_params *params, t_ray *ray)
 	ray->hit_plane = NULL;
 	ray->hit_cylinder = NULL;
 	ray->hit_sphere = NULL;
+	ray->hit_cone = NULL;
 	ray->diffuse.r = 0;
 	ray->diffuse.g = 0;
 	ray->diffuse.b = 0;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   light_ambient.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hoannguy <hoannguy@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: masase <masase@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/15 15:26:07 by hoannguy          #+#    #+#             */
-/*   Updated: 2025/06/25 12:03:28 by hoannguy         ###   ########.fr       */
+/*   Updated: 2025/07/07 17:58:57 by masase           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ void	calculate_ambient_light(t_params *params, t_ray *ray)
 		get_cylinder_color(params, ray, &color);
 	else if (ray->hit_plane != NULL)
 		get_plane_color(params, ray, &color);
+	else if (ray->hit_cone != NULL)
+		get_cone_color(params, ray, &color);
 	else
 	{
 		color.r = 0;

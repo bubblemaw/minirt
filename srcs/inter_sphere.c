@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   inter_sphere.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hoannguy <hoannguy@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: masase <masase@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 11:48:26 by hoannguy          #+#    #+#             */
-/*   Updated: 2025/06/25 13:01:34 by hoannguy         ###   ########.fr       */
+/*   Updated: 2025/07/07 15:10:47 by masase           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	set_t2_sphere(t_params *params, t_sphere *sphere, t_ray *ray, float t2)
 	ray->hit_sphere = sphere;
 	ray->hit_cylinder = NULL;
 	ray->hit_plane = NULL;
+	ray->hit_cone = NULL;
 	ray->hit_point = vector_add(ray->origin,
 			vector_multi(t2, ray->direction));
 	ray->normal = vector_sub(ray->hit_point, pos_to_vector(sphere->pos));

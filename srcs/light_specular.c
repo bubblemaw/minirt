@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   light_specular.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hoannguy <hoannguy@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: masase <masase@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 13:43:09 by hoannguy          #+#    #+#             */
-/*   Updated: 2025/06/23 15:22:24 by hoannguy         ###   ########.fr       */
+/*   Updated: 2025/07/07 17:12:17 by masase           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ void	set_specular(float dot, t_light *light, t_ray *ray)
 		shine = ray->hit_sphere->shine;
 	else if (ray->hit_cylinder)
 		shine = ray->hit_cylinder->shine;
+	else if (ray->hit_cone)
+		shine = ray->hit_cone->shine;		
 	else
 		return ;
 	dot = pow(dot, shine);

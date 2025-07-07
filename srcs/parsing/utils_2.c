@@ -6,7 +6,7 @@
 /*   By: masase <masase@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 11:50:48 by masase            #+#    #+#             */
-/*   Updated: 2025/06/14 19:55:37 by masase           ###   ########.fr       */
+/*   Updated: 2025/07/07 14:33:37 by masase           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,5 +84,11 @@ size_t setup_tab_type(void ***tab, int **current_size, t_params *params, e_tab_t
 		*current_size = &params->quantity.sphere;
 		element_size = sizeof(t_sphere *); 
 	}
+	else if (type == CONE)
+	{
+		*tab = (void **)&params->cone;
+		*current_size = &params->quantity.cone;
+		element_size = sizeof(t_cone *); 
+	}	
 	return (element_size);
 }

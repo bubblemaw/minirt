@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   inter_plane.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hoannguy <hoannguy@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: masase <masase@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 06:02:01 by hoannguy          #+#    #+#             */
-/*   Updated: 2025/06/25 13:17:02 by hoannguy         ###   ########.fr       */
+/*   Updated: 2025/07/07 15:11:09 by masase           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	set_t_plane(t_plane *plane, t_ray *ray, float t, float denom)
 	ray->hit_plane = plane;
 	ray->hit_sphere = NULL;
 	ray->hit_cylinder = NULL;
+	ray->hit_cone = NULL;
 	ray->hit_point = vector_add(ray->origin, vector_multi(t, ray->direction));
 	ray->normal = plane->vector;
 	ray->color = plane->color;

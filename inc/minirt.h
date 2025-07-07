@@ -6,7 +6,7 @@
 /*   By: masase <masase@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 13:05:52 by masase            #+#    #+#             */
-/*   Updated: 2025/07/07 12:07:24 by masase           ###   ########.fr       */
+/*   Updated: 2025/07/07 16:06:37 by masase           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,6 +155,23 @@ typedef struct s_inter
 	float		disc;
 } t_inter;
 
+typedef struct s_inter_cone
+{
+	float		height_projection;
+	t_vector	oc;
+	t_vector	d_perp;
+	t_vector	oc_perp;	
+	t_vector	axis;
+	float		k;
+	float		k2;
+	float		dv;
+	float		oc_v;
+	float		b;
+	float		a;
+	float		c;
+	float		disc;
+} t_inter_cone;
+
 // SCENE ITEM STRUCT -----------------------
 typedef struct	s_camera
 {
@@ -229,6 +246,7 @@ typedef struct	s_ray
 	t_plane		*hit_plane;
 	t_cylinder	*hit_cylinder;
 	t_sphere	*hit_sphere;
+	t_cone		*hit_cone;
 	bool		hit_inside;
 	t_color		ambient;
 	t_color		diffuse;
@@ -367,7 +385,8 @@ void		intersection_cylinder(t_params *params, t_ray *ray);
 float		calculate_cap_t(t_cylinder *cylinder, t_ray *ray, t_vector *normal);
 void		set_t_cap(t_ray *ray, float t, t_cylinder *cylinder, t_vector normal);
 void		intersection_cone(t_params *params, t_ray *ray);
-float		calculate_lateral_t_cone(t_cylinder *cone, t_ray *ray);
+float		calculate_lateral_t_cone(t_cone *cone, t_ray *ray);
+float		calculate_cap_t_cone(t_cone *cone, t_ray *ray, t_vector *normal);
 
 
 // LIGHT -----------------------------------
@@ -385,6 +404,8 @@ bool		shadow_cylinder_check(t_params *params, t_ray *shadow,
 			float light_dist);
 bool		shadow_cylinder_cap_check(t_params *params, t_ray *shadow,
 			float light_dist);
+bool		shadow_cone_check(t_params *params, t_ray *shadow,
+			float light_dist);		
 
 // PATTERN ---------------------------------
 void		initialise_pattern(t_params *params);
@@ -400,6 +421,7 @@ t_color		planet_sphere(t_params *params, t_vector hit_point, t_sphere *sphere, i
 void		get_sphere_color(t_params *params, t_ray *ray, t_color *color);
 void		get_cylinder_color(t_params *params, t_ray *ray, t_color *color);
 void		get_plane_color(t_params *params, t_ray *ray, t_color *color);
+void		get_cone_color(t_params *params, t_ray *ray, t_color *color);
 void 		apply_bump(t_params *params, t_ray *ray, t_sphere *sphere);
 
 // UTIL ------------------------------------

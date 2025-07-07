@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   inter_cylinder.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maw <maw@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: masase <masase@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 14:59:56 by maw               #+#    #+#             */
-/*   Updated: 2025/07/06 18:11:58 by maw              ###   ########.fr       */
+/*   Updated: 2025/07/07 18:13:39 by masase           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,14 @@ void	set_t2_cylinder(t_cylinder *cylinder, t_ray *ray, float t2)
 	ray->t = t2;
 	ray->color = cylinder->color;
 	ray->hit_sphere = NULL;
+	ray->hit_cone = NULL;
 	ray->hit_cylinder = cylinder;
 	ray->hit_plane = NULL;
 	temp = vector_sub(ray->hit_point, pos_to_vector(cylinder->pos));
 	ray->normal = vector_sub(temp, vector_multi(vector_dot(temp, axis), axis));
 	vector_normalize(&ray->normal);
+	ray->hit_inside = true;
+	ray->normal = vector_multi(-1, ray->normal);
 	ray->hit_point = vector_add(ray->hit_point,
 		vector_multi(1e-4f, ray->normal));
 }

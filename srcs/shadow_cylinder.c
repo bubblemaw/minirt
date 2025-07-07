@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shadow_cylinder.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maw <maw@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: masase <masase@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 15:27:24 by maw               #+#    #+#             */
-/*   Updated: 2025/07/06 18:17:02 by maw              ###   ########.fr       */
+/*   Updated: 2025/07/07 16:34:39 by masase           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,6 @@ bool	shadow_cylinder_check(t_params *params, t_ray *shadow,
 		if ((t1 > 0 && t1 * t1 < light_dist)
 			|| (t2 > 0 && t2 * t2 < light_dist))
 			return (true);
-		
 	}
 	return (false);
 }
