@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maw <maw@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: masase <masase@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 13:05:52 by masase            #+#    #+#             */
-/*   Updated: 2025/07/06 21:41:47 by maw              ###   ########.fr       */
+/*   Updated: 2025/07/07 12:07:24 by masase           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ typedef enum
     PLANE,
 	CYLINDER,
 	SPHERE,
+	CONE,
 }	e_tab_type;
 
 // BASE PIECE STRUCT -----------------------
@@ -240,6 +241,7 @@ typedef struct s_quantity
 	int plane;
 	int	cylinder;
 	int	sphere;
+	int cone;
 }	t_quantity;
 
 typedef struct	s_bump
@@ -327,6 +329,14 @@ int		cylinder_view_point(char *line, int *i, t_cylinder *cylinder);
 int		cylinder_vector(char *line, int *i, t_cylinder *cylinder);
 int		cylinder_rgb(char *line, int *i, t_cylinder *cylinder);
 
+// save cone
+int		save_cone(char *line, t_params *params);
+int		cone_diameter(char *line, int *i, t_cone *cone);
+int		cone_height(char *line, int *i, t_cone *cone);
+int		cone_view_point(char *line, int *i, t_cone *cone);
+int		cone_vector(char *line, int *i, t_cone *cone);
+int		cone_rgb(char *line, int *i, t_cone *cone);
+
 // utils
 int		ft_isspace(int c);
 float	ft_atof(const char *str);
@@ -354,9 +364,11 @@ void		my_mlx_pixel_put(t_params *params, int x, int y, t_color color);
 void		intersection_sphere(t_params *params, t_ray *ray);
 void		intersection_plane(t_params *params, t_ray *ray);
 void		intersection_cylinder(t_params *params, t_ray *ray);
-float		intersection_cylinder_cap(t_params *params, t_ray *ray);
 float		calculate_cap_t(t_cylinder *cylinder, t_ray *ray, t_vector *normal);
 void		set_t_cap(t_ray *ray, float t, t_cylinder *cylinder, t_vector normal);
+void		intersection_cone(t_params *params, t_ray *ray);
+float		calculate_lateral_t_cone(t_cylinder *cone, t_ray *ray);
+
 
 // LIGHT -----------------------------------
 void		calculate_ambient_light(t_params *params, t_ray *ray);

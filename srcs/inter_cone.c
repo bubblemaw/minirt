@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   inter_cone.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maw <maw@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: masase <masase@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/06 21:38:09 by maw               #+#    #+#             */
-/*   Updated: 2025/07/06 22:28:44 by maw              ###   ########.fr       */
+/*   Updated: 2025/07/07 12:20:15 by masase           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minirt.h"
 
-float calculate_lateral_t(t_cylinder *cone, t_ray *ray)
+float calculate_lateral_t_cone(t_cylinder *cone, t_ray *ray)
 {
-	t_inter		t;
+	t_inter_cone	t;
 	float		t1;
 	float		t2;	
 
@@ -40,7 +40,7 @@ float calculate_lateral_t(t_cylinder *cone, t_ray *ray)
 	return (-1);
 }
 
-void	intersection_cylinder(t_params *params, t_ray *ray)
+void	intersection_cone(t_params *params, t_ray *ray)
 {
 	int			i;
 	float		t_lateral;

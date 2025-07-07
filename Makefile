@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: maw <maw@student.42.fr>                    +#+  +:+       +#+         #
+#    By: masase <masase@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/06 12:39:32 by masase            #+#    #+#              #
-#    Updated: 2025/07/06 21:39:17 by maw              ###   ########.fr        #
+#    Updated: 2025/07/07 12:04:22 by masase           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,6 +28,7 @@ SRCS = 	srcs/main.c \
 		srcs/parsing/save_plane.c \
 		srcs/parsing/save_sphere.c \
 		srcs/parsing/save_cylinder.c \
+		srcs/parsing/save_cone.c \
 		srcs/parsing/save_utils.c \
 		srcs/parsing/utils.c \
 		srcs/parsing/utils_2.c \

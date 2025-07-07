@@ -6,7 +6,7 @@
 /*   By: masase <masase@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 15:15:47 by masase            #+#    #+#             */
-/*   Updated: 2025/06/14 19:54:42 by masase           ###   ########.fr       */
+/*   Updated: 2025/07/07 12:01:10 by masase           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,8 @@ int fill_struct(char *line, t_params *params)
 			return(save_plane(line, params));
 		else if(line[i] == 'c' && line[i + 1] == 'y' && ft_isspace(line[i + 2]))
 			return(save_cylinder(line, params));
+		else if(line[i] == 'c' && line[i + 1] == 'o' && ft_isspace(line[i + 2]))
+			return(save_cone(line, params));		
 		else if(line[i] == '\n' || line[i] == '\0')
 			return(TRUE);
 		else

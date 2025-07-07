@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   image_create.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maw <maw@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: masase <masase@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 11:48:26 by hoannguy          #+#    #+#             */
-/*   Updated: 2025/07/06 17:10:54 by maw              ###   ########.fr       */
+/*   Updated: 2025/07/07 12:20:16 by masase           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	intersection(t_params *params, t_ray *ray)
 	intersection_sphere(params, ray);
 	intersection_plane(params, ray);
 	intersection_cylinder(params, ray);
+	
 	calculate_ambient_light(params, ray);
 	calculate_diffuse_light(params, ray);
 	calculate_specular_light(params, ray);
