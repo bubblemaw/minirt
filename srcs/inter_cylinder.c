@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   inter_cylinder.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maw <maw@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: masase <masase@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 14:59:56 by maw               #+#    #+#             */
-/*   Updated: 2025/07/08 15:19:53 by maw              ###   ########.fr       */
+/*   Updated: 2025/07/08 21:14:11 by masase           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,7 @@ bool height_projection(t_ray *ray, t_cylinder *cylinder, float t)
 void	set_t2_cylinder(t_cylinder *cylinder, t_ray *ray, float t2)
 {
 	t_vector	axis;
-	t_vector	hit_to_center;
-	// float		len;
+	t_vector	temp;
 
 	if (t2 >= ray->t || t2 < 0)
 		return ;
@@ -48,26 +47,22 @@ void	set_t2_cylinder(t_cylinder *cylinder, t_ray *ray, float t2)
 	vector_normalize (&axis);
 	ray->hit_point = vector_add(ray->origin,
 			vector_multi(t2, ray->direction));
-	hit_to_center = vector_sub(ray->hit_point, axis);
-	ray->normal = vector_sub(hit_to_center, vector_multi(vector_dot(hit_to_center, axis), axis));
 	ray->t = t2;
 	ray->color = cylinder->color;
 	ray->hit_sphere = NULL;
 	ray->hit_cone = NULL;
 	ray->hit_cylinder = cylinder;
 	ray->hit_plane = NULL;
-	// temp = vector_sub(ray->hit_point, pos_to_vector(cylinder->pos));
-	// ray->normal = vector_sub(temp, vector_multi(vector_dot(temp, axis), axis));	
-	// ray->normal = axis;
+	temp = vector_sub(ray->hit_point, pos_to_vector(cylinder->pos));
+	ray->normal = vector_sub(temp, vector_multi(vector_dot(temp, axis), axis));	
 	vector_normalize(&ray->normal);
 	if (vector_dot(ray->normal, ray->direction) > 0)
-		ray->normal = vector_multi(-1, ray->normal);
-	// vector_normalize(&ray->normal);
-
+		ray->hit_inside = true;
+	else
+		ray->hit_inside = false;	
 	ray->hit_point = vector_add(ray->hit_point,
 		vector_multi(1e-4f, ray->normal));
 }
-
 
 float calculate_lateral_t(t_cylinder *cylinder, t_ray *ray)
 {
@@ -90,9 +85,9 @@ float calculate_lateral_t(t_cylinder *cylinder, t_ray *ray)
 	t2 = (-t.b + sqrtf(t.disc)) / (2 * t.a);	
 	if (t2 < 0 )
 		return (-1);
-	if (t1 > 0 )
+	if (t1 > 0 && height_projection(ray, cylinder, t1))
 		return (t1);
-	if (t2 > 0)
+	if (t2 > 0 && height_projection(ray, cylinder, t2))
 		return (t2);
 	return (-1);
 }
@@ -112,12 +107,8 @@ void	intersection_cylinder(t_params *params, t_ray *ray)
 		t_lateral = calculate_lateral_t(params->cylinder[i], ray);
 		t_cap = calculate_cap_t(params->cylinder[i], ray, &normal_cap);
 		if (t_cap > 0 && t_cap < ray->t)
-			set_t_cap(ray, t_cap, params->cylinder[i], normal_cap);		
+			set_t_cap(ray, t_cap, params->cylinder[i], normal_cap);						
 		if (t_lateral > 0 && t_lateral < ray->t)
-			set_t2_cylinder(params->cylinder[i], ray, t_lateral);	
-
+			set_t2_cylinder(params->cylinder[i], ray, t_lateral);
 	}
-	ray->hit_inside = true;
-	// ray->normal = vector_multi(-1, ray->normal);
-	
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   inter_cylinder_cap.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maw <maw@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: masase <masase@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/28 16:03:24 by maw               #+#    #+#             */
-/*   Updated: 2025/07/08 13:41:22 by maw              ###   ########.fr       */
+/*   Updated: 2025/07/08 21:14:15 by masase           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,11 @@ void set_t_cap(t_ray *ray, float t, t_cylinder *cylinder, t_vector normal)
 	ray->color = cylinder->color;
 	ray->normal = normal;
 	if (vector_dot(ray->normal, ray->direction) > 0)
-		ray->normal = vector_multi(-1, ray->normal);	
+	{
+		ray->hit_inside = true;
+	}
+	else
+		ray->hit_inside = false;	
 	ray->hit_point = vector_add(ray->origin, vector_multi(t, ray->direction));
 	ray->hit_point = vector_add(ray->hit_point, vector_multi(1e-4f, normal));
 }

@@ -6,7 +6,7 @@
 /*   By: masase <masase@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/06 21:38:09 by maw               #+#    #+#             */
-/*   Updated: 2025/07/07 15:45:31 by masase           ###   ########.fr       */
+/*   Updated: 2025/07/08 21:38:50 by masase           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,12 @@ void set_t_cap_cone(t_ray *ray, float t, t_cone *cone, t_vector normal)
 	ray->hit_cone = cone;
 	ray->color = cone->color;
 	ray->normal = normal;
+	if (vector_dot(ray->normal, ray->direction) > 0)
+	{
+		ray->hit_inside = true;
+	}
+	else
+		ray->hit_inside = false;		
 	ray->hit_point = vector_add(ray->origin, vector_multi(t, ray->direction));
 	ray->hit_point = vector_add(ray->hit_point, vector_multi(1e-4f, normal));
 }
@@ -105,6 +111,12 @@ void	set_t2_cone(t_cone *cone, t_ray *ray, float t2)
 	temp = vector_sub(ray->hit_point, pos_to_vector(cone->pos));
 	ray->normal = vector_sub(temp, vector_multi(vector_dot(temp, axis), axis));
 	vector_normalize(&ray->normal);
+	if (vector_dot(ray->normal, ray->direction) > 0)
+	{
+		ray->hit_inside = true;
+	}
+	else
+		ray->hit_inside = false;
 	ray->hit_point = vector_add(ray->hit_point,
 		vector_multi(1e-4f, ray->normal));
 }
@@ -134,9 +146,9 @@ float calculate_lateral_t_cone(t_cone *cone, t_ray *ray)
 	t2 = (-t.b + sqrtf(t.disc)) / (2 * t.a);	
 	if (t2 < 0 )
 		return (-1);
-	if (t1 < t2 && height_projection_cone(ray, cone, t1))
+	if (t1 > 0 && height_projection_cone(ray, cone, t1))
 		return (t1);
-	if (t2 < t1 && height_projection_cone(ray, cone, t2))
+	if (t2 > 0 && height_projection_cone(ray, cone, t2))
 		return (t2);
 	return (-1);
 }
@@ -150,18 +162,14 @@ void	intersection_cone(t_params *params, t_ray *ray)
 	
 	if (!params->cone)
 		return ;
-	t_lateral = -1;
-	t_cap = -1;
 	i = -1;
 	while (params->cone[++i])
 	{
-		t_lateral = -1;
-		t_cap = -1;
 		t_lateral = calculate_lateral_t_cone(params->cone[i], ray);
 		t_cap = calculate_cap_t_cone(params->cone[i], ray, &normal_cap);
+		if (t_cap > 0 && t_cap < ray->t)
+			set_t_cap_cone(ray, t_cap, params->cone[i], normal_cap);		
 		if (t_lateral > 0 && t_lateral < ray->t)
 			set_t2_cone(params->cone[i], ray, t_lateral);	
-		if (t_cap > 0 && t_cap < ray->t)
-			set_t_cap_cone(ray, t_cap, params->cone[i], normal_cap);
 	}
 }
