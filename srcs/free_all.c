@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_all.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hoannguy <hoannguy@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: masase <masase@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 10:21:26 by hoannguy          #+#    #+#             */
-/*   Updated: 2025/06/09 10:31:17 by hoannguy         ###   ########.fr       */
+/*   Updated: 2025/07/09 18:00:03 by masase           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,10 +60,23 @@ void	free_sphere(t_params *params)
 	free(params->sphere);
 }
 
+void	free_cone(t_params *params)
+{
+	int	i;
+
+	i = -1;
+	if (!params->cone)
+		return ;
+	while (params->cone[++i])
+		free(params->cone[i]);
+	free(params->cone);
+}
+
 void	free_all(t_params *params)
 {
 	free_light(params);
 	free_plane(params);
 	free_cylinder(params);
 	free_sphere(params);
+	free_cone(params);
 }

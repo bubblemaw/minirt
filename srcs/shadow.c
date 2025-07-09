@@ -6,7 +6,7 @@
 /*   By: masase <masase@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 18:46:02 by hoannguy          #+#    #+#             */
-/*   Updated: 2025/07/08 21:40:59 by masase           ###   ########.fr       */
+/*   Updated: 2025/07/09 16:33:35 by masase           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ void	initialise_shadow_ray(t_ray *ray, t_ray *shadow)
 	t_vector	offset;
 
 	if (ray->hit_inside)
-		offset = vector_multi(-0.001f, ray->normal);
+		offset = vector_multi(-0.1f, ray->normal);
 	else
-		offset = vector_multi(0.001f, ray->normal);
+		offset = vector_multi(0.1f, ray->normal);
 	shadow->origin = vector_add(ray->hit_point, offset);
 	shadow->color.r = 0;
 	shadow->color.g = 0;
@@ -28,6 +28,7 @@ void	initialise_shadow_ray(t_ray *ray, t_ray *shadow)
 	shadow->hit_plane = NULL;
 	shadow->hit_cylinder = NULL;
 	shadow->hit_sphere = NULL;
+	shadow->hit_cone = NULL;	
 }
 
 bool	shadow_check(t_params *params, t_ray *ray, int index)

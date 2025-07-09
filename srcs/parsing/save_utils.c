@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   save_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maw <maw@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: masase <masase@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 15:54:55 by masase            #+#    #+#             */
-/*   Updated: 2025/06/28 18:33:47 by maw              ###   ########.fr       */
+/*   Updated: 2025/07/09 17:44:48 by masase           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minirt.h"
 
-int save_texture(int *i, int *value, char *line)
+bool save_texture(int *i, int *value, char *line)
 {
 	if (line[*i] && ft_isdigit(line[*i]))
 		*value = ft_atoi(line + (*i));
@@ -22,10 +22,10 @@ int save_texture(int *i, int *value, char *line)
 		return (ft_error("Texture parameters have to be a number from 0 to 12"));
 	while(ft_isdigit(line[*i]) && line[*i])
 		(*i)++;
-	return (TRUE);
+	return (true);
 }
 
-int save_shine(int *i, float *value, char *line)
+bool save_shine(int *i, float *value, char *line)
 {
 	if (line[*i] && ft_isdigit(line[*i]))
 		*value = ft_atof(line + (*i));
@@ -35,10 +35,10 @@ int save_shine(int *i, float *value, char *line)
 		return (ft_error("Shine can set be set from 0 to 255"));
 	while(ft_isdigit_point(line[*i]) && line[*i])
 		(*i)++;
-	return (TRUE);
+	return (true);
 }
 
-int put_rgb(int *i, int *value, char *line)
+bool put_rgb(int *i, int *value, char *line)
 {
 	if (line[*i] && ft_isdigit(line[*i]))
 	{
@@ -52,10 +52,10 @@ int put_rgb(int *i, int *value, char *line)
 		(*i)++;
 	if (line[*i] == ',')
 		(*i)++;
-	return (TRUE);
+	return (true);
 }
 
-int put_vector(int *i, float *value, char *line)
+bool put_vector(int *i, float *value, char *line)
 {
 	if (line[*i] && ft_isdigit_point(line[*i]))
 	{
@@ -69,10 +69,10 @@ int put_vector(int *i, float *value, char *line)
 		(*i)++;
 	if (line[*i] == ',')
 		(*i)++;
-	return (TRUE);
+	return (true);
 }
 
-int put_position(int *i, float *value, char *line)
+bool put_position(int *i, float *value, char *line)
 {
 	if (line[*i] && ft_isdigit_point(line[*i]))
 	{
@@ -84,5 +84,5 @@ int put_position(int *i, float *value, char *line)
 		(*i)++;
 	if (line[*i] == ',')
 		(*i)++;
-	return (TRUE);
+	return (true);
 }

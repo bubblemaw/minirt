@@ -6,7 +6,7 @@
 /*   By: masase <masase@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 15:44:27 by masase            #+#    #+#             */
-/*   Updated: 2025/07/07 16:34:26 by masase           ###   ########.fr       */
+/*   Updated: 2025/07/09 16:37:50 by masase           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,12 @@ bool	shadow_cone_check(t_params *params, t_ray *shadow, float light_dist)
         vector_normalize(&axis);
 		t_lateral = calculate_lateral_t_cone(params->cone[i], shadow);
 		t_cap = calculate_cap_t_cone(params->cone[i], shadow, &normal_cap);
-		if (t_lateral > 0 && t_lateral < light_dist)
+		if (t_lateral > 0 && t_lateral * t_lateral < light_dist)
         {
-            if (height_check_cone(shadow, t_lateral, axis, params->cone[i]))
-                return (true);
+			if (height_check_cone(shadow, t_lateral, axis, params->cone[i]))
+                return (true);	
         }
-		if (t_cap > 0 && t_cap < light_dist)
+		if (t_cap > 0 && t_cap * t_cap < light_dist)
 			return (true);
 	}
     return (false);

@@ -6,7 +6,7 @@
 /*   By: masase <masase@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 13:05:52 by masase            #+#    #+#             */
-/*   Updated: 2025/07/07 16:06:37 by masase           ###   ########.fr       */
+/*   Updated: 2025/07/09 18:09:26 by masase           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -255,6 +255,8 @@ typedef struct	s_ray
 
 typedef struct s_quantity
 {
+	int camera;
+	int ambiant;
 	int	light;
 	int plane;
 	int	cylinder;
@@ -296,30 +298,30 @@ typedef struct	s_params
 
 // PARSING ---------------------------------
 
-int 	ft_error(char *str);
-int		check_arg(char *str);
-int		fill_struct(char *line, t_params *params);
-int		read_scene(char *file, t_params *params);
-int		parsing(char *file, t_params *params);
+bool 	ft_error(char *str);
+bool	check_arg(char *str);
+bool	fill_struct(char *line, t_params *params);
+bool	read_scene(char *file, t_params *params);
+bool		parsing(char *file, t_params *params);
 int		ft_isdigit_point(int c);
 
 // save utils
-int		put_rgb(int *i, int *value, char *line);
-int		put_vector(int *i, float *value, char *line);
-int		put_position(int *i, float *value, char *line);
-int		save_shine(int *i, float *value, char *line);
-int		save_texture(int *i, int *value, char *line);
+bool		put_rgb(int *i, int *value, char *line);
+bool		put_vector(int *i, float *value, char *line);
+bool		put_position(int *i, float *value, char *line);
+bool		save_shine(int *i, float *value, char *line);
+bool		save_texture(int *i, int *value, char *line);
 
 // save camera
-int		save_camera(char *line, t_params *params);
-int		save_fov(char *line, int *i, t_camera *camera);
-int		cam_view_point(char *line, int *i, t_camera *camera);
-int		cam_vector(char *line, int *i, t_camera *camera);
+bool		save_camera(char *line, t_params *params);
+bool		save_fov(char *line, int *i, t_camera *camera);
+bool		cam_view_point(char *line, int *i, t_camera *camera);
+bool		cam_vector(char *line, int *i, t_camera *camera);
 
 // save ambient
-int		save_ambiant(char *line, t_params *params);
-int		amb_rgb(char *line, int *i, t_ambient *ambient);
-int		amb_ratio(char *line, int *i, t_ambient *ambient);
+bool		save_ambiant(char *line, t_params *params);
+bool		amb_rgb(char *line, int *i, t_ambient *ambient);
+bool		amb_ratio(char *line, int *i, t_ambient *ambient);
 
 // save light
 int		save_light(char *line, t_params *params);

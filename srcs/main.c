@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maw <maw@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: masase <masase@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 12:39:14 by masase            #+#    #+#             */
-/*   Updated: 2025/07/01 15:41:10 by maw              ###   ########.fr       */
+/*   Updated: 2025/07/09 18:09:12 by masase           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -218,8 +218,11 @@ int	main(int ac, char **av)
 		TEMP_simulation(&params); // replace with parser
     else
 	{
-		if (parsing(av[1], &params) == FALSE)
-			return (FALSE);
+		if (parsing(av[1], &params) == false)
+		{
+			free_all(&params);
+			return (false);
+		}
 	}
 	// print_sphere_as_array(params.sphere[0]);
 	// print_sphere_as_array(params.sphere[0]);

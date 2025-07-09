@@ -3,34 +3,37 @@
 /*                                                        :::      ::::::::   */
 /*   save_ambiance.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maw <maw@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: masase <masase@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 12:06:32 by masase            #+#    #+#             */
-/*   Updated: 2025/06/23 13:27:04 by maw              ###   ########.fr       */
+/*   Updated: 2025/07/09 17:43:14 by masase           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minirt.h"
 
-int save_ambiant(char *line, t_params *params)
+bool save_ambiant(char *line, t_params *params)
 {
 	int i;
 
 	i = 0;
+	if 	(params->quantity.ambiant > 0)
+		return (ft_error("I can only handle one ambiant light :("));	
 	while (ft_isalpha(line[i]) && line[i])
 		i++;
 	while (ft_isspace(line[i]) && line[i])
 		i++;
-	if (amb_ratio(line, &i, &params->ambient) == FALSE)
-		return (FALSE);	
+	if (amb_ratio(line, &i, &params->ambient) == false)
+		return (false);	
 	while (ft_isspace(line[i]) && line[i])
 		i++;
-	if (amb_rgb(line, &i, &params->ambient) == FALSE)
-		return (FALSE);
-	return (TRUE);
+	if (amb_rgb(line, &i, &params->ambient) == false)
+		return (false);
+	params->quantity.ambiant++;
+	return (true);
 }
 
-int amb_ratio(char *line, int *i, t_ambient *ambient)
+bool amb_ratio(char *line, int *i, t_ambient *ambient)
 {
 	if ((line[*i] && ft_isdigit(line[*i])) || line[*i] == '.')
 		ambient->ratio = ft_atof(line + (*i));
@@ -40,18 +43,18 @@ int amb_ratio(char *line, int *i, t_ambient *ambient)
 		(*i)++;
 	if (!ft_isspace(line[*i]))
 		return (ft_error("there is too much ambient ratio arguments"));
-	return (TRUE);
+	return (true);
 }
 
-int amb_rgb(char *line, int *i, t_ambient *ambient)
+bool amb_rgb(char *line, int *i, t_ambient *ambient)
 {
-	if (put_rgb(i, &ambient->color.r, line) == FALSE)
-		return (FALSE);
-	if (put_rgb(i, &ambient->color.g, line) == FALSE)
-		return (FALSE);
-	if (put_rgb(i, &ambient->color.b, line) == FALSE)
-		return (FALSE);
+	if (put_rgb(i, &ambient->color.r, line) == false)
+		return (false);
+	if (put_rgb(i, &ambient->color.g, line) == false)
+		return (false);
+	if (put_rgb(i, &ambient->color.b, line) == false)
+		return (false);
 	if (ft_isprint(line[*i]))
 		return (ft_error("Too much arguments for the ambient RGB parameters"));		
-	return (TRUE);
+	return (true);
 }
