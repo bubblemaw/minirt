@@ -6,7 +6,7 @@
 #    By: masase <masase@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/06 12:39:32 by masase            #+#    #+#              #
-#    Updated: 2025/07/07 16:07:43 by masase           ###   ########.fr        #
+#    Updated: 2025/07/10 18:20:36 by masase           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,20 +16,22 @@ SRCS = 	srcs/main.c \
 		srcs/free_all.c srcs/free_all2.c srcs/hook.c srcs/hook2.c srcs/hook3.c srcs/hook4.c\
 		srcs/vector.c srcs/vector2.c srcs/vector3.c \
 		srcs/image_start.c srcs/image_create.c srcs/image_get_color.c\
-		srcs/inter_sphere.c srcs/inter_plane.c srcs/inter_cylinder.c srcs/inter_cylinder_cap.c srcs/inter_cone.c\
+		srcs/inter_sphere.c srcs/inter_plane.c srcs/inter_cylinder.c srcs/inter_cylinder_cap.c srcs/inter_cone.c srcs/inter_cone_cap.c\
 		srcs/light_ambient.c srcs/light_diffuse.c srcs/light_specular.c\
 		srcs/shadow.c srcs/shadow_sphere.c srcs/shadow_plane.c srcs/shadow_cylinder.c srcs/shadow_cone.c\
 		srcs/pattern_checkerboard.c srcs/pattern_stripe.c srcs/pattern_planets.c\
 		srcs/bump_initialise.c srcs/bump_sphere.c\
 		srcs/parsing/parsing.c \
+		srcs/parsing/fill_struct.c \
 		srcs/parsing/save_ambiance.c \
 		srcs/parsing/save_camera.c \
 		srcs/parsing/save_light.c \
 		srcs/parsing/save_plane.c \
 		srcs/parsing/save_sphere.c \
-		srcs/parsing/save_cylinder.c \
-		srcs/parsing/save_cone.c \
+		srcs/parsing/save_cylinder.c srcs/parsing/save_cylinder_utils.c \
+		srcs/parsing/save_cone.c srcs/parsing/save_cone_utils.c\
 		srcs/parsing/save_utils.c \
+		srcs/parsing/save_utils2.c \
 		srcs/parsing/utils.c \
 		srcs/parsing/utils_2.c \
 		srcs/parsing/error_message.c \

@@ -6,7 +6,7 @@
 /*   By: masase <masase@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 13:05:52 by masase            #+#    #+#             */
-/*   Updated: 2025/07/09 18:09:26 by masase           ###   ########.fr       */
+/*   Updated: 2025/07/10 18:56:58 by masase           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,24 +57,17 @@
 # define HEIGHT 1080
 # define WIDTH 1920
 
-// syntax
-enum
+typedef enum t_tab_type
 {
-	FALSE,
-	TRUE,
-};
-
-typedef enum
-{
-    LIGHT,
-    PLANE,
+	LIGHT,
+	PLANE,
 	CYLINDER,
 	SPHERE,
 	CONE,
-}	e_tab_type;
+}	t_tab_type;
 
 // BASE PIECE STRUCT -----------------------
-typedef struct	s_data
+typedef struct s_data
 {
 	void	*img;
 	char	*addr;
@@ -83,36 +76,36 @@ typedef struct	s_data
 	int		endian;
 }	t_data;
 
-typedef struct	s_vector
+typedef struct s_vector
 {
 	float	a;
 	float	b;
 	float	c;
 }	t_vector;
 
-typedef struct	s_pos
+typedef struct s_pos
 {
 	float	x;
 	float	y;
 	float	z;
 }	t_pos;
 
-typedef struct	s_color
+typedef struct s_color
 {
 	int	r;
 	int	g;
 	int	b;
 }	t_color;
 
-typedef struct	s_pattern
+typedef struct s_pattern
 {
-	int	size;
+	int		size;
 	t_color	color1;
 	t_color	color2;
 }	t_pattern;
 
 // SAVE LINE -------------------------------
-typedef struct	s_pixel
+typedef struct s_pixel
 {
 	int			i;
 	int			j;
@@ -120,7 +113,7 @@ typedef struct	s_pixel
 	t_vector	vert;
 }	t_pixel;
 
-typedef	struct	s_world
+typedef struct s_world
 {
 	float		aspect_ratio;
 	float		fov_rad;
@@ -130,13 +123,13 @@ typedef	struct	s_world
 	t_vector	world_up;
 }	t_world;
 
-typedef struct	s_value_int
+typedef struct s_value_int
 {
 	int	x;
 	int	y;
 }	t_value_int;
 
-typedef struct	s_value_float
+typedef struct s_value_float
 {
 	float	t1;
 	float	t2;
@@ -153,7 +146,7 @@ typedef struct s_inter
 	float		a;
 	float		c;
 	float		disc;
-} t_inter;
+}	t_inter;
 
 typedef struct s_inter_cone
 {
@@ -170,30 +163,30 @@ typedef struct s_inter_cone
 	float		a;
 	float		c;
 	float		disc;
-} t_inter_cone;
+}	t_inter_cone;
 
 // SCENE ITEM STRUCT -----------------------
-typedef struct	s_camera
+typedef struct s_camera
 {
 	t_vector	vector;
 	t_pos		pos;
 	int			fov;
 }	t_camera;
 
-typedef struct	s_light
+typedef struct s_light
 {
 	t_pos	pos;
 	t_color	color;
 	float	ratio;
 }	t_light;
 
-typedef struct	s_ambient
+typedef struct s_ambient
 {
 	float	ratio;
 	t_color	color;
 }	t_ambient;
 
-typedef struct	s_plane
+typedef struct s_plane
 {
 	t_vector	vector;
 	t_pos		pos;
@@ -201,7 +194,7 @@ typedef struct	s_plane
 	int			texture_type;
 }	t_plane;
 
-typedef struct	s_cylinder
+typedef struct s_cylinder
 {
 	t_vector	vector;
 	t_pos		pos;
@@ -212,7 +205,7 @@ typedef struct	s_cylinder
 	int			texture_type;
 }	t_cylinder;
 
-typedef struct	s_cone
+typedef struct s_cone
 {
 	t_vector	vector;
 	t_pos		pos;
@@ -223,7 +216,7 @@ typedef struct	s_cone
 	int			texture_type;
 }	t_cone;
 
-typedef struct	s_sphere
+typedef struct s_sphere
 {
 	t_pos		pos;
 	t_color		color;
@@ -234,7 +227,7 @@ typedef struct	s_sphere
 }	t_sphere;
 
 // MAIN STRUCT -----------------------------
-typedef struct	s_ray
+typedef struct s_ray
 {
 	t_vector	origin;
 	t_vector	direction;
@@ -255,16 +248,16 @@ typedef struct	s_ray
 
 typedef struct s_quantity
 {
-	int camera;
-	int ambiant;
-	int	light;
-	int plane;
-	int	cylinder;
-	int	sphere;
-	int cone;
+	int		camera;
+	int		ambiant;
+	int		light;
+	int		plane;
+	int		cylinder;
+	int		sphere;
+	int		cone;
 }	t_quantity;
 
-typedef struct	s_bump
+typedef struct s_bump
 {
 	void	*earth;
 	void	*earthbump;
@@ -278,7 +271,7 @@ typedef struct	s_bump
 	void	*venusbump;
 }	t_bump;
 
-typedef struct	s_params
+typedef struct s_params
 {
 	t_camera	camera;
 	t_ambient	ambient;
@@ -298,12 +291,12 @@ typedef struct	s_params
 
 // PARSING ---------------------------------
 
-bool 	ft_error(char *str);
-bool	check_arg(char *str);
-bool	fill_struct(char *line, t_params *params);
-bool	read_scene(char *file, t_params *params);
+bool		ft_error(char *str);
+bool		check_arg(char *str);
+bool		fill_struct(char *line, t_params *params);
+bool		read_scene(char *file, t_params *params);
 bool		parsing(char *file, t_params *params);
-int		ft_isdigit_point(int c);
+int			ft_isdigit_point(int c);
 
 // save utils
 bool		put_rgb(int *i, int *value, char *line);
@@ -311,6 +304,10 @@ bool		put_vector(int *i, float *value, char *line);
 bool		put_position(int *i, float *value, char *line);
 bool		save_shine(int *i, float *value, char *line);
 bool		save_texture(int *i, int *value, char *line);
+void		skip_space(char *line, int *i);
+void		skip_alpha(char *line, int *i);
+bool		skip_sign_and_number(char *line, int *i);
+
 
 // save camera
 bool		save_camera(char *line, t_params *params);
@@ -324,56 +321,57 @@ bool		amb_rgb(char *line, int *i, t_ambient *ambient);
 bool		amb_ratio(char *line, int *i, t_ambient *ambient);
 
 // save light
-int		save_light(char *line, t_params *params);
-int		light_view_point(char *line, int *i, t_light *light);
-int		light_rgb(char *line, int *i, t_light *light);
-int		light_ratio(char *line, int *i, t_light *light);
+bool		save_light(char *line, t_params *params);
+bool		light_view_point(char *line, int *i, t_light *light);
+bool		light_rgb(char *line, int *i, t_light *light);
+bool		light_ratio(char *line, int *i, t_light *light);
 
 // save sphere
-int		save_sphere(char *line, t_params *params);
-int		sphere_view_point(char *line, int *i, t_sphere *sphere);
-int		sphere_rgb(char *line, int *i, t_sphere *sphere);
-int		sphere_diameter(char *line, int *i, t_sphere *sphere);
+bool		save_sphere(char *line, t_params *params);
+bool		sphere_view_point(char *line, int *i, t_sphere *sphere);
+bool		sphere_rgb(char *line, int *i, t_sphere *sphere);
+bool		sphere_diameter(char *line, int *i, t_sphere *sphere);
 
 // save plane
-int		save_plane(char *line, t_params *params);
-int		plane_vector(char *line, int *i, t_plane *plane);
-int		plane_view_point(char *line, int *i, t_plane *plane);
-int		plane_rgb(char *line, int *i, t_plane *plane);
+bool		save_plane(char *line, t_params *params);
+bool		plane_vector(char *line, int *i, t_plane *plane);
+bool		plane_view_point(char *line, int *i, t_plane *plane);
+bool		plane_rgb(char *line, int *i, t_plane *plane);
 
 // save cylinder
-int		save_cylinder(char *line, t_params *params);
-int		cylinder_diameter(char *line, int *i, t_cylinder *cylinder);
-int		cylinder_height(char *line, int *i, t_cylinder *cylinder);
-int		cylinder_view_point(char *line, int *i, t_cylinder *cylinder);
-int		cylinder_vector(char *line, int *i, t_cylinder *cylinder);
-int		cylinder_rgb(char *line, int *i, t_cylinder *cylinder);
+bool		save_cylinder(char *line, t_params *params);
+bool		cylinder_diameter(char *line, int *i, t_cylinder *cylinder);
+bool		cylinder_height(char *line, int *i, t_cylinder *cylinder);
+bool		cylinder_view_point(char *line, int *i, t_cylinder *cylinder);
+bool		cylinder_vector(char *line, int *i, t_cylinder *cylinder);
+bool		cylinder_rgb(char *line, int *i, t_cylinder *cylinder);
 
 // save cone
-int		save_cone(char *line, t_params *params);
-int		cone_diameter(char *line, int *i, t_cone *cone);
-int		cone_height(char *line, int *i, t_cone *cone);
-int		cone_view_point(char *line, int *i, t_cone *cone);
-int		cone_vector(char *line, int *i, t_cone *cone);
-int		cone_rgb(char *line, int *i, t_cone *cone);
+bool		save_cone(char *line, t_params *params);
+bool		cone_diameter(char *line, int *i, t_cone *cone);
+bool		cone_height(char *line, int *i, t_cone *cone);
+bool		cone_view_point(char *line, int *i, t_cone *cone);
+bool		cone_vector(char *line, int *i, t_cone *cone);
+bool		cone_rgb(char *line, int *i, t_cone *cone);
 
 // utils
-int		ft_isspace(int c);
-float	ft_atof(const char *str);
-void	decimal_atof(int i, const char *str, float *resultat);
+int			ft_isspace(int c);
+float		ft_atof(const char *str);
+void		decimal_atof(int i, const char *str, float *resultat);
 
 // utils 2
-void	*ft_realloc(void *ptr, size_t old_size, size_t new_size);
-void	*alloc_tab(t_params *params, e_tab_type type);
-size_t	setup_tab_type(void ***tab, int **current_size, t_params *params, e_tab_type type);
+void		*ft_realloc(void *ptr, size_t old_size, size_t new_size);
+void		*alloc_tab(t_params *params, t_tab_type type);
+size_t		setup_tab_type(void ***tab, int **current_size,
+				t_params *params, t_tab_type type);
 
 // printf
-void	print_camera_as_array(t_camera *cam);
-void	print_plane_as_array(t_plane *plane);
-void	print_sphere_as_array(t_sphere *sp);
-void	print_cylinder_as_array(t_cylinder *cyl);
-void	print_ambiance_as_array(t_ambient *amb);
-void	print_point_as_array(t_light *light);
+void		print_camera_as_array(t_camera *cam);
+void		print_plane_as_array(t_plane *plane);
+void		print_sphere_as_array(t_sphere *sp);
+void		print_cylinder_as_array(t_cylinder *cyl);
+void		print_ambiance_as_array(t_ambient *amb);
+void		print_point_as_array(t_light *light);
 
 // IMAGE -----------------------------------
 void		render(t_params *params);
@@ -385,10 +383,13 @@ void		intersection_sphere(t_params *params, t_ray *ray);
 void		intersection_plane(t_params *params, t_ray *ray);
 void		intersection_cylinder(t_params *params, t_ray *ray);
 float		calculate_cap_t(t_cylinder *cylinder, t_ray *ray, t_vector *normal);
-void		set_t_cap(t_ray *ray, float t, t_cylinder *cylinder, t_vector normal);
+void		set_t_cap(t_ray *ray, float t, t_cylinder *cylinder,
+				t_vector normal);
 void		intersection_cone(t_params *params, t_ray *ray);
 float		calculate_lateral_t_cone(t_cone *cone, t_ray *ray);
 float		calculate_cap_t_cone(t_cone *cone, t_ray *ray, t_vector *normal);
+void		set_t_cap_cone(t_ray *ray, float t, t_cone *cone, t_vector normal);
+
 
 
 // LIGHT -----------------------------------
@@ -399,15 +400,15 @@ void		calculate_specular_light(t_params *params, t_ray *ray);
 // SHADOW ----------------------------------
 bool		shadow_check(t_params *params, t_ray *ray, int index);
 bool		shadow_sphere_check(t_params *params, t_ray *shadow,
-			float light_dist, t_vector light_pos);
+				float light_dist, t_vector light_pos);
 bool		shadow_plane_check(t_params *params, t_ray *shadow,
-			t_ray *ray, t_vector light_pos);
+				t_ray *ray, t_vector light_pos);
 bool		shadow_cylinder_check(t_params *params, t_ray *shadow,
-			float light_dist);
+				float light_dist);
 bool		shadow_cylinder_cap_check(t_params *params, t_ray *shadow,
-			float light_dist);
+				float light_dist);
 bool		shadow_cone_check(t_params *params, t_ray *shadow,
-			float light_dist);		
+				float light_dist);		
 
 // PATTERN ---------------------------------
 void		initialise_pattern(t_params *params);
@@ -429,6 +430,7 @@ void 		apply_bump(t_params *params, t_ray *ray, t_sphere *sphere);
 // UTIL ------------------------------------
 void		free_all(t_params *params);
 void		free_maps(t_params *params);
+void		free_cone(t_params *params);
 t_vector	vector_add(t_vector v1, t_vector v2);
 t_vector	vector_sub(t_vector v1, t_vector v2);
 t_vector	vector_multi(float x, t_vector v1);

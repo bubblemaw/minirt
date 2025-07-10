@@ -6,13 +6,13 @@
 /*   By: masase <masase@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/07 23:02:43 by maw               #+#    #+#             */
-/*   Updated: 2025/07/09 18:00:21 by masase           ###   ########.fr       */
+/*   Updated: 2025/07/10 18:26:28 by masase           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minirt.h"
 
-bool ft_error(char *str)
+bool	ft_error(char *str)
 {
 	printf("Error\n");
 	printf("%s\n", str);

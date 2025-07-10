@@ -6,7 +6,7 @@
 /*   By: masase <masase@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 12:03:01 by hoannguy          #+#    #+#             */
-/*   Updated: 2025/07/07 15:06:40 by masase           ###   ########.fr       */
+/*   Updated: 2025/07/10 16:39:33 by masase           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,13 +61,6 @@ void	get_cone_color(t_params *params, t_ray *ray, t_color *color)
 	t_color	temp;
 
 	(void)params;
-	// if (ray->hit_cone->texture_type == CHECKER)
-	// 	temp = checkerboard_cylinder(params,
-	// 			ray->hit_point, ray->hit_cone);
-	// else if (ray->hit_cone->texture_type == STRIPE)
-	// 	temp = stripe_cylinder(params,
-	// 			ray->hit_point, ray->hit_cone);
-	// else
 	temp = ray->hit_cone->color;
 	color->r = temp.r;
 	color->g = temp.g;

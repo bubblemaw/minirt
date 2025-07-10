@@ -6,18 +6,18 @@
 /*   By: masase <masase@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 12:06:25 by masase            #+#    #+#             */
-/*   Updated: 2025/07/09 17:41:36 by masase           ###   ########.fr       */
+/*   Updated: 2025/07/10 18:28:28 by masase           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minirt.h"
 
-bool save_camera(char *line, t_params *params)
+bool	save_camera(char *line, t_params *params)
 {
-	int i;
+	int	i;
 
 	i = 0;
-	if 	(params->quantity.camera > 0)
+	if (params->quantity.camera > 0)
 		return (ft_error("I can only handle one camera :("));
 	while (ft_isalpha(line[i]) && line[i])
 		i++;
@@ -33,11 +33,13 @@ bool save_camera(char *line, t_params *params)
 		i++;
 	if (save_fov(line, &i, &params->camera) == false)
 		return (false);
+	if (ft_isprint(line[i]))
+		return (ft_error("Too much arguments for the camera parameters"));
 	params->quantity.camera++;
 	return (true);
 }
 
-bool save_fov(char *line, int *i, t_camera *camera)
+bool	save_fov(char *line, int *i, t_camera *camera)
 {
 	camera->fov = atoi(line + (*i));
 	if (camera->fov < 0 || camera->fov > 180)
@@ -51,7 +53,7 @@ bool save_fov(char *line, int *i, t_camera *camera)
 	return (true);
 }
 
-bool cam_view_point(char *line, int *i, t_camera *camera)
+bool	cam_view_point(char *line, int *i, t_camera *camera)
 {
 	if (put_position(i, &camera->pos.x, line) == false)
 		return (false);
@@ -64,7 +66,7 @@ bool cam_view_point(char *line, int *i, t_camera *camera)
 	return (true);
 }
 
-bool cam_vector(char *line, int *i, t_camera *camera)
+bool	cam_vector(char *line, int *i, t_camera *camera)
 {
 	if (put_vector(i, &camera->vector.a, line) == false)
 		return (false);
@@ -73,6 +75,6 @@ bool cam_vector(char *line, int *i, t_camera *camera)
 	if (put_vector(i, &camera->vector.c, line) == false)
 		return (false);
 	if (!ft_isspace(line[*i]))
-		return (ft_error("Too much arguments for the vector parameters"));		
+		return (ft_error("Too much arguments for the vector parameters"));
 	return (true);
 }

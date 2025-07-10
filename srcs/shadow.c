@@ -6,7 +6,7 @@
 /*   By: masase <masase@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 18:46:02 by hoannguy          #+#    #+#             */
-/*   Updated: 2025/07/09 16:33:35 by masase           ###   ########.fr       */
+/*   Updated: 2025/07/10 18:02:08 by masase           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	initialise_shadow_ray(t_ray *ray, t_ray *shadow)
 	shadow->hit_plane = NULL;
 	shadow->hit_cylinder = NULL;
 	shadow->hit_sphere = NULL;
-	shadow->hit_cone = NULL;	
+	shadow->hit_cone = NULL;
 }
 
 bool	shadow_check(t_params *params, t_ray *ray, int index)
@@ -50,10 +50,10 @@ bool	shadow_check(t_params *params, t_ray *ray, int index)
 	if (shadow_plane_check(params, &shadow, ray, light_pos))
 		return (true);
 	if (shadow_cylinder_check(params, &shadow, light_dist))
-	    return (true);
+		return (true);
 	if (shadow_cylinder_cap_check(params, &shadow, light_dist))
-	    return (true);
+		return (true);
 	if (shadow_cone_check(params, &shadow, light_dist))
-	    return (true);		
+		return (true);
 	return (false);
 }

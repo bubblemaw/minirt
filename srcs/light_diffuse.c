@@ -22,14 +22,15 @@ void	all_diffuse(t_params *params, t_ray *ray,
 	t_vector	hit_light;
 
 	if (!params->light)
-		return ;	
+		return ;
 	i = -1;
 	while (params->light[++i])
 	{
 		hit_light = vector_sub(pos_to_vector(params->light[i]->pos),
 				ray->hit_point);
 		vector_normalize(&hit_light);
-		if ((ray->hit_sphere || ray->hit_cylinder || ray->hit_cone) && ray->hit_inside == true)
+		if ((ray->hit_sphere || ray->hit_cylinder || ray->hit_cone)
+			&& ray->hit_inside == true)
 			hit_light = vector_multi(-1.0f, hit_light);
 		if (shadow_check(params, ray, i))
 			continue ;
@@ -44,6 +45,16 @@ void	all_diffuse(t_params *params, t_ray *ray,
 	}
 }
 
+void	ray_color_above_255(t_ray *ray)
+{
+	if (ray->diffuse.r > 255)
+		ray->diffuse.r = 255;
+	if (ray->diffuse.g > 255)
+		ray->diffuse.g = 255;
+	if (ray->diffuse.b > 255)
+		ray->diffuse.b = 255;
+}
+
 // formula is 
 // object color * light color * light ratio
 // * (surface normal . hitToLight vector)
@@ -52,7 +63,8 @@ void	calculate_diffuse_light(t_params *params, t_ray *ray)
 	t_color	color;
 	t_color	diffuse_total;
 
-	if (!ray->hit_sphere && !ray->hit_cylinder && !ray->hit_plane && !ray->hit_cone)
+	if (!ray->hit_sphere && !ray->hit_cylinder
+		&& !ray->hit_plane && !ray->hit_cone)
 		return ;
 	if (ray->hit_sphere)
 		get_sphere_color(params, ray, &color);
@@ -61,7 +73,7 @@ void	calculate_diffuse_light(t_params *params, t_ray *ray)
 	else if (ray->hit_plane)
 		get_plane_color(params, ray, &color);
 	else if (ray->hit_cone)
-		get_cone_color(params, ray, &color);		
+		get_cone_color(params, ray, &color);
 	diffuse_total.r = 0;
 	diffuse_total.g = 0;
 	diffuse_total.b = 0;
@@ -69,10 +81,5 @@ void	calculate_diffuse_light(t_params *params, t_ray *ray)
 	ray->diffuse.r = (int)diffuse_total.r;
 	ray->diffuse.g = (int)diffuse_total.g;
 	ray->diffuse.b = (int)diffuse_total.b;
-	if (ray->diffuse.r > 255)
-		ray->diffuse.r = 255;
-	if (ray->diffuse.g > 255)
-		ray->diffuse.g = 255;
-	if (ray->diffuse.b > 255)
-		ray->diffuse.b = 255;
+	ray_color_above_255(ray);
 }

@@ -6,7 +6,7 @@
 /*   By: masase <masase@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 11:50:48 by masase            #+#    #+#             */
-/*   Updated: 2025/07/09 18:08:33 by masase           ###   ########.fr       */
+/*   Updated: 2025/07/10 17:37:35 by masase           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,55 +40,66 @@ void	*ft_realloc(void *ptr, size_t old_size, size_t new_size)
 	return (new_ptr);
 }
 
-void *alloc_tab(t_params *params, e_tab_type type)
+void	*alloc_tab(t_params *params, t_tab_type type)
 {
-	void **tab;
-	int	*current_size;
-	size_t element_size;
+	void	**tab;
+	int		*current_size;
+	size_t	element_size;
 
 	element_size = setup_tab_type(&tab, &current_size, params, type);
 	*tab = ft_realloc (*tab,
-	element_size * (*current_size),
-	element_size * ((*current_size) + 2));
+			element_size * (*current_size),
+			element_size * ((*current_size) + 2));
 	if (*tab == NULL)
 		return (NULL);
 	(*current_size)++;
-	return (*tab);	
+	return (*tab);
 }
 
-size_t setup_tab_type(void ***tab, int **current_size, t_params *params, e_tab_type type)
+size_t	tab_type_cone_sphere(void ***tab, int **current_size,
+	t_params *params, t_tab_type type)
 {
-	size_t element_size;
+	size_t	element_size;
 
-	if (type == LIGHT)
-	{
-		*tab = (void **)&params->light;
-		*current_size = &params->quantity.light;
-		element_size = sizeof(t_light *); 
-	}
-	else if (type == PLANE)
-	{
-		*tab = (void **)&params->plane;
-		*current_size = &params->quantity.plane;
-		element_size = sizeof(t_plane *); 
-	}
-	else if (type == CYLINDER)
-	{
-		*tab = (void **)&params->cylinder;
-		*current_size = &params->quantity.cylinder;
-		element_size = sizeof(t_cylinder *); 
-	}
-	else if (type == SPHERE)
+	if (type == SPHERE)
 	{
 		*tab = (void **)&params->sphere;
 		*current_size = &params->quantity.sphere;
-		element_size = sizeof(t_sphere *); 
+		element_size = sizeof(t_sphere *);
 	}
 	else if (type == CONE)
 	{
 		*tab = (void **)&params->cone;
 		*current_size = &params->quantity.cone;
-		element_size = sizeof(t_cone *); 
+		element_size = sizeof(t_cone *);
 	}	
+	return (element_size);
+}
+
+size_t	setup_tab_type(void ***tab, int **current_size,
+	t_params *params, t_tab_type type)
+{
+	size_t	element_size;
+
+	if (type == LIGHT)
+	{
+		*tab = (void **)&params->light;
+		*current_size = &params->quantity.light;
+		element_size = sizeof(t_light *);
+	}
+	else if (type == PLANE)
+	{
+		*tab = (void **)&params->plane;
+		*current_size = &params->quantity.plane;
+		element_size = sizeof(t_plane *);
+	}
+	else if (type == CYLINDER)
+	{
+		*tab = (void **)&params->cylinder;
+		*current_size = &params->quantity.cylinder;
+		element_size = sizeof(t_cylinder *);
+	}
+	else
+		element_size = tab_type_cone_sphere(tab, current_size, params, type);
 	return (element_size);
 }

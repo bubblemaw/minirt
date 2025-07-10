@@ -6,10 +6,9 @@
 /*   By: masase <masase@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 12:39:14 by masase            #+#    #+#             */
-/*   Updated: 2025/07/09 18:09:12 by masase           ###   ########.fr       */
+/*   Updated: 2025/07/10 17:32:54 by masase           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "../inc/minirt.h"
 
@@ -201,22 +200,12 @@ void	TEMP_simulation(t_params *params)
 
 int	main(int ac, char **av)
 {
-	(void)ac;
-	(void)av;
-    t_params params;
-    ft_memset(&params, 0, sizeof(t_params));
+	t_params	params;
 
-    // printf("let's print my objects\n");
-    // print_ambiance_as_array(&params.ambient);
-    // print_camera_as_array(&params.camera);
-    // print_cylinder_as_array(params.cylinder[0]);
-    // print_plane_as_array(params.plane[0]);
-    // print_point_as_array(params.light[0]);
-    // print_point_as_array(params.light[1]);
-
+	ft_memset(&params, 0, sizeof(t_params));
 	if (ac == 1)
 		TEMP_simulation(&params); // replace with parser
-    else
+	else
 	{
 		if (parsing(av[1], &params) == false)
 		{
@@ -224,10 +213,6 @@ int	main(int ac, char **av)
 			return (false);
 		}
 	}
-	// print_sphere_as_array(params.sphere[0]);
-	// print_sphere_as_array(params.sphere[0]);
-	// print_sphere_as_array(params.sphere[1]);
-	// print_sphere_as_array(params.sphere[2]);	
 	params.mlx = mlx_init();
 	params.window = mlx_new_window(params.mlx, WIDTH, HEIGHT,
 			"Made by math haters");

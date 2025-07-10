@@ -6,7 +6,7 @@
 /*   By: masase <masase@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 16:11:43 by maw               #+#    #+#             */
-/*   Updated: 2025/06/15 13:23:26 by masase           ###   ########.fr       */
+/*   Updated: 2025/07/10 19:02:18 by masase           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ int	ft_isspace(int c)
 
 float	ft_atof(const char *str)
 {
-	int	i;
-	int	signe;
+	int		i;
+	int		signe;
 	float	resultat;
 
 	resultat = 0.0f;
@@ -46,16 +46,16 @@ float	ft_atof(const char *str)
 	}
 	while (str[i] >= '0' && str[i] <= '9')
 	{
-		resultat = resultat *10 + (str[i] - '0');
+		resultat = resultat * 10 + (str[i] - '0');
 		i++;
 	}
 	decimal_atof(i, str, &resultat);
 	return (resultat * signe);
 }
 
-void decimal_atof(int i, const char *str, float *resultat)
+void	decimal_atof(int i, const char *str, float *resultat)
 {
-	float fraction;
+	float	fraction;
 
 	fraction = 0.1;
 	if (str[i] == '.')

@@ -6,7 +6,7 @@
 /*   By: masase <masase@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 10:21:26 by hoannguy          #+#    #+#             */
-/*   Updated: 2025/07/09 18:00:03 by masase           ###   ########.fr       */
+/*   Updated: 2025/07/10 16:53:41 by masase           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,18 +58,6 @@ void	free_sphere(t_params *params)
 	while (params->sphere[++i])
 		free(params->sphere[i]);
 	free(params->sphere);
-}
-
-void	free_cone(t_params *params)
-{
-	int	i;
-
-	i = -1;
-	if (!params->cone)
-		return ;
-	while (params->cone[++i])
-		free(params->cone[i]);
-	free(params->cone);
 }
 
 void	free_all(t_params *params)
