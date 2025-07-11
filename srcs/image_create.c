@@ -6,7 +6,7 @@
 /*   By: hoannguy <hoannguy@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 11:48:26 by hoannguy          #+#    #+#             */
-/*   Updated: 2025/07/11 15:21:50 by hoannguy         ###   ########.fr       */
+/*   Updated: 2025/07/11 17:12:52 by hoannguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	initialise_ray(t_params *params, t_ray *ray)
 	ray->color.r = 0;
 	ray->color.g = 0;
 	ray->color.b = 0;
-	ray->t = FLT_MAX;
+	ray->t = 3.402823466e+38f;
 	ray->hit_plane = NULL;
 	ray->hit_cylinder = NULL;
 	ray->hit_sphere = NULL;

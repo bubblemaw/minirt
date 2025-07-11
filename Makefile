@@ -6,7 +6,7 @@
 #    By: hoannguy <hoannguy@student.42lausanne.c    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/06 12:39:32 by masase            #+#    #+#              #
-#    Updated: 2025/07/11 09:46:58 by hoannguy         ###   ########.fr        #
+#    Updated: 2025/07/11 17:03:48 by hoannguy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,6 +36,7 @@ SRCS = 	srcs/main.c \
 		srcs/parsing/utils_2.c \
 		srcs/parsing/error_message.c \
 		srcs/parsing/print_struct.c \
+		srcs/parsing/print_struct2.c \
 		gnl/get_next_line.c \
 		gnl/get_next_line_utils.c \
 

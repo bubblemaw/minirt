@@ -1,29 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
+/*   print_struct2.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hoannguy <hoannguy@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/25 15:33:37 by masase            #+#    #+#             */
-/*   Updated: 2025/07/11 17:17:00 by hoannguy         ###   ########.fr       */
+/*   Created: 2025/07/11 17:02:49 by hoannguy          #+#    #+#             */
+/*   Updated: 2025/07/11 17:02:58 by hoannguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../../inc/minirt.h"
 
-void	ft_lstadd_back(t_list **lst, t_list *new)
+void	print_camera_as_array(t_camera *cam)
 {
-	t_list	*dernier;
-
-	if (!lst || !new)
-		return ;
-	if (!*lst)
-	{
-		*lst = new;
-		return ;
-	}
-	dernier = ft_lstlast(*lst);
-	dernier->next = new;
-	new->next = NULL;
+	printf("Camera\n");
+	printf("Position: [%.2f, %.2f, %.2f]\n",
+		cam->pos.x, cam->pos.y, cam->pos.z);
+	printf("Orientation: [%.2f, %.2f, %.2f]\n",
+		cam->vector.a, cam->vector.b, cam->vector.c);
+	printf("Field of View: %d\n", cam->fov);
 }

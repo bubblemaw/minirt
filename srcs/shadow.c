@@ -6,7 +6,7 @@
 /*   By: hoannguy <hoannguy@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 18:46:02 by hoannguy          #+#    #+#             */
-/*   Updated: 2025/07/11 15:21:10 by hoannguy         ###   ########.fr       */
+/*   Updated: 2025/07/11 17:13:41 by hoannguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	initialise_shadow_ray(t_ray *ray, t_ray *shadow)
 	shadow->color.r = 0;
 	shadow->color.g = 0;
 	shadow->color.b = 0;
-	shadow->t = FLT_MAX;
+	shadow->t = 3.402823466e+38f;
 	shadow->hit_plane = NULL;
 	shadow->hit_cylinder = NULL;
 	shadow->hit_sphere = NULL;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   image_get_color.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: masase <masase@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hoannguy <hoannguy@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 12:03:01 by hoannguy          #+#    #+#             */
-/*   Updated: 2025/07/10 16:39:33 by masase           ###   ########.fr       */
+/*   Updated: 2025/07/11 16:13:04 by hoannguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,6 @@ void	get_cylinder_color(t_params *params, t_ray *ray, t_color *color)
 	if (ray->hit_cylinder->texture_type == CHECKER)
 		temp = checkerboard_cylinder(params,
 				ray->hit_point, ray->hit_cylinder);
-	else if (ray->hit_cylinder->texture_type == STRIPE)
-		temp = stripe_cylinder(params,
-				ray->hit_point, ray->hit_cylinder);
 	else
 		temp = ray->hit_cylinder->color;
 	color->r = temp.r;
@@ -73,7 +70,7 @@ void	get_plane_color(t_params *params, t_ray *ray, t_color *color)
 	t_color	temp;
 
 	if (ray->hit_plane->texture_type == CHECKER)
-		temp = checkerboard_plane(params, ray->hit_point);
+		temp = checkerboard_plane(params, ray);
 	else if (ray->hit_plane->texture_type == STRIPE)
 		temp = stripe_plane(params, ray->hit_point);
 	else

@@ -12,22 +12,6 @@
 
 #include "../inc/minirt.h"
 
-t_color	stripe_cylinder(t_params *params, t_vector hit_point, t_cylinder *cyl)
-{
-	t_vector	center;
-	float		angle;
-	int			color;
-
-	center = vector_sub(hit_point, pos_to_vector(cyl->pos));
-	angle = atan2(center.c, center.a);
-	color = (int)((angle / (2 * M_PI)) * params->stripe.size) % 2;
-	if (color < 0)
-		color += 2;
-	if (color == 0)
-		return (params->stripe.color1);
-	return (params->stripe.color2);
-}
-
 t_color	stripe_sphere(t_params *params, t_vector hit_point, t_sphere *sphere)
 {
 	t_vector	center;
