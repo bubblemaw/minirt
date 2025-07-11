@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: masase <masase@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hoannguy <hoannguy@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 13:05:52 by masase            #+#    #+#             */
-/*   Updated: 2025/07/10 18:56:58 by masase           ###   ########.fr       */
+/*   Updated: 2025/07/11 13:30:22 by hoannguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,13 +49,13 @@
 # define MERCU_BUMP 10
 # define PLUTO_BUMP 11
 # define VENUS_BUMP 12
-# define U_SCALE 0.2f
-# define V_SCALE 0.15f
+# define U_SCALE 0.45f
+# define V_SCALE 0.8f
 # define XPM_HEIGHT 500
 # define XPM_WIDTH 1000
 
-# define HEIGHT 1080
-# define WIDTH 1920
+# define HEIGHT 720
+# define WIDTH 1080
 
 typedef enum t_tab_type
 {

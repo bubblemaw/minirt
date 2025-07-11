@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   save_ambiance.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: masase <masase@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hoannguy <hoannguy@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 12:06:32 by masase            #+#    #+#             */
-/*   Updated: 2025/07/10 18:58:07 by masase           ###   ########.fr       */
+/*   Updated: 2025/07/11 10:16:59 by hoannguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ bool	save_ambiant(char *line, t_params *params)
 
 	i = 0;
 	if (params->quantity.ambiant > 0)
-		return (ft_error("I can only handle one ambiant light :("));
+		return (ft_error("I can only handle one ambient light :("));
 	while (ft_isalpha(line[i]) && line[i])
 		i++;
 	while (ft_isspace(line[i]) && line[i])
