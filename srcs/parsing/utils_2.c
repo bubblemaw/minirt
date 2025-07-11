@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: masase <masase@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hoannguy <hoannguy@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 11:50:48 by masase            #+#    #+#             */
-/*   Updated: 2025/07/10 17:37:35 by masase           ###   ########.fr       */
+/*   Updated: 2025/07/11 17:01:13 by hoannguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ size_t	tab_type_cone_sphere(void ***tab, int **current_size,
 		*tab = (void **)&params->cone;
 		*current_size = &params->quantity.cone;
 		element_size = sizeof(t_cone *);
-	}	
+	}
 	return (element_size);
 }
 

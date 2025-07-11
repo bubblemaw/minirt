@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   image_create.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: masase <masase@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hoannguy <hoannguy@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 11:48:26 by hoannguy          #+#    #+#             */
-/*   Updated: 2025/07/07 18:00:38 by masase           ###   ########.fr       */
+/*   Updated: 2025/07/11 17:12:52 by hoannguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,20 @@ void	intersection(t_params *params, t_ray *ray)
 	calculate_ambient_light(params, ray);
 	calculate_diffuse_light(params, ray);
 	calculate_specular_light(params, ray);
-	if (ray->hit_plane)
-		ray->color = color_add(ray->ambient, ray->diffuse);
+	if (params->quantity.camera == 1 && params->quantity.light != 0)
+	{
+		if (ray->hit_plane)
+			ray->color = color_add(ray->ambient, ray->diffuse);
+		else
+			ray->color = color_add(ray->specular,
+					color_add(ray->ambient, ray->diffuse));
+	}
 	else
-		ray->color = color_add(ray->specular,
-				color_add(ray->ambient, ray->diffuse));
+	{
+		ray->color.r = 0;
+		ray->color.g = 0;
+		ray->color.b = 0;
+	}
 }
 
 // Setup camera direction based on camera vector.
@@ -53,7 +62,7 @@ void	initialise_ray(t_params *params, t_ray *ray)
 	ray->color.r = 0;
 	ray->color.g = 0;
 	ray->color.b = 0;
-	ray->t = FLT_MAX;
+	ray->t = 3.402823466e+38f;
 	ray->hit_plane = NULL;
 	ray->hit_cylinder = NULL;
 	ray->hit_sphere = NULL;
@@ -61,6 +70,10 @@ void	initialise_ray(t_params *params, t_ray *ray)
 	ray->diffuse.r = 0;
 	ray->diffuse.g = 0;
 	ray->diffuse.b = 0;
+	ray->hit_inside = false;
+	ray->normal = ray->direction;
+	ray->hit_point = vector_add(ray->origin,
+			vector_multi(ray->t, ray->direction));
 }
 
 // pixel.horiz shifts the ray horizontally
@@ -79,7 +92,6 @@ void	render_object(t_params *params)
 		printf("Rendering row %d/%d\n", pixel.i + 1, HEIGHT);
 		while (++pixel.j < WIDTH)
 		{
-			initialise_ray(params, &ray);
 			pixel.horiz = vector_multi((2 * ((pixel.j + 0.5f) / WIDTH) - 1)
 					* world.aspect_ratio * world.fov_rad, world.right);
 			pixel.vert = vector_multi((1 - 2 * ((pixel.i + 0.5) / HEIGHT))
@@ -87,6 +99,7 @@ void	render_object(t_params *params)
 			ray.direction = vector_add(world.forward,
 					vector_add(pixel.horiz, pixel.vert));
 			vector_normalize(&ray.direction);
+			initialise_ray(params, &ray);
 			intersection(params, &ray);
 			my_mlx_pixel_put(params, pixel.i, pixel.j, ray.color);
 		}

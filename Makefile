@@ -3,14 +3,14 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: masase <masase@student.42.fr>              +#+  +:+       +#+         #
+#    By: hoannguy <hoannguy@student.42lausanne.c    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/06 12:39:32 by masase            #+#    #+#              #
-#    Updated: 2025/07/10 18:20:36 by masase           ###   ########.fr        #
+#    Updated: 2025/07/11 17:03:48 by hoannguy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = minirt
+NAME = miniRT
 
 SRCS = 	srcs/main.c \
 		srcs/free_all.c srcs/free_all2.c srcs/hook.c srcs/hook2.c srcs/hook3.c srcs/hook4.c\
@@ -36,6 +36,7 @@ SRCS = 	srcs/main.c \
 		srcs/parsing/utils_2.c \
 		srcs/parsing/error_message.c \
 		srcs/parsing/print_struct.c \
+		srcs/parsing/print_struct2.c \
 		gnl/get_next_line.c \
 		gnl/get_next_line_utils.c \
 

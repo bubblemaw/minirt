@@ -15,18 +15,25 @@
 t_color	checkerboard_cylinder(t_params *params,
 		t_vector hit_point, t_cylinder *cyl)
 {
-	float		angle;
-	float		height;
 	int			u;
 	int			v;
 	t_vector	center;
+	t_vector	tangent;
+	t_vector	bitangent;
 
 	center = vector_sub(hit_point, pos_to_vector(cyl->pos));
-	angle = ((atan2(center.c + 0.0001f, center.a + 0.0001f)
-				/ (2 * M_PI)) * params->checker.size);
-	height = (center.b / params->checker.size);
-	u = (int)floorf(angle) % 2;
-	v = (int)floorf(height) % 2;
+	if (fabs(cyl->vector.a) < 0.000001f && fabs(cyl->vector.c) < 0.000001f)
+		tangent = (t_vector){1, 0, 0};
+	else
+		tangent = (t_vector){-cyl->vector.c, 0, cyl->vector.a};
+	vector_normalize(&tangent);
+	bitangent = vector_cross(cyl->vector, tangent);
+	vector_normalize(&bitangent);
+	u = (int)floorf((atan2(vector_dot(center, bitangent),
+					vector_dot(center, tangent))
+				/ (2 * M_PI)) * params->checker.size) % 2;
+	v = (int)floorf(vector_dot(center, cyl->vector)
+			/ (params->checker.size / 5)) % 2;
 	if ((u + v) % 2 == 0)
 		return (params->checker.color1);
 	return (params->checker.color2);
@@ -53,17 +60,21 @@ t_color	checkerboard_sphere(t_params *params,
 	return (params->checker.color2);
 }
 
-t_color	checkerboard_plane(t_params *params, t_vector hit_point)
+t_color	checkerboard_plane(t_params *params, t_ray *ray)
 {
-	float	temp1;
-	float	temp2;
-	int		u;
-	int		v;
+	int			u;
+	int			v;
+	float		u_coord;
+	float		v_coord;
+	t_vector	u_axis;
 
-	temp1 = ((hit_point.a + 0.0001f) / params->checker.size);
-	temp2 = ((hit_point.c + 0.0001f) / params->checker.size);
-	u = (int)floorf(temp1) % 2;
-	v = (int)floorf(temp2) % 2;
+	u_axis.a = 1;
+	u_axis.b = 0;
+	u_axis.c = 0;
+	u_coord = vector_dot(ray->hit_point, u_axis);
+	v_coord = vector_dot(ray->hit_point, vector_cross(ray->normal, u_axis));
+	u = (int)floorf(u_coord / params->checker.size) % 2;
+	v = (int)floorf(v_coord / params->checker.size) % 2;
 	if ((int)(u + v) % 2 == 0)
 		return (params->checker.color1);
 	return (params->checker.color2);

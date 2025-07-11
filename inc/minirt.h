@@ -3,24 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: masase <masase@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hoannguy <hoannguy@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 13:05:52 by masase            #+#    #+#             */
-/*   Updated: 2025/07/10 18:56:58 by masase           ###   ########.fr       */
+/*   Updated: 2025/07/11 17:15:43 by hoannguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINIRT_H
 # define MINIRT_H
-
 # include <stdio.h>
 # include <unistd.h>
 # include <math.h>
-# include <float.h>
 # include <stdbool.h>
+# include <fcntl.h>
 # include "../libft/libft.h" 
 # include "../gnl/get_next_line.h" 
-# include <fcntl.h>
 # include "../minilibx-linux/mlx.h"
 
 # define ESC_KEY 65307
@@ -49,13 +47,13 @@
 # define MERCU_BUMP 10
 # define PLUTO_BUMP 11
 # define VENUS_BUMP 12
-# define U_SCALE 0.2f
-# define V_SCALE 0.15f
+# define U_SCALE 0.45f
+# define V_SCALE 0.8f
 # define XPM_HEIGHT 500
 # define XPM_WIDTH 1000
 
-# define HEIGHT 1080
-# define WIDTH 1920
+# define HEIGHT 720
+# define WIDTH 1080
 
 typedef enum t_tab_type
 {
@@ -308,7 +306,6 @@ void		skip_space(char *line, int *i);
 void		skip_alpha(char *line, int *i);
 bool		skip_sign_and_number(char *line, int *i);
 
-
 // save camera
 bool		save_camera(char *line, t_params *params);
 bool		save_fov(char *line, int *i, t_camera *camera);
@@ -390,8 +387,6 @@ float		calculate_lateral_t_cone(t_cone *cone, t_ray *ray);
 float		calculate_cap_t_cone(t_cone *cone, t_ray *ray, t_vector *normal);
 void		set_t_cap_cone(t_ray *ray, float t, t_cone *cone, t_vector normal);
 
-
-
 // LIGHT -----------------------------------
 void		calculate_ambient_light(t_params *params, t_ray *ray);
 void		calculate_diffuse_light(t_params *params, t_ray *ray);
@@ -414,18 +409,23 @@ bool		shadow_cone_check(t_params *params, t_ray *shadow,
 void		initialise_pattern(t_params *params);
 void		initialise_bump(t_params *params);
 void		initialise_data(t_params *params, t_data *data, int type);
-t_color		checkerboard_plane(t_params *params, t_vector hit_point);
-t_color		checkerboard_sphere(t_params *params, t_vector hit_point, t_sphere *sphere);
-t_color		checkerboard_cylinder(t_params *params, t_vector hit_point, t_cylinder *cyl);
+t_color		checkerboard_plane(t_params *params, t_ray *ray);
+t_color		checkerboard_sphere(t_params *params,
+				t_vector hit_point, t_sphere *sphere);
+t_color		checkerboard_cylinder(t_params *params,
+				t_vector hit_point, t_cylinder *cyl);
 t_color		stripe_plane(t_params *params, t_vector hit_point);
-t_color		stripe_sphere(t_params *params, t_vector hit_point, t_sphere *sphere);
-t_color		stripe_cylinder(t_params *params, t_vector hit_point, t_cylinder *cyl);
-t_color		planet_sphere(t_params *params, t_vector hit_point, t_sphere *sphere, int type);
+t_color		stripe_sphere(t_params *params,
+				t_vector hit_point, t_sphere *sphere);
+t_color		stripe_cylinder(t_params *params,
+				t_vector hit_point, t_cylinder *cyl);
+t_color		planet_sphere(t_params *params,
+				t_vector hit_point, t_sphere *sphere, int type);
 void		get_sphere_color(t_params *params, t_ray *ray, t_color *color);
 void		get_cylinder_color(t_params *params, t_ray *ray, t_color *color);
 void		get_plane_color(t_params *params, t_ray *ray, t_color *color);
 void		get_cone_color(t_params *params, t_ray *ray, t_color *color);
-void 		apply_bump(t_params *params, t_ray *ray, t_sphere *sphere);
+void		apply_bump(t_params *params, t_ray *ray, t_sphere *sphere);
 
 // UTIL ------------------------------------
 void		free_all(t_params *params);
