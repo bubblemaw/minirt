@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   inter_cone_cap.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: masase <masase@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maw <maw@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 18:18:23 by masase            #+#    #+#             */
-/*   Updated: 2025/07/10 18:22:42 by masase           ###   ########.fr       */
+/*   Updated: 2025/07/12 16:00:04 by maw              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	set_t_cap_cone(t_ray *ray, float t, t_cone *cone, t_vector normal)
 	ray->hit_point = vector_add(ray->hit_point, vector_multi(0.0001, normal));
 }
 
-int	touch_under_cap_cone(t_vector axis, t_ray *ray, t_cone *cone)
+float	touch_under_cap_cone(t_vector axis, t_ray *ray, t_cone *cone)
 {
 	float		denom;
 	float		t;

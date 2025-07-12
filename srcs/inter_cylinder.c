@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   inter_cylinder.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: masase <masase@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maw <maw@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 14:59:56 by maw               #+#    #+#             */
-/*   Updated: 2025/07/10 18:24:37 by masase           ###   ########.fr       */
+/*   Updated: 2025/07/12 16:12:30 by maw              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,9 +113,9 @@ void	intersection_cylinder(t_params *params, t_ray *ray)
 	{
 		t_lateral = calculate_lateral_t(params->cylinder[i], ray);
 		t_cap = calculate_cap_t(params->cylinder[i], ray, &normal_cap);
-		if (t_cap > 0 && t_cap < ray->t)
-			set_t_cap(ray, t_cap, params->cylinder[i], normal_cap);
-		if (t_lateral > 0 && t_lateral < ray->t)
+		if (t_lateral > 0.001 && t_lateral < ray->t)
 			set_t2_cylinder(params->cylinder[i], ray, t_lateral);
+		if (t_cap > 0.001 && t_cap < ray->t)
+			set_t_cap(ray, t_cap, params->cylinder[i], normal_cap);
 	}
 }

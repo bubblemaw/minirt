@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   inter_cylinder_cap.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: masase <masase@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maw <maw@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/28 16:03:24 by maw               #+#    #+#             */
-/*   Updated: 2025/07/10 18:14:57 by masase           ###   ########.fr       */
+/*   Updated: 2025/07/12 15:57:21 by maw              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	set_t_cap(t_ray *ray, float t, t_cylinder *cylinder, t_vector normal)
 	ray->hit_point = vector_add(ray->hit_point, vector_multi(0.0001, normal));
 }
 
-int	touch_under_cap(t_vector axis, t_ray *ray, t_cylinder *cylinder)
+float	touch_under_cap(t_vector axis, t_ray *ray, t_cylinder *cylinder)
 {
 	float		denom;
 	float		t;
@@ -52,7 +52,7 @@ int	touch_under_cap(t_vector axis, t_ray *ray, t_cylinder *cylinder)
 	return (t);
 }
 
-int	touch_top_cap(t_vector axis, t_ray *ray, t_cylinder *cylinder)
+float	touch_top_cap(t_vector axis, t_ray *ray, t_cylinder *cylinder)
 {
 	float		denom;
 	float		t;

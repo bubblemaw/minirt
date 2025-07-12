@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shadow_cylinder.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: masase <masase@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maw <maw@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 15:27:24 by maw               #+#    #+#             */
-/*   Updated: 2025/07/10 18:02:21 by masase           ###   ########.fr       */
+/*   Updated: 2025/07/12 16:04:17 by maw              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,13 +107,13 @@ bool	shadow_cylinder_check(t_params *params, t_ray *shadow,
 	{
 		cylinder_equation(params, shadow, &t, i);
 		if (t.disc < 0)
-			return (false);
+			continue ;
 		t1 = (-t.b - sqrtf(t.disc)) / (2 * t.a);
 		t2 = (-t.b + sqrtf(t.disc)) / (2 * t.a);
 		if (height_check(shadow, t1, t.axis, params->cylinder[i]) == false)
-			return (false);
+			continue ;
 		if (height_check(shadow, t2, t.axis, params->cylinder[i]) == false)
-			return (false);
+			continue ;
 		if ((t1 > 0 && t1 * t1 < light_dist)
 			|| (t2 > 0 && t2 * t2 < light_dist))
 			return (true);
