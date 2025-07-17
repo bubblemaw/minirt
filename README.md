@@ -2,8 +2,7 @@
 ------------
 
 # Bug
-- Cylinder shadow -> test5.4.rt
-- Cylinder cap render -> test1.3.rt
+- Cylinder collision -> test1.3.rt
 
 # Current progress
 Mandatory:
