@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   save_camera.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: masase <masase@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hoannguy <hoannguy@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 12:06:25 by masase            #+#    #+#             */
-/*   Updated: 2025/07/10 18:28:28 by masase           ###   ########.fr       */
+/*   Updated: 2025/07/17 15:29:11 by hoannguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ bool	save_camera(char *line, t_params *params)
 		i++;
 	if (save_fov(line, &i, &params->camera) == false)
 		return (false);
+	skip_space(line, &i);
 	if (ft_isprint(line[i]))
 		return (ft_error("Too much arguments for the camera parameters"));
 	params->quantity.camera++;
@@ -48,8 +49,6 @@ bool	save_fov(char *line, int *i, t_camera *camera)
 	}
 	while (ft_isdigit(line[*i]))
 		(*i)++;
-	if (!ft_isspace(line[*i]))
-		return (ft_error("there is too much FOV arguments"));
 	return (true);
 }
 

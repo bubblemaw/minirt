@@ -6,7 +6,7 @@
 /*   By: hoannguy <hoannguy@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 11:48:26 by hoannguy          #+#    #+#             */
-/*   Updated: 2025/07/11 17:12:52 by hoannguy         ###   ########.fr       */
+/*   Updated: 2025/07/17 15:34:49 by hoannguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,10 @@ void	intersection(t_params *params, t_ray *ray)
 			ray->color = color_add(ray->specular,
 					color_add(ray->ambient, ray->diffuse));
 	}
+	else if (params->quantity.light == 0 && (ray->hit_sphere != NULL
+			|| ray->hit_plane != NULL || ray->hit_cylinder != NULL
+			|| ray->hit_cone != NULL))
+		ray->color = ray->ambient;
 	else
 	{
 		ray->color.r = 0;
