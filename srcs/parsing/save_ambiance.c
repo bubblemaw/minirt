@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   save_ambiance.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hoannguy <hoannguy@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: maw <maw@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 12:06:32 by masase            #+#    #+#             */
-/*   Updated: 2025/07/11 10:16:59 by hoannguy         ###   ########.fr       */
+/*   Updated: 2025/07/17 17:48:11 by maw              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,9 @@ bool	save_ambiant(char *line, t_params *params)
 		i++;
 	if (amb_rgb(line, &i, &params->ambient) == false)
 		return (false);
+	skip_space(line, &i);
+	if (ft_isprint(line[i]))
+		return (ft_error("Too much arguments for the ambiant parameters"));
 	params->quantity.ambiant++;
 	return (true);
 }
@@ -54,7 +57,5 @@ bool	amb_rgb(char *line, int *i, t_ambient *ambient)
 		return (false);
 	if (put_rgb(i, &ambient->color.b, line) == false)
 		return (false);
-	if (ft_isprint(line[*i]))
-		return (ft_error("Too much arguments for the ambient RGB parameters"));
 	return (true);
 }

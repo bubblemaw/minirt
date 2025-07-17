@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   save_cone.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: masase <masase@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maw <maw@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 11:51:53 by masase            #+#    #+#             */
-/*   Updated: 2025/07/10 18:16:02 by masase           ###   ########.fr       */
+/*   Updated: 2025/07/17 17:48:57 by maw              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ bool	save_cone_2(char *line, int *i, int j, t_params *params)
 	skip_space(line, i);
 	if (save_texture(i, &params->cone[j]->texture_type, line) == false)
 		return (false);
+	skip_space(line, i);
 	if (ft_isprint(line[*i]))
 		return (ft_error("Too much arguments for the cone parameters"));
 	return (true);

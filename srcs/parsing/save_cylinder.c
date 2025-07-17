@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   save_cylinder.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: masase <masase@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maw <maw@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 16:40:50 by maw               #+#    #+#             */
-/*   Updated: 2025/07/10 16:27:58 by masase           ###   ########.fr       */
+/*   Updated: 2025/07/17 17:36:54 by maw              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ bool	save_cylinder_2(char *line, int *i, int j, t_params *params)
 	skip_space(line, i);
 	if (save_texture(i, &params->cylinder[j]->texture_type, line) == false)
 		return (false);
+	skip_space(line, i);
 	if (ft_isprint(line[*i]))
 		return (ft_error("Too much arguments for the cylinder parameters"));
 	return (true);

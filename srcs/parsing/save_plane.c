@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   save_plane.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hoannguy <hoannguy@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: maw <maw@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 15:46:44 by maw               #+#    #+#             */
-/*   Updated: 2025/07/11 17:00:37 by hoannguy         ###   ########.fr       */
+/*   Updated: 2025/07/17 17:48:23 by maw              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ bool	save_plane(char *line, t_params *params)
 	skip_space(line, &i);
 	if (save_texture(&i, &params->plane[j]->texture_type, line) == false)
 		return (false);
+	skip_space(line, &i);
 	if (ft_isprint(line[i]))
 		return (ft_error("Too much arguments for the plane parameters"));
 	return (true);

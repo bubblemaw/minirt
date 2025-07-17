@@ -6,7 +6,7 @@
 /*   By: maw <maw@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 14:59:56 by maw               #+#    #+#             */
-/*   Updated: 2025/07/12 16:12:30 by maw              ###   ########.fr       */
+/*   Updated: 2025/07/17 17:08:41 by maw              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,7 @@ bool	height_projection(t_ray *ray, t_cylinder *cylinder, float t)
 	from_base = vector_sub(hit_point, base);
 	height_projection = vector_dot(from_base, axis);
 	if (height_projection < 0 || height_projection > cylinder->h)
-	{
-		ray->hit_cylinder = NULL;
 		return (false);
-	}
 	return (true);
 }
 
