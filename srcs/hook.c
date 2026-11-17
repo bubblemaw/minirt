@@ -6,7 +6,7 @@
 /*   By: hoannguy <hoannguy@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 10:41:26 by hoannguy          #+#    #+#             */
-/*   Updated: 2025/06/15 14:25:54 by hoannguy         ###   ########.fr       */
+/*   Updated: 2025/06/25 01:00:28 by hoannguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	camera_reset(t_params *params)
 {
 	params->camera.pos.x = 0;
 	params->camera.pos.y = 0;
-	params->camera.pos.z = -10;
+	params->camera.pos.z = -70;
 	params->camera.vector.a = 0;
 	params->camera.vector.b = 0;
 	mlx_destroy_image(params->mlx, params->data.img);
@@ -54,6 +54,7 @@ int	key_press(int keycode, t_params *params)
 
 int	x_close_window(t_params *params)
 {
+	free_maps(params);
 	free_all(params);
 	mlx_destroy_image(params->mlx, params->data.img);
 	mlx_destroy_window(params->mlx, params->window);

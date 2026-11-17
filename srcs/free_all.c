@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_all.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hoannguy <hoannguy@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: masase <masase@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 10:21:26 by hoannguy          #+#    #+#             */
-/*   Updated: 2025/06/09 10:31:17 by hoannguy         ###   ########.fr       */
+/*   Updated: 2025/07/10 16:53:41 by masase           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,4 +66,5 @@ void	free_all(t_params *params)
 	free_plane(params);
 	free_cylinder(params);
 	free_sphere(params);
+	free_cone(params);
 }

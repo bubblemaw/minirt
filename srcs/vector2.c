@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vector2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hoannguy <hoannguy@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: masase <masase@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 15:44:53 by hoannguy          #+#    #+#             */
-/*   Updated: 2025/06/15 20:10:20 by hoannguy         ###   ########.fr       */
+/*   Updated: 2025/07/10 18:25:02 by masase           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ void	vector_normalize(t_vector *v1)
 {
 	float	norm;
 
-	norm = sqrt(vector_norm2(*v1));
-	if (norm == 0.0f)
+	norm = sqrtf(vector_norm2(*v1));
+	if (norm == 0.0)
 		return ;
 	v1->a /= norm;
 	v1->b /= norm;
